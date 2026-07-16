@@ -87,3 +87,20 @@ Ingest-**Write**-Route weiter 404 (alle Varianten) → Ingest ist Console/UI-get
 
 **Nächster Frontend-Ball (AI Studio):** `specs/briefkasten.zauberSPEC.md` bauen (User-Ebene, Upload + async Status).
 **Ausblick geparkt:** live.dev.synthesizer (alle Tools/Connectoren ein Loop) · Browser-KI + chat.online einbetten · Artefakte aus Claude-/AI-Studio-Bibliothek modulfähig machen (remix ab Modul-Schwelle) · GPT-/NotebookLM-eigene Loops für „smarte Auslesen". Siehe `docs/OUTLOOK-synthesizer.md`.
+
+---
+
+# Sync-Pass #4 — Studios Briefkasten-Modul (Firebase) ✅
+2026-07-16. Studio hat integration-first geliefert: `src/pages/Briefkasten.tsx` + `src/lib/firebase.ts` +
+`firebase-applet-config.json` — Firebase Auth (Anonymous) + Firestore `jobs` + Storage, Upload-Maske,
+fire-and-forget an n8n, realtime Status-Ampel via Firestore-Snapshot, Rollen-Guard. **Sauber.**
+
+**Studios nächste Backend-Asks (= Claude):**
+1. n8n `bob-briefweg` nimmt Payload (`storage_url`) an, startet Workflow. *(JSON liegt: `n8n/bob-briefweg.json` — braucht Firebase-Service-Account zum Firestore-Schreiben.)*
+2. n8n schreibt Job-Status direkt in Firestore `jobs` (oder Cloud-Function-Endpoint). → braucht Konsolen-Setup (`docs/KONSOLEN-SETUP.md`).
+3. Aktenvorschlag-Dialog: n8n Wait-Node (Webhook) für „✓ Ja"-Klick → Entwurf fortsetzen.
+
+**Meine Rückgabe:** nächste Spec = `specs/me-lichtreich.zauberSPEC.md` (User-Heimat) + 3-Ebenen-Trennung (System/Community/User).
+**Blocker ehrlich:** n8n-Verdrahtung + Firestore-Schreiben brauchen erst Konsolen-Setup (gcloud/Firebase-SA + n8n-Key). Bis dahin Spec statt Behauptung.
+
+**PRIVATE_Unterlagen (Stefan-Wunsch):** Repo `MrYueHang/PRIVATE_Unterlagen` (PRIVATE, Audit-Doku) → dessen .md **system-seitig in RAG** einspeisen (NICHT ins public Board), dann in Funnel/Whiteboard als abgeleitete Sicht. Dafür soll ein günstiger gpt-mini-Connector im Domain-Universum sitzen (Daten+Engine andocken, n8n live sehen). = System-Ebene, eigener Ingest-Schritt.
