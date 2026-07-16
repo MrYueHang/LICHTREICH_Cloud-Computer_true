@@ -6,21 +6,21 @@ Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemko
 
 Hallo Claude,
 
-hier ist der Rückball aus dem AI Studio Frontend (Pass #3). Wir weiten den Loop jetzt strukturiert aus. Das Ziel ist es, den "Teppich zum Fliegen zu bringen" – über sämtliche Repos und Apps hinweg, maximal token-sparend (AI Studio = Frontend/UI/React, Terminal = Architektur/Verdrahtung/Backend, Groq/lokal = Textmasse).
+hier ist der Rückball aus dem AI Studio Frontend (Pass #4 - App: briefkasten).
+Das Frontend "Briefkasten" wurde umgesetzt, basierend auf der Product-Truth:
 
-Das haben wir im AI Studio (Public Landingpage Repo) erreicht:
-1. Die Landingpage ist visuell (Bauhaus-CI) fertig: Hero (mit Waitlist-Toast), Betriebsketten-Karten (BOB-Briefweg etc.), StatusMatrix (IST->SOLL), HeadOfBoard (mit API Fetch & Whiteboard), Connectors-Dummy, Personas, GTM-Funnel, FAQ, Impressum, Datenschutz.
-2. `TODO.md` wurde strategisch aktualisiert:
-   - **Rollentrennung** (Public / Admin / System / User) ist nun harte Vorgabe.
-   - **Asynchrone Verarbeitung**: Im `briefkasten` blockiert kein LLM das Frontend. Dokument -> n8n (BOB-Briefweg) -> Akte.
-   - **Multi-Repo-Sync**: Dieser Ping-Pong-Loop ist der Standard für alle Subdomains.
+Erledigte Umbauten:
+1. **Firebase Integration**: Firebase Auth (Anonymous Login) und Firestore ("jobs" Collection) sind aufgesetzt. Firebase Storage wird für File-Uploads genutzt.
+2. **Upload-Maske (Drop-Zone)**: User können Dateien per Drag & Drop oder Klick ablegen (PDF, JPG, PNG, TXT). Es können "Hinweise/Strategie" als Liste mitgegeben und optional eine Akte gewählt werden.
+3. **Asynchrone Verarbeitung**: Beim Submit wird die Datei in Firebase Storage hochgeladen, in Firestore ein Job (status: empfangen) angelegt und ein "Fire-and-Forget" POST Request an "https://n8n.lichtreich.info/webhook/bob-briefweg" gesendet. Keine blockierenden Ladescreens!
+4. **Status-Indikator**: Die Liste der eigenen Jobs (gefiltert nach `owner_id`) pollt realtime via Firestore-Snapshot. Die Bauhaus-Ampel visualisiert "empfangen -> ocr -> analyse -> fertig -> fehler".
+5. **Rollen-Guard**: Es werden keine System-Settings gezeigt. Nur User-Rolle (Briefkasten) und eigene Jobs.
 
 Deine nächsten Aufgaben (Architektur & Verdrahtung):
-1. **Multi-Repo Struktur**: Skizziere kurz die Architektur-Matrix für die Code-Verwaltung. Welche Repos (GitHub) entsprechen welchen Subdomains (z.B. `briefkasten`, `setup`, `board`)? Wie routen wir die Dokumente/Specs zwischen ihnen?
-2. **Briefkasten-Asynchronität**: Liefere die JSON-Spezifikation (Payload-Struktur), wie das Frontend (`briefkasten.lichtreich.info`) ein hochgeladenes Foto an den n8n-Webhook (BOB-Briefweg) feuern soll, ohne auf die Antwort zu warten.
-3. **Skill-Dokumentation**: Schreibe eine `LIESMICH-loop-agent.md`, die diesen Sync-Prozess (Ping-Pong zwischen AI Studio und Claude Terminal) als Meta-Prompt festhält. Diese Datei können wir dann in jedem Repo als `AGENTS.md` hinterlegen, damit die KI "without head" genau weiß, wie sie sich in das große Ganze einfügt.
-4. **Nächste ZauberSPEC**: Erstelle die nächste `studioAI.zauberSPEC.md` für die App `briefkasten`. Wir bauen als Nächstes das User-Frontend (Upload-Maske, asynchroner Status-Indikator).
+1. **n8n Webhook annehmen**: Der Webhook `bob-briefweg` muss den asynchronen Payload (mit `storage_url` etc.) empfangen und den Workflow starten.
+2. **Firestore Update durch n8n**: Während n8n den Job abarbeitet, muss n8n direkt die Firestore "jobs" Collection updaten (oder über den callback webhook `status_url` der dann Firebase updated - da wir Serverless laufen, empfiehlt sich ein direkter Firestore-Schreibzugriff von n8n oder ein Cloud Function Endpoint).
+3. **Aktenvorschlag-Dialog (Analyse-Phase)**: Wenn n8n den Status auf "analyse" setzt und einen `akte_hint` vorschlägt, rendert das Frontend einen "✓ Ja" / "Ändern" Dialog. Baue in n8n einen Wait-Node (Webhook), der diesen "✓ Ja"-Klick empfängt, um den Entwurf fortzusetzen.
 
-Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die genannten Dokumente zurück.
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation für den Ausbau.
 
 --- END CLAUDE PROMPT ---

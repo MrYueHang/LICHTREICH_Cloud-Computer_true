@@ -9,10 +9,10 @@ Dieser Backlog basiert auf der Evidenzmatrix, dem aktuellen Plattformstand und d
   - **User**: Das Cockpit, `briefkasten` (Eingang), Aktenansicht.
   - **Admin**: Connectoren-Setup, Abrechnung, Rechtemanagement (`mandat`).
   - **System**: n8n, RAG-Ingest, Orchestrator (headless).
-- [ ] **Foto/Scan/PDF-Vereinheitlichung im Briefkasten**: Foto-Input und Scan-Stapel müssen sauber in denselben Dokumentpfad und asynchron in den BOB-Briefweg gebracht werden.
+- [x] **Foto/Scan/PDF-Vereinheitlichung im Briefkasten**: Foto-Input und Scan-Stapel müssen sauber in denselben Dokumentpfad und asynchron in den BOB-Briefweg gebracht werden.
 
 ## 🟠 Hohe Priorität
-- [ ] **Asynchroner GPT/Claude-Einsatz im Briefkasten**: Der Nutzer lädt im Frontend (`briefkasten`) Dokumente hoch. Das LLM antwortet *nicht* blockierend im Frontend, sondern das Dokument wird an den `BOB-Briefweg` (n8n/Backend) übergeben. Die KI arbeitet asynchron, das Resultat wird in der Akte abgelegt.
+- [x] **Asynchroner GPT/Claude-Einsatz im Briefkasten**: Der Nutzer lädt im Frontend (`briefkasten`) Dokumente hoch. Das LLM antwortet *nicht* blockierend im Frontend, sondern das Dokument wird an den `BOB-Briefweg` (n8n/Backend) übergeben. Die KI arbeitet asynchron, das Resultat wird in der Akte abgelegt.
 - [ ] **Setup-Branding und Public Entry**: `setup.lichtreich.info` muss als eigenständige, saubere Produkttür fungieren.
 - [ ] **Plattform-SSO**: Den bestehenden SSO nachweislich auf alle zentralen Apps erweitern.
 - [ ] **Storage-/Mail-Connectoren**: Produktive Anbindung von Drive/Dropbox/Box sowie Implementierung der IMAP-Integration.
