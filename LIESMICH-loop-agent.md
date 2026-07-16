@@ -32,9 +32,28 @@
 | **Admin** | Connectoren, Rechte, Abrechnung (mandat) | Secrets nur hier |
 | **System** | n8n, RAG-Ingest, Orchestrator | unsichtbar für Nutzer, headless |
 
+## ⚡ Integration-first (gegen den Secrets-Krampf) — für ALLE Projekte
+Bevor irgendjemand Backend/Secrets/.env von Hand verdrahtet: **AI Studios native Integrations nutzen.**
+Studio trägt die Keys/OAuth selbst ein (Integrations-Panel) — Claude sucht KEINE Enden mehr.
+
+| Bedarf | Native Integration (statt Hand-Backend/n8n) |
+|--------|---------------------------------------------|
+| DB / Persistenz | **Firebase Firestore** (ready to use) · Cloud SQL |
+| Auth / eigener Bereich | **Firebase Auth** · Enable OAuth manually |
+| Mail / IMAP | **Gmail** |
+| Fristen-Kalender (Sub-Tool) | **Google Calendar** |
+| Redaktionsplan / Tabellen | **Google Sheets** · **Google Tasks** |
+| Dokumente / Briefe | **Google Docs** · Slides |
+| Datei-Upload / Drive | **Google Drive** / **Picker** |
+| Kontakte | **Contacts** |
+| Team-Chat | **Google Chat spaces** |
+
+→ Diese ersetzen die meisten n8n-**Connectoren**. **n8n bleibt nur für SYSTEM-Orchestrierung**
+(Health-Live-Karte, RAG-Ingest, VPS-übergreifende Ketten) — nicht mehr für jeden Einzel-Connector.
+
 ## Token-Doktrin
-Opus nur für Architektur/Heikles. Frontend → AI Studio (Plan/Free). Masse → groq/lokal. Execution → n8n.
-Wissen einmal in `rag`, dann kennen es alle. „So fliegt der Teppich."
+Opus nur für Architektur/Heikles. Frontend + DB/Auth/Connectoren → AI Studio (native Integrations, Plan/Free).
+Masse → groq/lokal. Execution → n8n. Wissen einmal in `rag`, dann kennen es alle. „So fliegt der Teppich."
 
 ## Tag-Konvention (wiederfinden)
 `Head-of-Board: **<dienst>**` · `Betriebskette: eingang|analyse|interview|briefe|akte` ·

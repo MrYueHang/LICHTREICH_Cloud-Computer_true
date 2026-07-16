@@ -2,7 +2,14 @@ node_modules/
 build/
 dist/
 coverage/
+.next/
+.turbo/
+.vercel/
 .DS_Store
 *.log
+# === Secrets — der Krampf endet hier ===
 .env*
 !.env.example
+*.local.txt
+*SECRETS*
+.env.local.bak-*
