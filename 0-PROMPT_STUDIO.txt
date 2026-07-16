@@ -1,0 +1,103 @@
+=================================================================
+ 0-PROMPT für AI STUDIO — LICHTREICH Cloud-Computer
+ ⚠️ ZUERST LESEN. Regelt, welche Daten es gibt, wie & warum — damit
+    du NICHTS versehentlich löschst (wie in einem früheren Pass geschehen).
+=================================================================
+
+## HARTE REGEL — LÖSCHSCHUTZ
+- Importiere ALLE Dateien aus diesem ZIP. Sie sind ALLE bekannt, gewollt und nötig.
+- LÖSCHE NIE: docs/ · specs/ · schemas/ · handoffs/ · n8n/ · rag-ingest/ ·
+  *.md im Root · AGENTS.md · LIESMICH-loop-agent.md · loop-*.sh · START-HIER-STUDIO.txt
+- DU baust/änderst NUR: src/ · index.html · package.json · firebase-* · CLAUDE_SYNC.txt · TODO.md
+- Wenn dir eine Datei unbekannt vorkommt: NICHT löschen — sie kommt von Claude-Terminal (Architektur).
+- Vor jedem Export: sicherstellen, dass alle importierten Dateien noch da sind.
+
+## WAS SICH GEÄNDERT HAT (diese Session, neu = KNOWN, nicht löschen)
+- specs/ : datei-manager, n8n-prozess-board, einrichtungs-assistent, user-auth-byokey,
+           me-lichtreich, board, briefkasten  ← neue Bau-Aufträge (zauberSPECs)
+- schemas/ : workflow.schema.json (Prozess-Metastruktur) + Instanzen
+- n8n/ : importierbare Workflow-JSONs (bob-briefweg, warteliste)
+- docs/ : Architektur, Modul-Katalog, Live-Status, Konsolen-Setup, Board-Audit, Outlook
+- handoffs/ : GPT, NotebookLM, Gemini
+- AGENTS.md : enthält oben die Löschschutz-Regel
+Grund: Claude-Terminal legt Architektur/Specs ab, du baust Frontend dazu. Beide teilen dieses Repo.
+
+## BAU-REIHENFOLGE (siehe START-HIER-STUDIO.txt)
+1) Datei-Manager 2) n8n-Prozess-Board 3) Einrichtungs-Assistent 4) me.lichtreich
+Firebase FERTIG: gen-lang-client-0379574738 (Config: firebase-applet-config.json). Nicht neu fragen.
+Waitlist → direkt Firestore "waitlist". Nach jedem Modul: CLAUDE_SYNC.txt + Export.
+
+## VOLLSTÄNDIGES DATEI-INVENTAR (alles, was im ZIP liegt)
+  _guard-optional/guard-claude-docs.yml.txt
+  _SYNC-REPORT.md
+  .env.example
+  AGENTS.md
+  assets/.aistudio/.gitignore
+  bun.lock
+  CLAUDE_SYNC.txt
+  docs/ARCHITEKTUR-SNAPSHOT.md
+  docs/BOARD-AUDIT-chrome.md
+  docs/DEV-GUIDE.md
+  docs/KONSOLEN-SETUP.md
+  docs/LIVE-STATUS.md
+  docs/MODULE-KATALOG.md
+  docs/MULTI-REPO-MATRIX.md
+  docs/OUTLOOK-synthesizer.md
+  docs/research/01_befund_1v5.md
+  docs/research/03_LIESMICH-vorprompter.md
+  FAHRPLAN.md
+  firebase-applet-config.json
+  firebase-blueprint.json
+  firestore.rules
+  HANDBUCH.md
+  handoffs/GEMINI-aistudio.md
+  handoffs/GPT.md
+  handoffs/NOTEBOOKLM.md
+  index.html
+  LIESMICH-loop-agent.md
+  loop-merge-studio.sh
+  metadata.json
+  n8n/bob-briefweg.json
+  n8n/warteliste.json
+  package.json
+  rag-ingest/product-truth.md
+  README.md
+  schemas/bob-briefweg.json
+  schemas/briefkasten-upload-async.example.json
+  schemas/briefkasten-upload-async.schema.json
+  schemas/workflow.schema.json
+  specs/board.zauberSPEC.md
+  specs/briefkasten.zauberSPEC.md
+  specs/datei-manager.zauberSPEC.md
+  specs/einrichtungs-assistent.zauberSPEC.md
+  specs/me-lichtreich.zauberSPEC.md
+  specs/n8n-prozess-board.zauberSPEC.md
+  specs/user-auth-byokey.zauberSPEC.md
+  src/App.tsx
+  src/components/Connectors.tsx
+  src/components/FAQ.tsx
+  src/components/Footer.tsx
+  src/components/GTM.tsx
+  src/components/HeadOfBoard.tsx
+  src/components/Hero.tsx
+  src/components/Modules.tsx
+  src/components/Personas.tsx
+  src/components/Pricing.tsx
+  src/components/StatusMatrix.tsx
+  src/components/Workflow.tsx
+  src/components/WorkflowCards.tsx
+  src/contexts/AuthContext.tsx
+  src/index.css
+  src/lib/firebase.ts
+  src/main.tsx
+  src/pages/Briefkasten.tsx
+  src/pages/Datenschutz.tsx
+  src/pages/Home.tsx
+  src/pages/Impressum.tsx
+  START-HIER-STUDIO.txt
+  studioAI.zauberSPEC.md
+  TODO.md
+  tsconfig.json
+  vite.config.ts
+
+## ENDE — bei Fragen zu Architektur/Backend: das macht Claude-Terminal, nicht löschen.
