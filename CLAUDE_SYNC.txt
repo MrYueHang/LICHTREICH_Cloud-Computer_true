@@ -1,26 +1,100 @@
 SYSTEM-DIALOG FÜR CLAUDE.TERMINAL
 ==================================
+
 Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemkontext in die LICHTREICH-Umgebung (RAG/Orchestra/n8n) zu synchronisieren.
 
 --- BEGIN CLAUDE PROMPT ---
 
 Hallo Claude,
+hier ist der Rückball aus dem AI Studio Frontend (Pass #5 - App: datei-manager).
 
-hier ist der Rückball aus dem AI Studio Frontend (Pass #4 - App: briefkasten).
-Das Frontend "Briefkasten" wurde umgesetzt, basierend auf der Product-Truth:
+Das Frontend "Datei-Manager" wurde umgesetzt, basierend auf der Product-Truth:
 
 Erledigte Umbauten:
-1. **Firebase Integration**: Firebase Auth (Anonymous Login) und Firestore ("jobs" Collection) sind aufgesetzt. Firebase Storage wird für File-Uploads genutzt.
-2. **Upload-Maske (Drop-Zone)**: User können Dateien per Drag & Drop oder Klick ablegen (PDF, JPG, PNG, TXT). Es können "Hinweise/Strategie" als Liste mitgegeben und optional eine Akte gewählt werden.
-3. **Asynchrone Verarbeitung**: Beim Submit wird die Datei in Firebase Storage hochgeladen, in Firestore ein Job (status: empfangen) angelegt und ein "Fire-and-Forget" POST Request an "https://n8n.lichtreich.info/webhook/bob-briefweg" gesendet. Keine blockierenden Ladescreens!
-4. **Status-Indikator**: Die Liste der eigenen Jobs (gefiltert nach `owner_id`) pollt realtime via Firestore-Snapshot. Die Bauhaus-Ampel visualisiert "empfangen -> ocr -> analyse -> fertig -> fehler".
-5. **Rollen-Guard**: Es werden keine System-Settings gezeigt. Nur User-Rolle (Briefkasten) und eigene Jobs.
+1. **Datei-Manager UI**: Ein Grid von Dokumenten (`documents` Collection, gefiltert nach `owner_id`) wurde implementiert.
+2. **Firebase Storage**: Drag&Drop Upload lädt direkt in Firebase Storage hoch und legt ein Dokument in der `documents` Collection an.
+3. **6 Aktionen**: Für jede Karte gibt es Aktionen (Analysieren, Übersetzen, Umbenennen, an Akte anhängen, Verschieben, KI anpingen).
+4. **Async Trigger**: Wenn eine Aktion ausgelöst wird (z.B. "analysieren" oder "übersetzen" mit `target: 'en'`), aktualisiert das UI optimistisch den `status` und feuert asynchron an `https://n8n.lichtreich.info/webhook/datei-aktion`.
+5. **Warteliste Hero Fix**: Die Warteliste auf der Landingpage schreibt nun direkt nach Firestore `waitlist` Collection (ohne Webhook).
+6. **Cockpit Update**: Der Datei-Manager wurde dem Cockpit hinzugefügt, damit Nutzer direkt darauf zugreifen können.
 
 Deine nächsten Aufgaben (Architektur & Verdrahtung):
-1. **n8n Webhook annehmen**: Der Webhook `bob-briefweg` muss den asynchronen Payload (mit `storage_url` etc.) empfangen und den Workflow starten.
-2. **Firestore Update durch n8n**: Während n8n den Job abarbeitet, muss n8n direkt die Firestore "jobs" Collection updaten (oder über den callback webhook `status_url` der dann Firebase updated - da wir Serverless laufen, empfiehlt sich ein direkter Firestore-Schreibzugriff von n8n oder ein Cloud Function Endpoint).
-3. **Aktenvorschlag-Dialog (Analyse-Phase)**: Wenn n8n den Status auf "analyse" setzt und einen `akte_hint` vorschlägt, rendert das Frontend einen "✓ Ja" / "Ändern" Dialog. Baue in n8n einen Wait-Node (Webhook), der diesen "✓ Ja"-Klick empfängt, um den Entwurf fortzusetzen.
+1. **n8n Webhook annehmen (`datei-aktion`)**: Der Webhook muss die asynchronen Aktionen wie "analysieren", "übersetzen", "umbenennen", etc. empfangen.
+2. **KI-Aktionen implementieren**: N8n sollte die gewählte Aktion (via LLM) ausführen, z.B. bei "übersetzen" ein neues Dokument erstellen (mit übersetztem Text/PDF) oder bei "umbenennen" den `name` anpassen.
+3. **Firestore Update**: N8n muss anschließend den Status des Dokuments in Firestore zurück auf `idle` setzen und (bei Analyse) das `analyse`-Feld updaten, sowie die Antwort für das "Anpingen" in Firestore speichern, damit das Frontend realtime aktualisiert.
+4. **Warteliste**: Die Sammlung `waitlist` kann nun asynchron von Backend ausgelesen werden.
 
-Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation für den Ausbau.
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation für den Ausbau (N8N-STYLE PROZESS-BOARD).
+
+--- END CLAUDE PROMPT ---
+
+--- BEGIN CLAUDE PROMPT ---
+
+Hallo Claude,
+hier ist der Rückball aus dem AI Studio Frontend (Pass #6 - App: prozess-board).
+
+Das Frontend "n8n Prozess-Board" wurde umgesetzt, basierend auf der Product-Truth:
+
+Erledigte Umbauten:
+1. **Node-Graph-Canvas**: Eine interaktive Canvas wurde mit framer-motion und SVG gebaut, auf der Workflows als Knoten-Graphen dargestellt werden.
+2. **Firestore Sync**: Layout-Positionen (`board_layout` Collection) werden persistiert und in Realtime synchronisiert (Drag&Drop). 
+3. **Seeding**: Beim ersten Start werden 2 Beispiel-Workflows ("bob-briefweg" und "datei-analyse") anhand der `workflows` Collection geseeded, falls diese leer ist.
+4. **Live-Status**: Die Knoten reagieren auf Änderungen in der `executions` Collection und zeigen den n8n-Ausführungsstatus (running/ok/error).
+5. **KI-Anpingen**: Klickt man auf einen Knoten, kann man der KI asynchron eine Frage stellen (ping). Frontend setzt den Status optimistisch auf "running" (ping_id) und schickt einen Webhook `https://n8n.lichtreich.info/webhook/board-ping`.
+6. **Cockpit Update**: Das Cockpit (Node 3) verlinkt nun live auf das n8n Prozess-Board.
+
+Deine nächsten Aufgaben (Architektur & Verdrahtung):
+1. **n8n Executions Synchronisation**: Baue einen Mechanismus in n8n (z.B. Error-Trigger und Success-Trigger oder Webhook in jedem Workflow-Schritt), der bei Abarbeitung von Schritten live in die Firestore Collection `executions` schreibt (ID-Format: `workflowslug_stepslug`, also z.B. `bob-briefweg_ocr`, Feld: `status: running/ok/error` und `message: string`).
+2. **Ping Webhook annehmen (`board-ping`)**: Der Webhook muss Pings am Node-Graph entgegennehmen und die Antwort an das Frontend per Firestore-Schreibvorgang (`ping_ID` in `executions`) zurückspielen.
+3. **Workflows komplettieren**: Übersetze die weiteren Prozesse aus der Spec (`waitlist`, `datei-übersetzen`, `einrichtungs-lampe`, etc.) und lade sie mit ihren Steps in die Firestore `workflows` Collection, damit sie im Frontend-Bibliotheks-Panel erscheinen.
+
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation für den Ausbau (EINRICHTUNGS-ASSISTENT).
+
+--- END CLAUDE PROMPT ---
+
+--- BEGIN CLAUDE PROMPT ---
+
+Hallo Claude,
+hier ist der Rückball aus dem AI Studio Frontend (Pass #7 - App: einrichtungs-assistent).
+
+Das Frontend "Einrichtungs-Assistent" wurde umgesetzt, basierend auf der Product-Truth:
+
+Erledigte Umbauten:
+1. **Geführter Wizard**: Ein 5-Schritte-Assistent (KI, Speicher, E-Mail, Kalender, Abschluss) wurde implementiert, der überspringbar und speicherbar ist.
+2. **Ehrliche Lampe**: Das UI simuliert derzeit noch die echten Backend-Calls, schickt aber bereits echte POST Requests an `https://n8n.lichtreich.info/webhook/test-connector` (mit Optimistic UI auf "testing" und dann "green"/"red").
+3. **Firestore Sync**: Erfolgreiche oder fehlerhafte Konfigurationen werden am User-Dokument unter `users/{uid}/settings/connectors` gespeichert.
+4. **Admin-Modus**: Ein Toggle oben rechts schaltet die Ansicht auf System-Connectoren (Firebase, Neon, n8n) um, mit Deep-Links.
+5. **Cockpit Update**: Der Einrichtungs-Assistent ist nun im Cockpit anstelle von "hub.lichtreich" verlinkt.
+
+Deine nächsten Aufgaben (Architektur & Verdrahtung):
+1. **Connector Test Webhook (`test-connector`)**: Baue den n8n Webhook, der die Tests ausführt:
+   - `type === 'ai'`: Validiere den übergebenen Key (`data.key`) für `data.provider` durch einen minimalen LLM-Call (z.B. "ping").
+   - `type === 'storage'`: Falls `data.provider === 'drive'`, starte den Google Drive OAuth-Flow oder teste einen Ordner.
+   - `type === 'mail'`: Validiere IMAP-Credentials.
+2. **Key Speicherung**: Die Keys aus dem Frontend dürfen im Backend-Prozess nur zur Validierung genutzt werden und müssen dann über einen sicheren Secret-Manager (z.B. Secret Manager, n8n Credentials oder als verschlüsseltes Feld in Firestore über deinen `user-auth-byokey` Prozess) verarbeitet werden.
+
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation für den Ausbau (ME.LICHTREICH.INFO).
+
+--- END CLAUDE PROMPT ---
+
+--- BEGIN CLAUDE PROMPT ---
+
+Hallo Claude,
+hier ist der Rückball aus dem AI Studio Frontend (Pass #8 - App: me.lichtreich.info).
+
+Das Frontend "me.lichtreich.info" wurde umgesetzt, basierend auf der Product-Truth:
+
+Erledigte Umbauten:
+1. **Benutzer-Dashboard (Heimat)**: `Me.tsx` wurde vervollständigt. Es dient als Einstiegspunkt nach dem Login.
+2. **Modul-Kacheln**: Briefkasten, Herrkünstler und der neu gebaute Datei-Manager sind als übersichtliche Kacheln im Bauhaus-Stil eingebunden.
+3. **Live-Status**: Die Seite zeigt laufende Prozesse und Fristen direkt aus Firestore an, gefiltert nach der `owner_id` des aktuellen Users, womit der Rollen-Guard (nur eigene Daten sichtbar) eingehalten wird.
+4. **Setup-Integration**: In der Kopfzeile gibt es einen direkten Link zu den "Einstellungen" (`/setup`), womit der Einrichtungs-Assistent nun nahtlos aus der Heimat erreichbar ist.
+
+Deine nächsten Aufgaben (Architektur & Verdrahtung):
+1. **Herrkünstler Setup**: Du kannst nun den Herrkünstler auf `herrkuenstler.lichtreich.info` als weiteres Modul mit in den SSO/Firebase-Kontext heben, falls das ansteht. 
+2. **Review & Freigabe**: Bitte lies alle Sync-Reports und prüfe die Umsetzung der 4 Module (Datei-Manager, Prozess-Board, Einrichtungs-Assistent, Me-Heimat).
+3. **End-to-End Test**: Führe einen E2E Test durch (z.B. indem du testweise Firestore-Dokuemnte anlegst oder n8n Webhooks abfängst). 
+
+Bitte bestätige mir den Abschluss dieses initialen Sprints mit einem finalen `_SYNC-REPORT.md`.
 
 --- END CLAUDE PROMPT ---

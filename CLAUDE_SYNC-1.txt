@@ -1,0 +1,26 @@
+SYSTEM-DIALOG FÜR CLAUDE.TERMINAL
+==================================
+Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemkontext in die LICHTREICH-Umgebung (RAG/Orchestra/n8n) zu synchronisieren.
+
+--- BEGIN CLAUDE PROMPT ---
+
+Hallo Claude,
+
+hier ist der Rückball aus dem AI Studio Frontend (Pass #4 - App: briefkasten).
+Das Frontend "Briefkasten" wurde umgesetzt, basierend auf der Product-Truth:
+
+Erledigte Umbauten:
+1. **Firebase Integration**: Firebase Auth (Anonymous Login) und Firestore ("jobs" Collection) sind aufgesetzt. Firebase Storage wird für File-Uploads genutzt.
+2. **Upload-Maske (Drop-Zone)**: User können Dateien per Drag & Drop oder Klick ablegen (PDF, JPG, PNG, TXT). Es können "Hinweise/Strategie" als Liste mitgegeben und optional eine Akte gewählt werden.
+3. **Asynchrone Verarbeitung**: Beim Submit wird die Datei in Firebase Storage hochgeladen, in Firestore ein Job (status: empfangen) angelegt und ein "Fire-and-Forget" POST Request an "https://n8n.lichtreich.info/webhook/bob-briefweg" gesendet. Keine blockierenden Ladescreens!
+4. **Status-Indikator**: Die Liste der eigenen Jobs (gefiltert nach `owner_id`) pollt realtime via Firestore-Snapshot. Die Bauhaus-Ampel visualisiert "empfangen -> ocr -> analyse -> fertig -> fehler".
+5. **Rollen-Guard**: Es werden keine System-Settings gezeigt. Nur User-Rolle (Briefkasten) und eigene Jobs.
+
+Deine nächsten Aufgaben (Architektur & Verdrahtung):
+1. **n8n Webhook annehmen**: Der Webhook `bob-briefweg` muss den asynchronen Payload (mit `storage_url` etc.) empfangen und den Workflow starten.
+2. **Firestore Update durch n8n**: Während n8n den Job abarbeitet, muss n8n direkt die Firestore "jobs" Collection updaten (oder über den callback webhook `status_url` der dann Firebase updated - da wir Serverless laufen, empfiehlt sich ein direkter Firestore-Schreibzugriff von n8n oder ein Cloud Function Endpoint).
+3. **Aktenvorschlag-Dialog (Analyse-Phase)**: Wenn n8n den Status auf "analyse" setzt und einen `akte_hint` vorschlägt, rendert das Frontend einen "✓ Ja" / "Ändern" Dialog. Baue in n8n einen Wait-Node (Webhook), der diesen "✓ Ja"-Klick empfängt, um den Entwurf fortzusetzen.
+
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation für den Ausbau.
+
+--- END CLAUDE PROMPT ---

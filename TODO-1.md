@@ -3,12 +3,12 @@
 Dieser Backlog basiert auf der Evidenzmatrix, dem aktuellen Plattformstand und der strategischen Neuausrichtung (GitHub-Loop & Rollentrennung).
 
 ## 🔴 Kritische Priorität
-- [x] **GitHub-Sync-Loop (Multi-Repo) etablieren**: Den "Ping-Pong" Prozess (AI Studio <-> GitHub <-> Claude Terminal) für alle Module/Subdomains standardisieren. Dies spart Anthropic-Token und ermöglicht paralleles Bauen.
-- [x] **Rollentrennung (Public / Admin / System / User)**: Harte strukturelle Trennung der Sichten und Zugriffsrechte.
+- [ ] **GitHub-Sync-Loop (Multi-Repo) etablieren**: Den "Ping-Pong" Prozess (AI Studio <-> GitHub <-> Claude Terminal) für alle Module/Subdomains standardisieren. Dies spart Anthropic-Token und ermöglicht paralleles Bauen.
+- [ ] **Rollentrennung (Public / Admin / System / User)**: Harte strukturelle Trennung der Sichten und Zugriffsrechte.
   - **Public**: Landingpages (wie diese), Erklärungen, Pricing, Warteliste.
-  - **User**: Das Cockpit, `briefkasten` (Eingang), `datei-manager` (Werkbank), `me.lichtreich.info` (Heimat).
-  - **Admin**: Connectoren-Setup (`einrichtungs-assistent`), Abrechnung, Rechtemanagement (`mandat`).
-  - **System**: n8n Prozess-Board, RAG-Ingest, Orchestrator (headless).
+  - **User**: Das Cockpit, `briefkasten` (Eingang), Aktenansicht.
+  - **Admin**: Connectoren-Setup, Abrechnung, Rechtemanagement (`mandat`).
+  - **System**: n8n, RAG-Ingest, Orchestrator (headless).
 - [x] **Foto/Scan/PDF-Vereinheitlichung im Briefkasten**: Foto-Input und Scan-Stapel müssen sauber in denselben Dokumentpfad und asynchron in den BOB-Briefweg gebracht werden.
 
 ## 🟠 Hohe Priorität

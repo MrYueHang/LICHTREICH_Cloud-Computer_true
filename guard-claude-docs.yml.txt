@@ -1,0 +1,37 @@
+name: Guard Claude Docs
+# Stellt Claudes Dateien automatisch wieder her, falls ein Push (z.B. AI-Studio-Export) sie löscht.
+# Läuft server-seitig auf GitHub — kein Terminal, keine Session nötig.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  guard:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore protected paths from claude-safe
+        run: |
+          git config user.name "claude-guard"
+          git config user.email "noreply@anthropic.com"
+          git fetch origin claude-safe || exit 0
+          PATHS="docs specs schemas handoffs n8n rag-ingest FAHRPLAN.md LIESMICH-loop-agent.md _SYNC-REPORT.md loop-merge-studio.sh studioAI.zauberSPEC.md"
+          CHANGED=0
+          for p in $PATHS; do
+            if ! git cat-file -e HEAD:"$p" 2>/dev/null && git cat-file -e origin/claude-safe:"$p" 2>/dev/null; then
+              git checkout origin/claude-safe -- "$p" && CHANGED=1 && echo "restored $p"
+            fi
+          done
+          if [ "$CHANGED" = "1" ]; then
+            git add -A
+            git commit -m "guard: Claude-Docs nach Löschung automatisch wiederhergestellt"
+            git push origin HEAD:main
+          else
+            echo "nichts wiederherzustellen."
+          fi

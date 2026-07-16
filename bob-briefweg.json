@@ -1,0 +1,19 @@
+{
+  "$schema": "./workflow.schema.json",
+  "slug": "bob-briefweg",
+  "title": "Brief von Eingang bis Entwurf",
+  "purpose": "Eingehende Post analysieren und in einen bearbeitbaren Entwurf überführen",
+  "inputs": ["PDF", "Foto", "Scan", "Hinweise/Kommentare/Strategie"],
+  "dependencies": ["briefkasten", "orchestra", "rag", "mandat", "n8n"],
+  "steps": ["upload", "ocr", "classify", "strategy", "draft", "finalize"],
+  "outputs": ["Analyse", "Dossier", "Entwurf", "Final", "Akte"],
+  "tests": ["mehrseitiges PDF", "Foto-only", "mehrere Teil-Dokumente", "Hinweis-Einspeisung"],
+  "known_gaps": ["Foto->PDF", "Hinweise ignoriert", "PDF/Druck"],
+  "owner": "briefkasten",
+  "status": "alpha",
+  "dialogue_point": {
+    "state": "vorschlag",
+    "never_guess": true,
+    "on_unclear": "rueckfragen"
+  }
+}

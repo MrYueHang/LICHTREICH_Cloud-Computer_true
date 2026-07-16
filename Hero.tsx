@@ -1,7 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { db } from '../lib/firebase';
 
 export default function Hero() {
   const [email, setEmail] = useState('');
@@ -28,11 +26,17 @@ export default function Hero() {
     setIsSubmitting(true);
 
     try {
-      await addDoc(collection(db, 'waitlist'), {
-        email,
-        source: 'landing_hero',
-        timestamp: serverTimestamp()
-      });
+      const webhookUrl = import.meta.env.VITE_WAITLIST_WEBHOOK_URL;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'landing_hero' })
+        });
+      } else {
+        // Fallback simulate network delay if no webhook configured
+        await new Promise(r => setTimeout(r, 1000));
+      }
       setSubmitted(true);
     } catch (err) {
       setError('Netzwerkfehler. Bitte später versuchen.');

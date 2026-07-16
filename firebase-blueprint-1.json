@@ -1,0 +1,28 @@
+{
+  "collections": [
+    {
+      "name": "jobs",
+      "description": "Stores user jobs for document processing.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "job_id": { "type": "string" },
+          "owner_id": { "type": "string" },
+          "akte_hint": { "type": "string", "nullable": true },
+          "source": { "type": "string" },
+          "status": { "type": "string", "enum": ["empfangen", "ocr", "analyse", "entwurf", "fertig", "fehler"] },
+          "hints": { "type": "array", "items": { "type": "string" } },
+          "fileName": { "type": "string" },
+          "createdAt": { "type": "timestamp" }
+        },
+        "required": ["job_id", "owner_id", "source", "status"]
+      },
+      "rules": {
+        "read": "resource.data.owner_id == request.auth.uid",
+        "create": "request.resource.data.owner_id == request.auth.uid",
+        "update": "resource.data.owner_id == request.auth.uid",
+        "delete": "resource.data.owner_id == request.auth.uid"
+      }
+    }
+  ]
+}

@@ -13,4 +13,3 @@ coverage/
 *.local.txt
 *SECRETS*
 .env.local.bak-*
-.vercel
