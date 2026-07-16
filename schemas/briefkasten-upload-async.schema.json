@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.lichtreich.info/schemas/briefkasten-upload-async.schema.json",
+  "title": "Briefkasten Async Upload → n8n (BOB-Briefweg)",
+  "description": "Fire-and-forget-Payload: Frontend briefkasten.lichtreich.info feuert ein hochgeladenes Dokument an den n8n-Webhook und wartet NICHT auf die LLM-Analyse. n8n antwortet sofort mit 202 + job_id; die KI arbeitet asynchron, das Ergebnis landet in der Akte. Frontend zeigt nur einen Status-Indikator.",
+  "type": "object",
+  "required": ["job_id", "owner_id", "source", "document"],
+  "additionalProperties": false,
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Client-generierte Korrelations-ID (crypto.randomUUID()). Frontend pollt damit den Status."
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "Pseudonymer Eigentümer-Schlüssel (NICHT Klarname). DSGVO: Anzeige nur als Alias."
+    },
+    "akte_hint": {
+      "type": ["string", "null"],
+      "description": "Vorgeschlagene Akte-Zuordnung; null = KI schlägt Akte vor / '✨ neue Akte'."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["foto", "scan", "pdf", "mail", "txt"],
+      "description": "Eingabekanal. 'foto' und 'scan' münden in denselben Dokumentpfad (Vereinheitlichung)."
+    },
+    "document": {
+      "type": "object",
+      "description": "Entweder direkter Base64-Blob (klein) ODER ein bereits hochgeladener Storage-Verweis (groß, bevorzugt).",
+      "oneOf": [
+        {
+          "required": ["blob_base64", "mime"],
+          "properties": {
+            "blob_base64": { "type": "string" },
+            "mime": { "type": "string", "examples": ["image/jpeg", "application/pdf"] }
+          }
+        },
+        {
+          "required": ["storage_url"],
+          "properties": {
+            "storage_url": { "type": "string", "description": "Signierte URL / Blob-Pfad (Upload lief separat, hält Payload klein)." },
+            "mime": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "hints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "User-Hinweise/Strategie/Kommentare, die die KI-Schleife steuern (Issue #1: müssen wirken!)."
+    },
+    "callback": {
+      "type": "object",
+      "description": "Wie das Ergebnis zurückkommt.",
+      "additionalProperties": false,
+      "properties": {
+        "status_url": { "type": "string", "description": "GET-Endpoint, den das Frontend pollt (job_id)." },
+        "webhook": { "type": ["string", "null"], "description": "Optionaler Push-Webhook statt Polling." }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "app": { "type": "string", "const": "briefkasten" },
+        "ts": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}
