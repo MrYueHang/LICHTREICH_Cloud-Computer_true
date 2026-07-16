@@ -1,5 +1,13 @@
 # LICHTREICH Cloud-Computer - Agenten & Arbeitsweise (Meta-Loop)
 
+> ## 🛑 GESCHÜTZT — VOR JEDEM EXPORT LESEN
+> **Bevor du exportierst: ZIEH DIR ZUERST den aktuellen Repo-Stand von GitHub (Import/Pull).**
+> Sonst löscht dein Export Claudes Dateien, die deine Sandbox nicht kennt.
+> **NIEMALS löschen** (Claude-eigen, nicht dein Bereich): `docs/` · `specs/` · `schemas/` · `handoffs/` ·
+> `n8n/` · `rag-ingest/` · `FAHRPLAN.md` · `LIESMICH-loop-agent.md` · `_SYNC-REPORT.md` · `loop-*.sh` · `.github/`.
+> Du baust nur: `src/` · `index.html` · `package.json` · `firebase-*` · `CLAUDE_SYNC.txt` · `TODO.md`.
+> Sicherung liegt permanent auf Branch `claude-safe`; ein Guard stellt Gelöschtes automatisch wieder her.
+
 Du befindest dich im AI Studio (Google). 
 Deine primäre Aufgabe ist es, Frontend-Komponenten in React/Tailwind zu bauen, die auf der **LICHTREICH Product-Truth** basieren.
 
