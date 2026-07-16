@@ -1,0 +1,55 @@
+{
+  "name": "LICHTREICH – BOB-Briefweg (async)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bob-briefweg",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-briefweg",
+      "name": "Webhook Upload",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "bob-briefweg"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseCode": 202,
+        "responseBody": "={{ { \"ok\": true, \"job_id\": $json.body.job_id, \"status\": \"empfangen\" } }}",
+        "options": {}
+      },
+      "id": "resp-202",
+      "name": "202 Ack (sofort)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": { "content": "TODO (Claude verdrahtet): OCR → classify → strategy(Hinweise!) → draft → Akte-Insert.\nHier asynchron weiterverarbeiten, Ergebnis in briefkasten-Akte + status_url aktualisieren.", "height": 200, "width": 380 },
+      "id": "note-async",
+      "name": "Async-Kette (Platzhalter)",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [720, 220]
+    },
+    {
+      "parameters": {},
+      "id": "noop-async",
+      "name": "→ OCR/classify/strategy/draft",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Upload": { "main": [[{ "node": "202 Ack (sofort)", "type": "main", "index": 0 }]] },
+    "202 Ack (sofort)": { "main": [[{ "node": "→ OCR/classify/strategy/draft", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false,
+  "tags": [{ "name": "lichtreich" }, { "name": "briefkasten" }, { "name": "user" }]
+}
