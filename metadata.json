@@ -1,0 +1,6 @@
+{
+  "name": "LICHTREICH Cloud-Computer",
+  "description": "Modularer Arbeitsplatz für komplexe Akten und Projekte",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
