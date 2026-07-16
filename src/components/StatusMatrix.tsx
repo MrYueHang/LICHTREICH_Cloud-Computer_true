@@ -1,27 +1,26 @@
 import { motion } from 'motion/react';
 
 const statusItems = [
-  { topic: "Kernarchitektur", status: "Live", desc: "13 Dienste unter *.lichtreich.info sind definiert.", eval: "Verifiziert intern" },
-  { topic: "RAG-Schicht", status: "Live", desc: "Ingest→Embedding→RAG-Loop mit pgvector und OpenAI.", eval: "Stark verifiziert" },
-  { topic: "BOB-Workflow", status: "Beta", desc: "Reale Verarbeitungskette mit OCR, Klassifikation & Entwurf.", eval: "Funktional vorhanden" },
-  { topic: "Auth/SSO", status: "Rollout", desc: "Google-OAuth und Rollen live; globaler SSO im teilweisen Rollout.", eval: "Teilweise verifiziert" },
-  { topic: "Connectoren", status: "Offen", desc: "Eigene KI-Keys live; Drive/Dropbox OAuth und IMAP noch offen.", eval: "Teilweise verifiziert" },
-  { topic: "Mandat/Rechte", status: "Alpha", desc: "Modelliert (Form, Freiwilligkeit), juristisches Review nötig.", eval: "Noch nicht freigabereif" }
+  { topic: "briefkasten", status: "beta", desc: "Foto/PDF, Hinweise brüchig", eval: "Issue #1+#2 grün → live" },
+  { topic: "rag/ingest", status: "live", desc: "Ingest-Endpoint public bestätigt", eval: "Public bestätigt" },
+  { topic: "orchestra", status: "pilot", desc: "0 Rollen live", eval: "Echte Rollen aus Society (Issue #8)" },
+  { topic: "mandat", status: "alpha", desc: "Rechtsreview + Beleg-Upload (Issue #6)", eval: "Juristisches Review nötig" },
+  { topic: "setup", status: "beta", desc: "Eigene Produkttür + SSO (Issue #3+#4)", eval: "Rollout" }
 ];
 
 export default function StatusMatrix() {
   return (
     <section className="py-24 px-6 md:px-12 border-b-8 border-bauhaus-black bg-bauhaus-black text-bauhaus-white">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-4xl md:text-6xl mb-12 uppercase text-center">Evidenz & Wahrheit</h2>
+        <h2 className="text-4xl md:text-6xl mb-12 uppercase text-center">IST → SOLL (Live)</h2>
         
         <div className="border-4 border-bauhaus-white overflow-x-auto">
           <table className="w-full text-left font-sans">
             <thead>
               <tr className="border-b-4 border-bauhaus-white font-display text-xl uppercase bg-bauhaus-white text-bauhaus-black">
-                <th className="p-6">Bereich</th>
-                <th className="p-6">Stand</th>
-                <th className="p-6">Befund</th>
+                <th className="p-6">Modul</th>
+                <th className="p-6">IST</th>
+                <th className="p-6">SOLL (Kriterium für live)</th>
               </tr>
             </thead>
             <tbody>
@@ -36,8 +35,8 @@ export default function StatusMatrix() {
                 >
                   <td className="p-6 font-display text-xl uppercase">{item.topic}</td>
                   <td className="p-6 font-mono text-sm font-bold">
-                    <span className={`px-3 py-1 border-2 border-bauhaus-white inline-block ${item.status === 'Live' ? 'bg-bauhaus-yellow text-bauhaus-black' : item.status === 'Beta' || item.status === 'Rollout' ? 'bg-bauhaus-blue' : 'bg-bauhaus-red'}`}>
-                      {item.status}
+                    <span className={`px-3 py-1 border-2 border-bauhaus-white inline-block ${item.status === 'live' ? 'bg-bauhaus-yellow text-bauhaus-black' : item.status === 'beta' || item.status === 'pilot' ? 'bg-bauhaus-blue' : 'bg-bauhaus-red'}`}>
+                      {item.status.toUpperCase()}
                     </span>
                   </td>
                   <td className="p-6">
@@ -52,7 +51,7 @@ export default function StatusMatrix() {
         
         <div className="mt-12 text-center max-w-3xl mx-auto border-l-4 border-bauhaus-yellow pl-6 text-left">
           <p className="font-mono text-sm leading-relaxed">
-            Harte Kommunikationsregel: Öffentlich belastbar sind die modulare Subdomain-Landschaft, der Dokumentkern, der RAG-Layer und Workflow-JSONs. Wir verzichten bewusst auf Marketing-Claims wie „ein Login für alles“ oder „juristisch fertig“, bis diese Ebenen vollständig freigegeben sind.
+            Harte Kommunikationsregel: „live wird" heißt: Tests grün (Happy Path + Fehlerfall) + Doppel-Review.
           </p>
         </div>
       </div>

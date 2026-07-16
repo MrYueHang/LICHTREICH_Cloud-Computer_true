@@ -5,12 +5,13 @@ export default function Hero() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       setError('E-Mail ist erforderlich.');
@@ -22,7 +23,26 @@ export default function Hero() {
     }
     
     setError('');
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const webhookUrl = import.meta.env.VITE_WAITLIST_WEBHOOK_URL;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'landing_hero' })
+        });
+      } else {
+        // Fallback simulate network delay if no webhook configured
+        await new Promise(r => setTimeout(r, 1000));
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError('Netzwerkfehler. Bitte später versuchen.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <section className="relative w-full min-h-[90vh] flex flex-col justify-center border-b-8 border-bauhaus-black overflow-hidden">
@@ -75,8 +95,8 @@ export default function Hero() {
                           : 'bg-bauhaus-white text-bauhaus-black focus:bg-bauhaus-yellow'
                       }`}
                     />
-                    <button type="submit" className="bg-bauhaus-blue text-bauhaus-white px-8 py-4 text-lg font-bold uppercase hover:bg-bauhaus-yellow hover:text-bauhaus-black active:bg-bauhaus-red transition-all border-4 border-bauhaus-black flex items-center justify-center group shrink-0 shadow-[4px_4px_0px_0px_rgba(17,17,17,1)] hover:shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]">
-                      <span>Eintragen</span>
+                    <button disabled={isSubmitting} type="submit" className="bg-bauhaus-blue text-bauhaus-white px-8 py-4 text-lg font-bold uppercase hover:bg-bauhaus-yellow hover:text-bauhaus-black active:bg-bauhaus-red transition-all border-4 border-bauhaus-black flex items-center justify-center group shrink-0 shadow-[4px_4px_0px_0px_rgba(17,17,17,1)] hover:shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] disabled:opacity-70 disabled:pointer-events-none">
+                      <span>{isSubmitting ? 'Wird eingetragen...' : 'Eintragen'}</span>
                       <span className="ml-3 transform group-hover:translate-x-1 transition-transform text-2xl leading-none">→</span>
                     </button>
                   </div>
@@ -93,7 +113,7 @@ export default function Hero() {
               )}
               
               <div className="flex">
-                <button className="bg-bauhaus-white text-bauhaus-black px-8 py-4 text-lg font-bold uppercase hover:bg-bauhaus-yellow transition-colors border-4 border-bauhaus-black">
+                <button onClick={() => document.getElementById('betriebskette')?.scrollIntoView({ behavior: 'smooth' })} className="bg-bauhaus-white text-bauhaus-black px-8 py-4 text-lg font-bold uppercase hover:bg-bauhaus-yellow transition-colors border-4 border-bauhaus-black cursor-pointer">
                   Architektur ansehen
                 </button>
               </div>

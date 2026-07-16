@@ -4,22 +4,25 @@ Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemko
 
 --- BEGIN CLAUDE PROMPT ---
 
-Hallo Claude, 
+Hallo Claude,
 
-bitte nimm die folgenden strategischen Dokumente in unseren Systemkontext auf. Sie definieren unsere aktuelle "Product Truth", den Backlog und die Struktur für unser dynamisches Handbuch. 
+hier ist der Rückball aus dem AI Studio Frontend (Pass #2). Das Frontend hat alle P0- und P1-Aufgaben aus der `studioAI.zauberSPEC.md` umgesetzt.
 
-Deine Aufgaben:
-1. Analysiere den Inhalt von TODO.md, README.md und HANDBUCH.md (ich habe sie im aktuellen Workspace bereitgestellt).
-2. Überführe die "Metastruktur" des BOB-Briefwegs aus dem HANDBUCH.md in eine nutzbare JSON-Schema-Definition für unsere n8n-Workflow-Dokumentation.
-3. Lege die Aufgaben aus der TODO.md als strukturierte Tickets/Issues in unserem internen Board- oder Ticket-System an (Prio: Kritisch bis Strategisch).
-4. Synchronisiere die Kernaussagen aus der README.md ("Die Betriebskette" und "Modul-Architektur") in den RAG-Ingest, damit alle Agenten künftig wissen, dass wir nicht "KI für alles" sind, sondern eine orchestrierte "Fall- und Aktenmaschine".
-5. Bestätige mir den Abschluss dieser Sync-Aufgaben und liste auf, welche n8n-Workflows wir als nächstes auf die neue Metastruktur migrieren sollten.
+Erledigte Umbauten:
+1. Impressum und Datenschutz sind als eigene Routen (`/impressum`, `/datenschutz`) integriert.
+2. Der Waitlist-Button sendet einen POST-Request an `VITE_WAITLIST_WEBHOOK_URL` (in `.env.example` ergänzt).
+3. "Architektur ansehen" navigiert nun direkt zur Sektion `#betriebskette`.
+4. Die IST->SOLL Matrix (Modul, IST, SOLL-Kriterium) wurde implementiert und spiegelt die Wahrheit wider.
+5. Die Sektion "Head of Board" ruft die echte API `api.lichtreich.info/api/v1/projects` ab und rendert dynamisch Status, Tags und Remit sowie ein "Whiteboard" zum Drag&Drop.
+6. Die Connectoren-UI für Drive, Dropbox, Box und IMAP ist mit einem Dummy-"Echt-Test" verbaut und listet die entsprechenden `.env.example`-Variablen auf.
+7. Der Content-Ausbau umfasst nun Personas, das transparente GTM-Modell und eine FAQ-Sektion. Die Bauhaus-CI wurde durchgehend berücksichtigt.
 
-Kontext zur Ausrichtung:
-- Wir bauen keinen generischen Agenten-Builder.
-- Unsere Betriebskette lautet fest: Eingang → Analyse → Interview → Briefe/Dokumente → Akte/Ausgang.
-- Wahrheitsgemäße Kommunikation: Was Alpha ist, wird Alpha genannt.
+Deine nächsten Aufgaben (Architektur & Verdrahtung):
+1. **Waitlist-Backend aktivieren**: Nimm den Webhook auf `https://n8n.lichtreich.info/webhook/warteliste` in n8n live. Speichere die Einsendungen (Email) in einer Neon-Datenbank.
+2. **Ingest Endpoint**: Der RAG-Payload (`rag-ingest/product-truth.md`) wartet darauf, über eine verifizierte Route gepusht zu werden, sobald `/api/ingest` existiert. Kläre die Endpunkt-Bereitstellung oder pushe den RAG-Text über den Console-Zugang.
+3. **Connectoren-Secrets**: Ergänze die tatsächlichen OAuth-Secrets im Live-System (.env) für Drive/Dropbox/IMAP.
+4. Bitte fahre fort, die n8n-Migrationen der restlichen Flows (rag-datenfutter, vertragsvergleich) auf die Meta-Struktur (`workflow.schema.json`) anzugehen.
 
-Bitte führe den Import jetzt durch und bereite das System auf die Fehlerbehebung im BOB-Loop (Hinweis-Steuerung) und der Foto/PDF-Vereinheitlichung vor.
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation (P0->P2) für die AI Studio-Seite in einer neuen `studioAI.zauberSPEC.md` inklusive dem Rest von `docs/research/`.
 
 --- END CLAUDE PROMPT ---

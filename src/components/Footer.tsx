@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   return (
     <footer className="bg-bauhaus-black text-bauhaus-white py-16 px-6 md:px-12">
@@ -37,8 +39,8 @@ export default function Footer() {
       <div className="container mx-auto mt-16 pt-8 border-t-2 border-bauhaus-white/30 font-mono text-xs uppercase flex flex-col md:flex-row justify-between items-center gap-4">
         <div>© 2026 LICHTREICH Cloud-Computer</div>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-bauhaus-yellow transition-colors">Impressum</a>
-          <a href="#" className="hover:text-bauhaus-yellow transition-colors">Datenschutz</a>
+          <Link to="/impressum" className="hover:text-bauhaus-yellow transition-colors">Impressum</Link>
+          <Link to="/datenschutz" className="hover:text-bauhaus-yellow transition-colors">Datenschutz</Link>
         </div>
       </div>
     </footer>

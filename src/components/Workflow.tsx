@@ -10,7 +10,7 @@ const steps = [
 
 export default function Workflow() {
   return (
-    <section className="py-24 px-6 md:px-12 border-b-8 border-bauhaus-black bg-bauhaus-gray relative overflow-hidden">
+    <section id="betriebskette" className="py-24 px-6 md:px-12 border-b-8 border-bauhaus-black bg-bauhaus-gray relative overflow-hidden">
       <div className="container mx-auto">
         <div className="max-w-4xl mb-16">
           <h2 className="text-4xl md:text-6xl mb-6 uppercase">Nicht „KI für alles“.<br/>Sondern orchestrierte Vorgänge.</h2>

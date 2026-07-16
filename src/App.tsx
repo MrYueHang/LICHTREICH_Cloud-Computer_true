@@ -1,19 +1,16 @@
-import Hero from './components/Hero';
-import Workflow from './components/Workflow';
-import Modules from './components/Modules';
-import StatusMatrix from './components/StatusMatrix';
-import Pricing from './components/Pricing';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Impressum from './pages/Impressum';
+import Datenschutz from './pages/Datenschutz';
 
 export default function App() {
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <Workflow />
-      <Modules />
-      <StatusMatrix />
-      <Pricing />
-      <Footer />
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/datenschutz" element={<Datenschutz />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
