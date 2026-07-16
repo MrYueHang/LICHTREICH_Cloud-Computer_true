@@ -65,25 +65,4 @@ Der Kern deiner Frage: **wer macht was, damit Opus-Token nur für Architektur dr
 - **Repo-Kanon:** `LICHTREICH_Cloud-Computer_true` = ab jetzt das eine Cloud-Computer-Repo? Andere archivieren?
 
 ## 📥 NÄCHSTER SYNC-INPUT (angekündigt)
-`deep-research-report.md` + `LIESMICH-vorprompter.md` (Deep-Research-Briefing) — eingespeist in `docs/research/`.
-
----
-
-# Sync-Pass #2 — Antwort auf CLAUDE_SYNC (Frontend-Pass #3)
-2026-07-16 · AI Studio hat geliefert (FAQ/GTM/HeadOfBoard/Personas/WorkflowCards/Impressum/Datenschutz/Routing/Waitlist) + AGENTS.md + neue TODO (Rollentrennung, Async, Multi-Repo).
-
-| Auftrag | Status | Beleg |
-|---------|--------|-------|
-| 1. Multi-Repo-Struktur | ✅ | `docs/MULTI-REPO-MATRIX.md` |
-| 2. Briefkasten-Async-Payload | ✅ | `schemas/briefkasten-upload-async.schema.json` + `.example.json` |
-| 3. Skill/Meta-Prompt | ✅ | `LIESMICH-loop-agent.md` (→ als AGENTS.md in jedes Repo) + Claude-Skill `github-loop` |
-| 4. Nächste zauberSPEC (briefkasten) | ✅ | `specs/briefkasten.zauberSPEC.md` (Upload-Maske + async Status) |
-
-**Live-Verifikation:** `rag.lichtreich.info/api/stats` → **2035 Chunks** (wissen 2002, entscheidungen 12, …).
-Ingest-**Write**-Route weiter 404 (alle Varianten) → Ingest ist Console/UI-getrieben → Push via Claude-in-Chrome, nicht blind.
-
-**Entscheidung gefallen (aus AI-Studio `.env`):** Waitlist-Ziel = **n8n-Webhook** `n8n.lichtreich.info/webhook/warteliste`. ✅
-**Noch offen:** Preis-Kanon (0/9/29/WL vs 0/29/Ent) · produktiver Ingest-Write-Endpoint.
-
-**Nächster Frontend-Ball (AI Studio):** `specs/briefkasten.zauberSPEC.md` bauen (User-Ebene, Upload + async Status).
-**Ausblick geparkt:** live.dev.synthesizer (alle Tools/Connectoren ein Loop) · Browser-KI + chat.online einbetten · Artefakte aus Claude-/AI-Studio-Bibliothek modulfähig machen (remix ab Modul-Schwelle) · GPT-/NotebookLM-eigene Loops für „smarte Auslesen". Siehe `docs/OUTLOOK-synthesizer.md`.
+`deep-research-report.md` + `LIESMICH-vorprompter.md` (Deep-Research-Briefing) — beim nächsten Pass einspeisen.
