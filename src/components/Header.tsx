@@ -10,21 +10,27 @@ export default function Header() {
           LICHTREICH <span className="font-light">Cloud</span>
         </Link>
         
-        {/* Layer Visualization Nav */}
-        <div className="flex gap-2 font-mono text-xs font-bold uppercase hidden lg:flex">
-          <a href="#public" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-gray transition-colors">
-            <Globe className="w-4 h-4" /> Public
-          </a>
+        {/* Modul-Navi — die ganze Reihe */}
+        <nav className="flex flex-wrap gap-2 font-mono text-xs font-bold uppercase justify-center">
           <Link to="/me" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-yellow hover:bg-[#E5C100] transition-colors shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
-            <User className="w-4 h-4" /> Mein Bereich (User)
+            <User className="w-4 h-4" /> Mein Bereich
           </Link>
-          <a href="#" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-gray opacity-50 cursor-not-allowed">
-            <Shield className="w-4 h-4" /> Admin
-          </a>
+          <Link to="/briefkasten" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+            📮 Briefkasten
+          </Link>
+          <Link to="/datei-manager" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+            🗂️ Datei-Manager
+          </Link>
+          <Link to="/prozess-board" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+            <Globe className="w-4 h-4" /> Prozess-Board
+          </Link>
+          <Link to="/setup" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+            <Shield className="w-4 h-4" /> Einrichten
+          </Link>
           <Link to="/cockpit" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-black text-bauhaus-white hover:bg-gray-800 transition-colors shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
-            <Layout className="w-4 h-4" /> System
+            <Layout className="w-4 h-4" /> Cockpit
           </Link>
-        </div>
+        </nav>
 
         {/* Mobile / Direct Login */}
         <Link to="/me" className="lg:hidden px-4 py-2 border-4 border-bauhaus-black font-display font-bold uppercase text-sm bg-bauhaus-yellow shadow-[4px_4px_0px_0px_rgba(17,17,17,1)] flex items-center gap-2">

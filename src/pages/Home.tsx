@@ -1,3 +1,4 @@
+import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Workflow from '../components/Workflow';
 import WorkflowCards from '../components/WorkflowCards';
@@ -14,6 +15,7 @@ import Footer from '../components/Footer';
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <Header />
       <Hero />
       <Workflow />
       <WorkflowCards />
