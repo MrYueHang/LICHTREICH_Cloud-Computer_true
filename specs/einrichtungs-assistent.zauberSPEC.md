@@ -40,6 +40,17 @@ Gleicher Assistent, aber **System-Connectoren** (Neon, n8n, Cloudflare, Service-
 plattform-seitig fehlt — statt dass du in fremden Consoles Nummern suchst. Deep-Links werden aus der
 **echten Config** generiert (projectId etc.), nie geraten.
 
+## 3 Ebenen (jetzt trennen — später verfeinern)
+| Ebene | Was der Assistent einrichtet |
+|-------|------------------------------|
+| **System** | zentrale Connectoren (Neon, n8n, Cloudflare, Service-Accounts) — nur Admin |
+| **Community/Projekt** | geteilte, gedeckelte Ressourcen · **Community-API** (gemeinsamer Provider-Pool) |
+| **User** | eigene BYO-Keys · **Freemium-Rückfall** (kein Key → gedeckeltes Gratis-Kontingent) |
+
+**Später (abgegrenzt):** der User-Assistent regelt sauber **Freemium-Rückfall** (User-Key → sonst Community-Pool →
+sonst Plattform-Freemium, gedeckelt). Die **Community-API** (Ebene 2) ist eigener Pfad mit eigener Deckelung/Abrechnung.
+Jetzt: die 3 Ebenen im Assistenten strukturell trennen; die Rückfall-Logik ist Backend (Broker) + kommt schrittweise.
+
 ## Backend (Claude, nicht Studio)
 - Test-Endpoints je Connector (der „Lampe"-Call), serverseitig mit dem gespeicherten Key.
 - Verschlüsselung/Entschlüsselung nur im Call. Metering pro uid.
