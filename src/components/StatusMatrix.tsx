@@ -35,8 +35,14 @@ export default function StatusMatrix() {
                 >
                   <td className="p-6 font-display text-xl uppercase">{item.topic}</td>
                   <td className="p-6 font-mono text-sm font-bold">
-                    <span className={`px-3 py-1 border-2 border-bauhaus-white inline-block ${item.status === 'live' ? 'bg-bauhaus-yellow text-bauhaus-black' : item.status === 'beta' || item.status === 'pilot' ? 'bg-bauhaus-blue' : 'bg-bauhaus-red'}`}>
-                      {item.status.toUpperCase()}
+                    <span className={`px-4 py-2 border-4 inline-flex items-center justify-center uppercase tracking-widest ${
+                      item.status === 'live' 
+                        ? 'bg-bauhaus-yellow text-bauhaus-black border-bauhaus-black shadow-[4px_4px_0px_0px_rgba(17,17,17,1)]' 
+                        : item.status === 'beta' || item.status === 'pilot' 
+                        ? 'bg-bauhaus-blue text-bauhaus-white border-bauhaus-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]' 
+                        : 'bg-bauhaus-red text-bauhaus-white border-bauhaus-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'
+                    }`}>
+                      {item.status}
                     </span>
                   </td>
                   <td className="p-6">

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 
 export default function Hero() {
@@ -59,6 +59,21 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
         className="absolute bottom-[5%] left-[-10%] w-[50vw] h-[25vw] bg-bauhaus-yellow border-8 border-bauhaus-black z-0 opacity-90 mix-blend-multiply" 
       />
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {submitted && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-8 left-1/2 -translate-x-1/2 z-50 bg-bauhaus-blue text-bauhaus-white px-8 py-4 border-4 border-bauhaus-black shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] flex items-center gap-4"
+          >
+            <div className="font-display font-bold text-xl uppercase">Erfolg</div>
+            <div className="font-sans font-medium border-l-2 border-bauhaus-white pl-4">Auf die Warteliste gesetzt!</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="relative z-10 container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
         <div className="lg:col-span-8 bg-bauhaus-white border-8 border-bauhaus-black p-8 md:p-12 shadow-[16px_16px_0px_0px_rgba(17,17,17,1)]">

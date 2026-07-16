@@ -1,23 +1,27 @@
 # LICHTREICH Cloud-Computer - Aufgaben & Backlog
 
-Dieser Backlog basiert auf der Evidenzmatrix und dem aktuellen Plattformstand.
+Dieser Backlog basiert auf der Evidenzmatrix, dem aktuellen Plattformstand und der strategischen Neuausrichtung (GitHub-Loop & Rollentrennung).
 
 ## 🔴 Kritische Priorität
-- [ ] **Hinweis-/Kommentarlogik im BOB-Loop**: User-Hinweise steuern Strategie und Präzisierung noch nicht zuverlässig. Dynamische Einspeisung von Kommentaren/Strategien in die nächste Schleife muss robuster werden.
-- [ ] **Foto/Scan/PDF-Vereinheitlichung**: Foto-Input und Scan-Stapel müssen sauber in denselben Dokumentpfad und Verarbeitungsprozess (BOB-Briefweg) gebracht werden.
+- [ ] **GitHub-Sync-Loop (Multi-Repo) etablieren**: Den "Ping-Pong" Prozess (AI Studio <-> GitHub <-> Claude Terminal) für alle Module/Subdomains standardisieren. Dies spart Anthropic-Token und ermöglicht paralleles Bauen.
+- [ ] **Rollentrennung (Public / Admin / System / User)**: Harte strukturelle Trennung der Sichten und Zugriffsrechte.
+  - **Public**: Landingpages (wie diese), Erklärungen, Pricing, Warteliste.
+  - **User**: Das Cockpit, `briefkasten` (Eingang), Aktenansicht.
+  - **Admin**: Connectoren-Setup, Abrechnung, Rechtemanagement (`mandat`).
+  - **System**: n8n, RAG-Ingest, Orchestrator (headless).
+- [ ] **Foto/Scan/PDF-Vereinheitlichung im Briefkasten**: Foto-Input und Scan-Stapel müssen sauber in denselben Dokumentpfad und asynchron in den BOB-Briefweg gebracht werden.
 
 ## 🟠 Hohe Priorität
-- [ ] **Setup-Branding und Public Entry**: `setup.lichtreich.info` muss als eigenständige, saubere Produkttür fungieren und nicht nur in die BOB-Loginwelt weiterleiten.
-- [ ] **Plattform-SSO**: Den bestehenden, teilweise ausgerollten SSO (Auth.js-Cookie-Overrides) nachweislich auf alle zentralen Apps (inkl. `briefkasten` und `setup`) erweitern. Public Wording präzisieren.
-- [ ] **Storage-/Mail-Connectoren**: Produktive Anbindung von Drive/Dropbox/Box (Client-Credentials klären) sowie Implementierung der IMAP-Integration.
-- [ ] **Mandat Rechtsreview**: Juristisches Review für das Mandatsmodul abschließen und Beleg-Upload-Funktion implementieren.
+- [ ] **Asynchroner GPT/Claude-Einsatz im Briefkasten**: Der Nutzer lädt im Frontend (`briefkasten`) Dokumente hoch. Das LLM antwortet *nicht* blockierend im Frontend, sondern das Dokument wird an den `BOB-Briefweg` (n8n/Backend) übergeben. Die KI arbeitet asynchron, das Resultat wird in der Akte abgelegt.
+- [ ] **Setup-Branding und Public Entry**: `setup.lichtreich.info` muss als eigenständige, saubere Produkttür fungieren.
+- [ ] **Plattform-SSO**: Den bestehenden SSO nachweislich auf alle zentralen Apps erweitern.
+- [ ] **Storage-/Mail-Connectoren**: Produktive Anbindung von Drive/Dropbox/Box sowie Implementierung der IMAP-Integration.
 
 ## 🟡 Mittlere Priorität
-- [ ] **herrkuenstler Public Reife**: Öffentlichen Titel anpassen (weg von generischem "My Google AI Studio App").
-- [ ] **orchestra Rollen**: Live-Seite mit echten, demonstrierbaren Rollen befüllen (aktuell "0 Rollen live").
-- [ ] **Öffentliche Verifikation einzelner Module**: Sicherstellen, dass Domains wie `board`, `society`, `consult` und `ingest` zuverlässig erreichbar und verifiziert sind.
+- [ ] **Skill-Katalog für AI Studio**: Dokumentation der Arbeitsweise (wie diese Syncs) als wiederverwendbaren Skill/Agenten-Anweisung in `AGENTS.md` ablegen, damit AI Studio "without head" und token-sparend orchestriert werden kann.
+- [ ] **orchestra Rollen**: Live-Seite mit echten, demonstrierbaren Rollen befüllen.
+- [ ] **Hinweis-/Kommentarlogik im BOB-Loop**: User-Hinweise steuern Strategie und Präzisierung noch nicht zuverlässig.
 
 ## ⚪ Strategische & QA-Aufgaben
-- [ ] **Test-Infrastruktur aufbauen**: Dreistufige Prüfmethode etablieren (Public Front Door, Case Loop, Connector & Rights). Ein Workflow ist erst grün, wenn visuell im Browser, per API und von zwei Unabhängigen geprüft.
 - [ ] **Workflow-Landkarte in Code gießen**: n8n-JSON-Vorlagen mit der Metastruktur für das dynamische Handbuch verknüpfen.
-- [ ] **Datenraum/Vault-Plan**: Konzept für sensible Daten (Enterprise Governance) ausarbeiten.
+- [ ] **Datenraum/Vault-Plan**: Konzept für sensible Daten ausarbeiten.

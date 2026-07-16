@@ -1,28 +1,26 @@
 SYSTEM-DIALOG FÜR CLAUDE.TERMINAL
 ==================================
-Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemkontext und die Dokumente in die LICHTREICH-Umgebung (RAG/Orchestra/n8n) zu synchronisieren.
+Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemkontext in die LICHTREICH-Umgebung (RAG/Orchestra/n8n) zu synchronisieren.
 
 --- BEGIN CLAUDE PROMPT ---
 
 Hallo Claude,
 
-hier ist der Rückball aus dem AI Studio Frontend (Pass #2). Das Frontend hat alle P0- und P1-Aufgaben aus der `studioAI.zauberSPEC.md` umgesetzt.
+hier ist der Rückball aus dem AI Studio Frontend (Pass #3). Wir weiten den Loop jetzt strukturiert aus. Das Ziel ist es, den "Teppich zum Fliegen zu bringen" – über sämtliche Repos und Apps hinweg, maximal token-sparend (AI Studio = Frontend/UI/React, Terminal = Architektur/Verdrahtung/Backend, Groq/lokal = Textmasse).
 
-Erledigte Umbauten:
-1. Impressum und Datenschutz sind als eigene Routen (`/impressum`, `/datenschutz`) integriert.
-2. Der Waitlist-Button sendet einen POST-Request an `VITE_WAITLIST_WEBHOOK_URL` (in `.env.example` ergänzt).
-3. "Architektur ansehen" navigiert nun direkt zur Sektion `#betriebskette`.
-4. Die IST->SOLL Matrix (Modul, IST, SOLL-Kriterium) wurde implementiert und spiegelt die Wahrheit wider.
-5. Die Sektion "Head of Board" ruft die echte API `api.lichtreich.info/api/v1/projects` ab und rendert dynamisch Status, Tags und Remit sowie ein "Whiteboard" zum Drag&Drop.
-6. Die Connectoren-UI für Drive, Dropbox, Box und IMAP ist mit einem Dummy-"Echt-Test" verbaut und listet die entsprechenden `.env.example`-Variablen auf.
-7. Der Content-Ausbau umfasst nun Personas, das transparente GTM-Modell und eine FAQ-Sektion. Die Bauhaus-CI wurde durchgehend berücksichtigt.
+Das haben wir im AI Studio (Public Landingpage Repo) erreicht:
+1. Die Landingpage ist visuell (Bauhaus-CI) fertig: Hero (mit Waitlist-Toast), Betriebsketten-Karten (BOB-Briefweg etc.), StatusMatrix (IST->SOLL), HeadOfBoard (mit API Fetch & Whiteboard), Connectors-Dummy, Personas, GTM-Funnel, FAQ, Impressum, Datenschutz.
+2. `TODO.md` wurde strategisch aktualisiert:
+   - **Rollentrennung** (Public / Admin / System / User) ist nun harte Vorgabe.
+   - **Asynchrone Verarbeitung**: Im `briefkasten` blockiert kein LLM das Frontend. Dokument -> n8n (BOB-Briefweg) -> Akte.
+   - **Multi-Repo-Sync**: Dieser Ping-Pong-Loop ist der Standard für alle Subdomains.
 
 Deine nächsten Aufgaben (Architektur & Verdrahtung):
-1. **Waitlist-Backend aktivieren**: Nimm den Webhook auf `https://n8n.lichtreich.info/webhook/warteliste` in n8n live. Speichere die Einsendungen (Email) in einer Neon-Datenbank.
-2. **Ingest Endpoint**: Der RAG-Payload (`rag-ingest/product-truth.md`) wartet darauf, über eine verifizierte Route gepusht zu werden, sobald `/api/ingest` existiert. Kläre die Endpunkt-Bereitstellung oder pushe den RAG-Text über den Console-Zugang.
-3. **Connectoren-Secrets**: Ergänze die tatsächlichen OAuth-Secrets im Live-System (.env) für Drive/Dropbox/IMAP.
-4. Bitte fahre fort, die n8n-Migrationen der restlichen Flows (rag-datenfutter, vertragsvergleich) auf die Meta-Struktur (`workflow.schema.json`) anzugehen.
+1. **Multi-Repo Struktur**: Skizziere kurz die Architektur-Matrix für die Code-Verwaltung. Welche Repos (GitHub) entsprechen welchen Subdomains (z.B. `briefkasten`, `setup`, `board`)? Wie routen wir die Dokumente/Specs zwischen ihnen?
+2. **Briefkasten-Asynchronität**: Liefere die JSON-Spezifikation (Payload-Struktur), wie das Frontend (`briefkasten.lichtreich.info`) ein hochgeladenes Foto an den n8n-Webhook (BOB-Briefweg) feuern soll, ohne auf die Antwort zu warten.
+3. **Skill-Dokumentation**: Schreibe eine `LIESMICH-loop-agent.md`, die diesen Sync-Prozess (Ping-Pong zwischen AI Studio und Claude Terminal) als Meta-Prompt festhält. Diese Datei können wir dann in jedem Repo als `AGENTS.md` hinterlegen, damit die KI "without head" genau weiß, wie sie sich in das große Ganze einfügt.
+4. **Nächste ZauberSPEC**: Erstelle die nächste `studioAI.zauberSPEC.md` für die App `briefkasten`. Wir bauen als Nächstes das User-Frontend (Upload-Maske, asynchroner Status-Indikator).
 
-Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die nächste Spezifikation (P0->P2) für die AI Studio-Seite in einer neuen `studioAI.zauberSPEC.md` inklusive dem Rest von `docs/research/`.
+Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die genannten Dokumente zurück.
 
 --- END CLAUDE PROMPT ---

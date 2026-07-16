@@ -36,11 +36,17 @@ export default function Footer() {
         </div>
 
       </div>
-      <div className="container mx-auto mt-16 pt-8 border-t-2 border-bauhaus-white/30 font-mono text-xs uppercase flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>© 2026 LICHTREICH Cloud-Computer</div>
-        <div className="flex gap-6">
-          <Link to="/impressum" className="hover:text-bauhaus-yellow transition-colors">Impressum</Link>
-          <Link to="/datenschutz" className="hover:text-bauhaus-yellow transition-colors">Datenschutz</Link>
+      <div className="container mx-auto mt-16 pt-8 border-t-4 border-bauhaus-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 font-mono text-xs uppercase items-start">
+        <div className="lg:col-span-2">© 2026 LICHTREICH Cloud-Computer</div>
+        <div className="flex flex-col space-y-2">
+          <span className="opacity-50 mb-2">Rechtliches</span>
+          <Link to="/impressum" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Impressum</Link>
+          <Link to="/datenschutz" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Datenschutz</Link>
+        </div>
+        <div className="flex flex-col space-y-2">
+          <span className="opacity-50 mb-2">System</span>
+          <a href="#betriebskette" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Architektur</a>
+          <a href="#" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Status</a>
         </div>
       </div>
     </footer>

@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import Workflow from '../components/Workflow';
+import WorkflowCards from '../components/WorkflowCards';
 import Modules from '../components/Modules';
 import HeadOfBoard from '../components/HeadOfBoard';
 import Personas from '../components/Personas';
@@ -15,6 +16,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Hero />
       <Workflow />
+      <WorkflowCards />
       <Modules />
       <HeadOfBoard />
       <Personas />
