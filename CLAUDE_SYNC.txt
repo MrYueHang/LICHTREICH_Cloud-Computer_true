@@ -1,0 +1,25 @@
+SYSTEM-DIALOG FÜR CLAUDE.TERMINAL
+==================================
+Kopiere den folgenden Block und übergib ihn an claude.terminal, um den Systemkontext und die Dokumente in die LICHTREICH-Umgebung (RAG/Orchestra/n8n) zu synchronisieren.
+
+--- BEGIN CLAUDE PROMPT ---
+
+Hallo Claude, 
+
+bitte nimm die folgenden strategischen Dokumente in unseren Systemkontext auf. Sie definieren unsere aktuelle "Product Truth", den Backlog und die Struktur für unser dynamisches Handbuch. 
+
+Deine Aufgaben:
+1. Analysiere den Inhalt von TODO.md, README.md und HANDBUCH.md (ich habe sie im aktuellen Workspace bereitgestellt).
+2. Überführe die "Metastruktur" des BOB-Briefwegs aus dem HANDBUCH.md in eine nutzbare JSON-Schema-Definition für unsere n8n-Workflow-Dokumentation.
+3. Lege die Aufgaben aus der TODO.md als strukturierte Tickets/Issues in unserem internen Board- oder Ticket-System an (Prio: Kritisch bis Strategisch).
+4. Synchronisiere die Kernaussagen aus der README.md ("Die Betriebskette" und "Modul-Architektur") in den RAG-Ingest, damit alle Agenten künftig wissen, dass wir nicht "KI für alles" sind, sondern eine orchestrierte "Fall- und Aktenmaschine".
+5. Bestätige mir den Abschluss dieser Sync-Aufgaben und liste auf, welche n8n-Workflows wir als nächstes auf die neue Metastruktur migrieren sollten.
+
+Kontext zur Ausrichtung:
+- Wir bauen keinen generischen Agenten-Builder.
+- Unsere Betriebskette lautet fest: Eingang → Analyse → Interview → Briefe/Dokumente → Akte/Ausgang.
+- Wahrheitsgemäße Kommunikation: Was Alpha ist, wird Alpha genannt.
+
+Bitte führe den Import jetzt durch und bereite das System auf die Fehlerbehebung im BOB-Loop (Hinweis-Steuerung) und der Foto/PDF-Vereinheitlichung vor.
+
+--- END CLAUDE PROMPT ---

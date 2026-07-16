@@ -1,20 +1,36 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# LICHTREICH Cloud-Computer
 
-# Run and deploy your AI Studio app
+Eine modulare, KI-gestützte Arbeitsumgebung für komplexe Akten, Vorgänge und Projekte. LICHTREICH verbindet Dokumenteingang, semantische Wissenssuche, KI-gestützte Interview- und Entwurfslogik, Rollen-/Mandatssteuerung und Workflow-Automation in einer wiederholbaren Betriebskette.
 
-This contains everything you need to run your app locally.
+## Die Betriebskette
+Jeder Vorgang wird zur Akte, und jede Akte durchläuft dieses Kernmuster:
+`Eingang → Analyse → Interview → Briefe/Dokumente → Akte/Ausgang`
 
-View your app in AI Studio: https://ai.studio/apps/61197872-1523-48e2-80f1-2f5c00a95436
+## Kernarchitektur & Module
+Die Plattform besteht aus einer Subdomain-Landschaft unter `*.lichtreich.info`:
+* **briefkasten**: DMS-Kern (Dokumenteingang, OCR, Suche, Tags, Multi-User-Rechte).
+* **rag**: Wissensschicht (pgvector, OpenAI-Embeddings, Ingest→Embedding→RAG-Loop).
+* **orchestra**: KI-Orchestrierung (Modellpluralität, Provider-Fallback, LLM-Routing).
+* **mandat**: Rechte & Rollen (Form, Freiwilligkeit, Laufzeit).
+* **n8n**: Workflow-Automation (Execution-Layer für Dossiers).
+* **setup**: Infrastruktur (SSO, Connectoren, BYO-Key Verwaltung).
 
-## Run Locally
+## Evidenz & Wahrheit (Status)
+Wir kommunizieren transparent zwischen "Live", "Im Rollout" und "Geplant".
+* **Live**: Modulare Subdomain-Landschaft, Dokument- und Aktenkern, RAG-Layer, BYO-Key-/Fallback-Logik.
+* **Beta/Rollout**: BOB-Workflow (Bruchstellen bei Foto/PDF & Hinweisen), Plattform-SSO, Connectoren.
+* **Alpha**: Juristisch freigegebenes Mandatsmodul.
 
-**Prerequisites:**  Node.js
+## Preis- & Go-to-Market-Modell
+Wir bieten ein belastbares BYO-Key (Bring Your Own Key) und Plattform-Fallback Modell:
+* **Frei (0 €)**: Eigener Key, lokaler Output, begrenzte Akten.
+* **Basis (~9 €/Monat)**: Erstes produktives Arbeiten, Quoten für Token/Speicher.
+* **Pro (~29 €/Monat)**: Voller Loop, Kollaboration, Storage/Mail-Integration.
+* **Whitelabel (Individuell)**: Eigener Namespace, eigene Secrets & Governance.
 
+**Go-to-Market Sequenz**:
+Warteliste → Test-User → Design Partner → bezahlte Pilotgruppe → Partner-/Affiliate-Schiene → Whitelabel → Investor Layer.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Testing & QA
+Freigaben erfolgen über strukturierte Regression Packs (Public Front Door, Case Loop, Connector & Rights).
+Prüfstack: Öffentliche URL-Probes → authentifizierte Browser-Regression → API-Smoke-Tests → Gold-Case-Wiederholungen → Doppel-Review.
