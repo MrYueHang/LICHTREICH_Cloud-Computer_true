@@ -34,3 +34,15 @@ werden modulfähig gemacht und ausgegliedert.
 ## Reihenfolge-Vorschlag (wenn dran)
 briefkasten-User-Frontend (läuft an) → n8n `bob-briefweg` verdrahten → Messaging-Agenten (Telegram zuerst)
 → GPT-/NotebookLM-Loops → Connector-Fläche → Remix/Ausgliederung.
+
+## Nachtrag (Brain-Dump 16.07)
+- **Instanzen-Manager:** bei 3–4 parallelen Claude-Instanzen ein Manager, der koordiniert — über
+  **Git-Branches** (je Instanz/Modul ein Branch, Loop merged), halb mitgeschrieben, kleine Steps oder API.
+- **NotebookLM „andersrum":** nicht nur Quelle, sondern **Live-Handbuch-Visualisierer** — erklärt sich selbst
+  (IST → SOLL → what's new). Hand-off: `handoffs/NOTEBOOKLM.md`. Braucht nur saubere Anleitung + Schnittebene.
+- **Sub-Modul-Dialog-Muster:** Ebenen als Unterseiten/Sub-Module einbauen — aber **auseinandergezogen**, damit
+  der Nutzer an jedem Punkt eingreifen kann (wie dieser Chat). Dialog-Punkt überall: vorschlag→✓→ausgeführt.
+- **~100 .md sortieren:** schnell in richtige Reihenfolge bringen (Skill `wissens-ingest`, cheap/lokal) →
+  dann als NotebookLM-Quelle + `rag`.
+- **n8n Live-Landkarte + Mega-RAG:** das Muster noch cooler ziehen (Landkarte = lebende Sicht auf den RAG).
+- **Andere Subdomains reinziehen:** je Subdomain in denselben Loop (Hand-offs GPT/Gemini/NotebookLM).
