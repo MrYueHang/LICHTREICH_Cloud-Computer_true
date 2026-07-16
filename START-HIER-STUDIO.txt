@@ -1,0 +1,30 @@
+MASTER-AUFTRAG AN AI STUDIO — einmal pasten, dann im Loop bauen.
+================================================================
+
+SCHRITT 0 (einmal): Importiere lichtreich-studio-context.zip (alle Specs + Kontext).
+Firebase ist FERTIG: Projekt gen-lang-client-0379574738, Config in firebase-applet-config.json.
+NICHT nach Firebase fragen — nutzen. Lies AGENTS.md zuerst. Nie docs/specs/schemas löschen.
+
+BAUE IM LOOP (in dieser Reihenfolge), alles online auf lichtreich.info, Bauhaus-CI,
+Integration-first (Firebase Auth/Firestore/Storage), KI-Aktionen async (nie UI blockieren):
+
+1) DATEI-MANAGER  (specs/datei-manager.zauberSPEC.md) — das sichtbare Ding:
+   Dokument-Karten aus Firestore/Storage, pro Karte KI anpingbar:
+   Analysieren · Übersetzen · Umbenennen · An Akte anhängen · Verschieben · "KI am Board fragen".
+
+2) N8N-STYLE PROZESS-BOARD  (specs/n8n-prozess-board.zauberSPEC.md):
+   Node-Graph-Canvas, Knoten=Steps, Kanten=Fluss, drag&drop, Layout in Firestore,
+   Live-Status-Ampel je Knoten, KI am Knoten anpingbar.
+
+3) EINRICHTUNGS-ASSISTENT  (specs/einrichtungs-assistent.zauberSPEC.md):
+   Geführter Wizard, "ehrliche Lampe" (grün NUR nach echtem Test-Call), 3 Ebenen
+   (System/Community/User), Move #1 = BYO-Key/Freemium (specs/user-auth-byokey.zauberSPEC.md).
+
+4) me.lichtreich.info  (specs/me-lichtreich.zauberSPEC.md): User-Heimat, Modul-Kacheln.
+
+REGELN:
+- Waitlist schreibt direkt in Firestore-Collection "waitlist" (KEIN n8n-Webhook, Variable entfällt).
+- Nach JEDEM Modul: CLAUDE_SYNC.txt aktualisieren + Export to GitHub.
+- Alles teilt sich EINEN Kern: schemas/workflow.schema.json + Firestore. Ein Datensatz, N Sichten.
+
+Backend (n8n-Rückkanal, Test-Calls, OAuth-Callbacks) macht Claude-Terminal, sobald du exportierst.
