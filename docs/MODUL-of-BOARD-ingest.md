@@ -28,3 +28,13 @@ zeigen niedrig nur mit Warnung. So ist auch **vorhandenes** Wissen prüf-/filter
 ## Desktop-AI (Idee): auf daedalOS ein Assistent, der sich selbst einrichtet
 daedalOS hat StableDiffusion, aber KEINEN Cortana-Assistenten out-of-the-box → wir setzen die Head-of-Module-KI
 als Desktop-Assistent drauf, der sich von innen heraus optimal einrichtet. Später, eigener Slot.
+
+## 🗄️ Wissen partitionieren (mehrere Namespaces, nicht ein Topf)
+Nicht alles in EINEN RAG-Pool — sonst vermengt sich Recht mit Verschwörung/Health/Hobby/Privatem.
+Statt neuer DB: **Felder auf dem bestehenden `wissen_vektoren` + Query-Scoping** (edit, nicht neu bauen):
+- `namespace/domain`: recht · medizin · finanz · immo · hobby · **privat** · fringe(verschwörung/weltanschauung) · …
+- `glaubhaftigkeit`: 🟢 hoch · 🟡 mittel · 🔴 niedrig
+- `ebene`: system · projekt · user
+- `sensibel` (bool): persönliche Docs/Bilder → **eigener PRIVATER Store** (DSGVO), NIE im geteilten RAG.
+**RAG-Query scoped** auf gewählte Namespaces → z.B. „nur recht+medizin, min. glaubhaftigkeit mittel" → kein Vermischen.
+So bleibt belastbares Rechtswissen sauber getrennt von Fringe/Hobby/Privat, aber alles im selben System steuerbar.
