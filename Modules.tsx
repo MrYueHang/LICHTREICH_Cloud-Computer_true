@@ -7,6 +7,12 @@ const modules = [
   { name: "mandat", desc: "Rollen-/Mandatssteuerung, Form, Freiwilligkeit, Laufzeit", status: "rollout", tag: "Rechte" },
   { name: "n8n", desc: "Workflow-Automation, Execution-Layer für Dossiers", status: "live", tag: "Automation" },
   { name: "setup", desc: "Plattform-SSO, Connectoren, API-Key Verwaltung", status: "rollout", tag: "Infrastruktur" },
+  { name: "dms", desc: "Papiere-Archiv: Scan, deutsche OCR, Tags, Volltext (Paperless-ngx)", status: "live", tag: "Selfhosted-Reihe" },
+  { name: "whiteboard", desc: "Excalidraw-Zeichenbrett für Boards und Skizzen", status: "live", tag: "Selfhosted-Reihe" },
+  { name: "pdf", desc: "PDF-Werkbank: teilen, drehen, komprimieren, signieren (Stirling)", status: "live", tag: "Selfhosted-Reihe" },
+  { name: "formulare", desc: "Geführte Interviews werden fertige Dokumente (docassemble)", status: "live", tag: "Selfhosted-Reihe" },
+  { name: "crm", desc: "Kontakte, Firmen, Pipelines (Twenty)", status: "live", tag: "Selfhosted-Reihe" },
+  { name: "metabase", desc: "Zahlen-Boards direkt auf der Neon-Datenbank", status: "live", tag: "Selfhosted-Reihe" },
 ];
 
 export default function Modules() {
@@ -26,13 +32,16 @@ export default function Modules() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {modules.map((mod, i) => (
-            <motion.div 
+            <motion.a
               key={mod.name}
+              href={`https://${mod.name}.lichtreich.info`}
+              target="_blank"
+              rel="noopener"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`p-8 border-4 border-bauhaus-black shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] flex flex-col justify-between ${mod.status === 'live' ? 'bg-bauhaus-yellow/20' : 'bg-bauhaus-blue/10'}`}
+              className={`p-8 border-4 border-bauhaus-black shadow-[8px_8px_0px_0px_rgba(17,17,17,1)] flex flex-col justify-between no-underline text-inherit hover:bg-bauhaus-yellow/40 ${mod.status === 'live' ? 'bg-bauhaus-yellow/20' : 'bg-bauhaus-blue/10'}`}
             >
               <div>
                 <div className="flex justify-between items-start mb-6">
