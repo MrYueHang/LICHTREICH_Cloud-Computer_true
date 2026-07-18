@@ -46,6 +46,6 @@ Aktuell schwer nutzbar → Session „ingest steuerbar machen" (rechte/urteile/t
 ## 🏆 Top-Fundgruben (18.07, via Stefan)
 - **awesome-selfhosted** (github.com/awesome-selfhosted/awesome-selfhosted) — DIE kuratierte Liste selbst-hostbarer OSS. Genau unsere Schatzkarte.
 - **github.com/topics/hacktoberfest** — ~147k Projekte (breit, via GPT filtern).
-- **Excalidraw** — überlegenes Whiteboard (OSS) → unsere Whiteboards ersetzen. TOP-Adopt-Kandidat.
-- **paperless-ngx** — Dokumenten-Management (Scan/OCR/Tag) → briefkasten-Verwandt, klauen.
+- **Excalidraw** — ✅ DEPLOYED 18.07 → whiteboard.lichtreich.info (offizielles Docker-Image auf VPS).
+- **paperless-ngx** — ✅ DEPLOYED 18.07 → dms.lichtreich.info (Docker /opt/dms, deu-OCR, Login in SECRETS.local.txt).
 - josh's Rechner (hit-me.media/community-page) im Desktop steuerbar — Funktionalität festhalten.

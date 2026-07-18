@@ -15,6 +15,8 @@
 | **HK** | Herrkünstler | Creator-Hub | herrkuenstler.lichtreich.info | herrkuenstler…_01a | ✅ |
 | **N8N** | n8n | Workflow-Automation | n8n.lichtreich.info | (VPS) | ✅ |
 | **SOC** | Society-Radar | 31 Entitäten, Abteilungen | society.lichtreich.info | CLOUD-COMPUTER/society-radar | ✅ |
+| **DMS** | Paperless-ngx | Dokumenten-Management: Scan/OCR(deu)/Tags, selfhosted (GPL) | dms.lichtreich.info | VPS:/opt/dms (Docker) | ✅ live 18.07 |
+| **WBD** | Excalidraw | Whiteboard (MIT), offizielles Docker-Image | whiteboard.lichtreich.info | VPS: Container `excalidraw` | ✅ live 18.07 |
 
 ## Naming-Regel (für ALLES Neue)
 `KÜRZEL_mini-beschreib_YYYY-MM-DD` — z.B. `ING_schleue-wissens-ingest_2026-07-07`.
