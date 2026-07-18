@@ -45,6 +45,7 @@ Aktuell schwer nutzbar → Session „ingest steuerbar machen" (rechte/urteile/t
 
 ## 🏆 Top-Fundgruben (18.07, via Stefan)
 - **awesome-selfhosted** (github.com/awesome-selfhosted/awesome-selfhosted) — DIE kuratierte Liste selbst-hostbarer OSS. Genau unsere Schatzkarte.
+- ✅ REIHE DEPLOYED 18.07 (VPS, Muster `/opt/andock.sh SUB PORT`): Stirling-PDF→pdf · docassemble→formulare · Twenty→crm · Metabase→metabase. j-lawyer = Desktop-Client, KEIN Browser-Modul → nur Klau-Quelle. OpenProject verschoben (VPS voll, 1,4 GB frei).
 - **github.com/topics/hacktoberfest** — ~147k Projekte (breit, via GPT filtern).
 - **Excalidraw** — ✅ DEPLOYED 18.07 → whiteboard.lichtreich.info (offizielles Docker-Image auf VPS).
 - **paperless-ngx** — ✅ DEPLOYED 18.07 → dms.lichtreich.info (Docker /opt/dms, deu-OCR, Login in SECRETS.local.txt).
