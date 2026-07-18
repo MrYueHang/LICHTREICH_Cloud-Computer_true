@@ -19,3 +19,9 @@ Jeder Stub = Linse auf denselben BOB/Firestore-Kern, in Branchen-Kontext gerahmt
 ## Anti-Pattern (der Fehler vom 18.07)
 Ein Stub mit EIGENER flacher Logik = zweite Wahrheit = Doppelarbeit + Datensplit. Verboten.
 Stub darf NUR Sicht sein. Test: „Schreibt der Stub in denselben Store wie das tiefe Modul?" → muss JA sein.
+
+## 💶 Stub↔Tiefe = Tier-Modell (Monetarisierung ohne 2. Produkt)
+- **Freemium 0€** = Stub-Linsen (dünn, gedeckelt).
+- **Standard ~9€** = mehr Linsen + erste Tiefe.
+- **Plus ~29€** = volle Tiefe (komplettes Tool, Kompositionen, alle Branchen).
+Ein Codebase · ein Daten-Kern · Tier gated die Sicht-Tiefe. Upgrade-Grund ist eingebaut.
