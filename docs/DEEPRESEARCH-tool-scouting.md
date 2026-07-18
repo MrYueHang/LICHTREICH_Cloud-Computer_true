@@ -42,3 +42,10 @@ Aktuell schwer nutzbar → Session „ingest steuerbar machen" (rechte/urteile/t
 - **DustinBrett/awesome-OS** (MIT) — alle OS-Clones + Software. Screenen → viele deploy-ready Tools.
 - **DustinBrett/awesome-web-desktops** — Web-Desktop-Apps.
 - Weitere von ihm nutzbar (trustable, MIT/Apache): web-llm, web-stable-diffusion, BrowserFS, vanta, html-to-image, darkreader.
+
+## 🏆 Top-Fundgruben (18.07, via Stefan)
+- **awesome-selfhosted** (github.com/awesome-selfhosted/awesome-selfhosted) — DIE kuratierte Liste selbst-hostbarer OSS. Genau unsere Schatzkarte.
+- **github.com/topics/hacktoberfest** — ~147k Projekte (breit, via GPT filtern).
+- **Excalidraw** — überlegenes Whiteboard (OSS) → unsere Whiteboards ersetzen. TOP-Adopt-Kandidat.
+- **paperless-ngx** — Dokumenten-Management (Scan/OCR/Tag) → briefkasten-Verwandt, klauen.
+- josh's Rechner (hit-me.media/community-page) im Desktop steuerbar — Funktionalität festhalten.
