@@ -45,3 +45,8 @@ So bleibt belastbares Rechtswissen sauber getrennt von Fringe/Hobby/Privat, aber
 - **LettaAI** = persistentes Gedächtnis + Streaming (Kontext je Ebene user/community/system, „Hinweis aus dem Stream"). Auf der Liste.
 - Läuft auf daedalOS (desktop.lichtreich.info): KI-Assistenz.of.Board pro Modul — vorquatschen → greift durch, führt aus/verschiebt/verbindet Nodes.
 - Was die KI kann = was der User kann (kennt den zusammengefassten Kontext + datendekonstruierte Sichten).
+
+### Klarstellung „lokal" (web-llm)
+- „lokal" = **User-Browser/Gerät** (WebGPU), NICHT VPS/Server. Modell lädt 1× (~1–4GB), rechnet auf dem Gerät → 0 Kosten, komplett privat.
+- Einbinden: JS-Lib `@mlc-ai/web-llm` als React-Komponente (daedalOS · me.lichtreich · briefkasten).
+- Einsatz: SENSIBEL/privat (Personal-Docs, Bilder) → web-llm (Gerät). Allgemein/scoped → gpt-4o-mini (cloud). VPS-lokal wäre ollama (separat).
