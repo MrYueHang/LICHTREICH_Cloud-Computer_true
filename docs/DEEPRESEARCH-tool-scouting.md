@@ -37,3 +37,8 @@ Whiteboard, Auth. Gib das als Markdown-Tabelle je Branche zurück. Copyleft-Lize
 ## Bezug: Ingest-Steuerung (eigener Task)
 Das ingest-Tool soll steuerbar sein: **nach Thema · Prio · Token-Budget · Zeit · Doc-Anzahl · ganze-Seite/Thema**.
 Aktuell schwer nutzbar → Session „ingest steuerbar machen" (rechte/urteile/tools thematisch einspeisen).
+
+## 📚 Quellen-Fundgruben (Listen, die schon kuratiert sind)
+- **DustinBrett/awesome-OS** (MIT) — alle OS-Clones + Software. Screenen → viele deploy-ready Tools.
+- **DustinBrett/awesome-web-desktops** — Web-Desktop-Apps.
+- Weitere von ihm nutzbar (trustable, MIT/Apache): web-llm, web-stable-diffusion, BrowserFS, vanta, html-to-image, darkreader.

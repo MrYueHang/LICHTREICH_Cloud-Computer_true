@@ -38,3 +38,9 @@ Statt neuer DB: **Felder auf dem bestehenden `wissen_vektoren` + Query-Scoping**
 - `sensibel` (bool): persönliche Docs/Bilder → **eigener PRIVATER Store** (DSGVO), NIE im geteilten RAG.
 **RAG-Query scoped** auf gewählte Namespaces → z.B. „nur recht+medizin, min. glaubhaftigkeit mittel" → kein Vermischen.
 So bleibt belastbares Rechtswissen sauber getrennt von Fringe/Hobby/Privat, aber alles im selben System steuerbar.
+
+## 🧠 Head-of-Module-KI Engine (gefunden 18.07)
+- **web-llm** (Apache-2.0, DustinBrett/mlc-ai) = LLM KOMPLETT im Browser, kein Server → gratis, privat, lokal. Das Gehirn.
+- **LettaAI** = persistentes Gedächtnis + Streaming (Kontext je Ebene user/community/system, „Hinweis aus dem Stream"). Auf der Liste.
+- Läuft auf daedalOS (desktop.lichtreich.info): KI-Assistenz.of.Board pro Modul — vorquatschen → greift durch, führt aus/verschiebt/verbindet Nodes.
+- Was die KI kann = was der User kann (kennt den zusammengefassten Kontext + datendekonstruierte Sichten).
