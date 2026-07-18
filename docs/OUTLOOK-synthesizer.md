@@ -46,3 +46,13 @@ briefkasten-User-Frontend (läuft an) → n8n `bob-briefweg` verdrahten → Mess
   dann als NotebookLM-Quelle + `rag`.
 - **n8n Live-Landkarte + Mega-RAG:** das Muster noch cooler ziehen (Landkarte = lebende Sicht auf den RAG).
 - **Andere Subdomains reinziehen:** je Subdomain in denselben Loop (Hand-offs GPT/Gemini/NotebookLM).
+
+## 🖥️ daedalOS als Cloud-Computer + Board-Agent (Karte, 18.07)
+- Built-in schon da: FileExplorer · web-llm (Browser-LLM) · web-stable-diffusion · Terminal · Monaco.
+- Unsere Module = Desktop-Apps (verlinkt, Fork MrYueHang/daedalOS · out-Deploy = desktop.lichtreich.info · Vercel-Node24 baut nicht → lokal Node20 bauen).
+- BAU: custom daedalOS-App „Board-Agent" (Chat-Panel wie Copilot):
+  - durchgreifend = gpt-4o-mini + Tools (öffnet/ordnet Apps, führt aus)
+  - systemübergreifend = DeepSeek (großes Kontextfenster, cheap, Key da) — parst/kartografiert alle Module
+  - Gedächtnis = Letta (dt. Interview-Agent läuft, 2,3s) · Konten 3× juehang je Ebene
+  - self-organizing → society.board = Onboarding der Konzern-Belegschaft
+- josh's/jodzOMBIE Progs sichten (Trüffel) + Befehls-App-Liste easy-Deutsch aufs Desktop.
