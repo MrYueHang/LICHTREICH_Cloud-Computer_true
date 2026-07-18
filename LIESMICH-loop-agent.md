@@ -58,3 +58,11 @@ Masse → groq/lokal. Execution → n8n. Wissen einmal in `rag`, dann kennen es 
 ## Tag-Konvention (wiederfinden)
 `Head-of-Board: **<dienst>**` · `Betriebskette: eingang|analyse|interview|briefe|akte` ·
 Status: `alpha|pilot|beta|live` · Dialog-Punkt: `vorschlag→bestätigt→ausgeführt` (nie raten).
+
+## 💾 Prompt-Caching (Token sparen, wo Claude-API genutzt wird)
+- **Claude Code cached automatisch** (1h-TTL) — diese Sessions sparen schon. Nichts einzurichten.
+- **Claude-API-Agenten (Head-of-Module, orchestra):** `cache_control:{type:"ephemeral"}` auf den STABILEN Präfix
+  (System + RAG + Product-Truth ZUERST), variable Frage ZULETZT. ~90% billiger auf Wiederhol-Reads. Min ~1024 tok, max 4 Breakpoints.
+  Prüfen: `usage.cache_read_input_tokens` > 0 (sonst killt ein Zeitstempel/unsortiertes JSON den Cache).
+- **cheap-Loop = OpenAI** (eigenes Auto-Caching) — Anthropic-Caching nur bei Claude-Calls.
+- Metrik: platform.claude.com/usage/cache.
