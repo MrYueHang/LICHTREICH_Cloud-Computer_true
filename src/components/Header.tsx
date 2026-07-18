@@ -15,9 +15,15 @@ export default function Header() {
           <Link to="/me" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-yellow hover:bg-[#E5C100] transition-colors shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
             <User className="w-4 h-4" /> Mein Bereich
           </Link>
-          <Link to="/briefkasten" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+          <a href="https://briefkasten.lichtreich.info" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
             📮 Briefkasten
-          </Link>
+          </a>
+          <a href="https://herrkuenstler.lichtreich.info" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+            🎨 Herrkünstler
+          </a>
+          <a href="https://board.lichtreich.info" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
+            📊 Board
+          </a>
           <Link to="/datei-manager" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
             🗂️ Datei-Manager
           </Link>
