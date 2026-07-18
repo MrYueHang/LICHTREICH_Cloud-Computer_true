@@ -55,7 +55,7 @@ export default function Modules() {
               <div className="font-mono text-xs uppercase font-bold border-t-2 border-bauhaus-black pt-4">
                 {mod.tag}
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
