@@ -58,6 +58,8 @@ Test-Evidence:
 - `npm test`: 9/9 grün
 - gezielter TypeScript-Check für neue API-/Setup-Dateien: grün
 - `npm run build`: grün
+- automatische Vercel-Preview: READY mit genau 3 Setup-Lambdas; `/setup` = 200
+- Preview ohne Token: `/api/setup/capabilities` und `/api/setup/system-connectors` = 401 `AUTH_REQUIRED` + `Cache-Control: no-store`
 - `npm run lint`: weiterhin rot durch bereits vorhandene Root-Studio-Duplikate und Bestandsfehler in Briefkasten/ProzessBoard; keine neue Setup-/API-Fehlermeldung
 
 Vor irgendeinem Live-Grün noch erforderlich:
