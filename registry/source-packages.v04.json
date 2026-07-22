@@ -120,6 +120,13 @@
       "classification": "CURRENT_REFERENCE",
       "scope": "TAKTØR upstream verification and adoption delta",
       "authority_or_replacement": "Supplements RSR-001/RSR-002; implementation still requires pinned license/evidence gate"
+    },
+    {
+      "source_id": "RSR-004",
+      "filename": "docs/PLATFORM-OSS-ADOPTION-DELTA-v01.md",
+      "classification": "CURRENT_REFERENCE",
+      "scope": "Platform-wide build-on-vs-build research for security, ingest, knowledge, catalog and engineering analytics",
+      "authority_or_replacement": "Supplements RSR-003; implementation requires pinned artifacts, isolated pilots and human review"
     }
   ]
 }
