@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-22",
+  "packages": [
+    {
+      "source_id": "ZIP-001",
+      "filename": "LICHTREICH-PRODUCTION-HANDOFF-v01-FULL.zip",
+      "sha256": "9c78113372124b85f73d582522df76a3587b72cd329665391c38adc2c1ef5d45",
+      "bytes": 57087541,
+      "classification": "SUPERSEDED",
+      "authority_or_replacement": "v02/v03/v04"
+    },
+    {
+      "source_id": "ZIP-002",
+      "filename": "LICHTREICH-PRODUCTION-HANDOFF-v01-LITE.zip",
+      "sha256": "e29918c7e81110470b158f6dabe01d1ac543a30c4ef28ffed0f0132fc9cdb6d1",
+      "bytes": 189609,
+      "classification": "SUPERSEDED",
+      "authority_or_replacement": "v02/v03/v04"
+    },
+    {
+      "source_id": "ZIP-003",
+      "filename": "LICHTREICH-MAX-AUDIT-PRODUCE-v02-FULL.zip",
+      "sha256": "02f690352c819173e12a233593d1d74789919e8adc4d7b3005e160d6d97585e4",
+      "bytes": 57275156,
+      "classification": "SUPERSEDED_REFERENCE",
+      "authority_or_replacement": "v03/v04"
+    },
+    {
+      "source_id": "ZIP-004",
+      "filename": "LICHTREICH-MAX-AUDIT-PRODUCE-v02-FULL(1).zip",
+      "sha256": "02f690352c819173e12a233593d1d74789919e8adc4d7b3005e160d6d97585e4",
+      "bytes": 57275156,
+      "classification": "EXACT_DUPLICATE",
+      "authority_or_replacement": "ZIP-003"
+    },
+    {
+      "source_id": "ZIP-005",
+      "filename": "LICHTREICH-MAX-AUDIT-PRODUCE-v02-LITE.zip",
+      "sha256": "da9d112f17d3835dcfc91874327090ce2ae82a8ff38fc0df42bdb80ebb2fe7c3",
+      "bytes": 377224,
+      "classification": "SUPERSEDED_REFERENCE",
+      "authority_or_replacement": "v03/v04"
+    },
+    {
+      "source_id": "ZIP-006",
+      "filename": "LICHTREICH-MAX-AUDIT-PRODUCE-v02-LITE(1).zip",
+      "sha256": "da9d112f17d3835dcfc91874327090ce2ae82a8ff38fc0df42bdb80ebb2fe7c3",
+      "bytes": 377224,
+      "classification": "EXACT_DUPLICATE",
+      "authority_or_replacement": "ZIP-005"
+    },
+    {
+      "source_id": "ZIP-007",
+      "filename": "LICHTREICH-WORK-MODE-MASTER-v03-FULL.zip",
+      "sha256": "ca5fa8772e40e1069586ccf88e2c12fa693a134611e7bf86d5a8c78a598716c1",
+      "bytes": 57840535,
+      "classification": "CURRENT_REFERENCE",
+      "authority_or_replacement": "Control Plane v04 for execution"
+    },
+    {
+      "source_id": "ZIP-008",
+      "filename": "LICHTREICH-WORK-MODE-MASTER-v03-LITE.zip",
+      "sha256": "0d3b02b50509e0b70db82938e1a470dad53e24fc62bd9b6748778809d0845a08",
+      "bytes": 565025,
+      "classification": "CURRENT_REFERENCE",
+      "authority_or_replacement": "Control Plane v04"
+    },
+    {
+      "source_id": "ZIP-009",
+      "filename": "MSJUEHANG_CREATIVE-SOCIETY_MODULE-PRD_SET_v01(1).zip",
+      "sha256": "6de1e0c3f044fcdd58b0dac966f4e2f8c3847e74f231f29f4fa34fda49f64020",
+      "bytes": 116848,
+      "classification": "CURRENT_DOMAIN_SPEC",
+      "authority_or_replacement": "Control Plane v04 + Canonical Memory v10"
+    },
+    {
+      "source_id": "ZIP-010",
+      "filename": "MSJUEHANG_v09_CREATIVE-INGEST_EXTRACTED-ASSETS_v01.zip",
+      "sha256": "fa288aef1686c3baef77da470fa29897d68deb8627c8ab840247807023096232",
+      "bytes": 56883031,
+      "classification": "CURRENT_MEDIA_EVIDENCE",
+      "authority_or_replacement": "Canonical Memory v10 + human review + MACAN"
+    }
+  ]
+}
