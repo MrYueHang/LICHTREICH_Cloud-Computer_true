@@ -1,6 +1,6 @@
 # Desktop Head-of-Module Execution v01
 
-**Status:** `CONTRACT_READY / CLIENT_NOT_CONNECTED`  
+**Status:** `CLIENT_IMPLEMENTED_IN_DRAFT_PR / PRODUCTION_NOT_MERGED`  
 **Shell:** `desktop.lichtreich.info` / `MrYueHang/daedalOS`  
 **Native registry:** `registry/daedalos-native-capabilities.v01.json`  
 **Command schema:** `schemas/desktop-command-receipt.v01.schema.json`
@@ -27,13 +27,22 @@ Der Taskbar-AI-Code besitzt zwei lokale Ausführungspfade:
 
 Zusätzlich läuft die vorhandene Stable-Diffusion-Funktion lokal im Browser. Für diese lokalen Pfade werden keine OpenAI-, Anthropic- oder Gemini-API-Tokens verbraucht. Der Preis ist ein großer erster Modelldownload, GPU-/RAM-Bedarf und je Gerät unterschiedliche Geschwindigkeit.
 
-Heute ist diese KI trotzdem noch **nicht** der Head of Module. Der Quellcode verwendet den statischen Systemprompt:
+Der geprüfte Ausgangscode verwendete nur den statischen Systemprompt:
 
 ```text
 You are a helpful AI assistant.
 ```
 
-Es fehlen Modulrolle, Scope, Capability-Prüfung, Evidence-Pointer und ein sicherer Aktionskanal.
+In `MrYueHang/daedalOS` PR #2 ist Slice A inzwischen implementiert:
+
+- sechs auswählbare Modulrollen mit getrenntem Systemprompt,
+- 27 native daedalOS-Prozesse in einer festen Allowlist,
+- 23 kanonische LICHTREICH-Module in einem festen URL-Katalog,
+- `/apps`, `/modules`, `/module <id>`, `/open` und `/help`,
+- ausschließlich sichtbare, reversible Öffnungsaktionen,
+- keine Ausführung freien Modelltexts, keine Shellbefehle, keine Secrets.
+
+Capability-Receipts, zentrale Identität und schreibende Modulaktionen bleiben Slice B/C und sind nicht als produktiv behauptet.
 
 ## Zielbild
 
@@ -116,12 +125,12 @@ Pro Modulpaket zeigt der Assistent:
 
 ## Implementierungsslices
 
-### Slice A - lokale, reversible Basis
+### Slice A - lokale, reversible Basis — implementiert in Draft-PR #2
 
 - Native Capability Registry im Control Plane bereitstellen.
 - Head-Profil im Desktop auswählbar machen.
 - Systemprompt dynamisch aus lokalem, versioniertem Profil bilden.
-- deterministische `/apps`, `/head` und `/open`-Navigation ohne LLM-Ausführung.
+- deterministische `/apps`, `/modules`, `/module`, `/open`- und `/help`-Navigation ohne LLM-Ausführung.
 - ausschließlich read-only/open-Aktionen.
 
 ### Slice B - autorisierte Receipts
