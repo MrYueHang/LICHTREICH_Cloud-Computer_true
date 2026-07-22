@@ -1,0 +1,11 @@
+source_id;filename;sha256;bytes;classification;scope;authority_or_replacement;action
+ZIP-001;LICHTREICH-PRODUCTION-HANDOFF-v01-FULL.zip;9c78113372124b85f73d582522df76a3587b72cd329665391c38adc2c1ef5d45;57087541;SUPERSEDED;architecture handoff;v02/v03/v04;keep hash/pointer only
+ZIP-002;LICHTREICH-PRODUCTION-HANDOFF-v01-LITE.zip;e29918c7e81110470b158f6dabe01d1ac543a30c4ef28ffed0f0132fc9cdb6d1;189609;SUPERSEDED;architecture handoff;v02/v03/v04;keep hash/pointer only
+ZIP-003;LICHTREICH-MAX-AUDIT-PRODUCE-v02-FULL.zip;02f690352c819173e12a233593d1d74789919e8adc4d7b3005e160d6d97585e4;57275156;SUPERSEDED_REFERENCE;audit/registries;v03/v04;retain as evidence
+ZIP-004;LICHTREICH-MAX-AUDIT-PRODUCE-v02-FULL(1).zip;02f690352c819173e12a233593d1d74789919e8adc4d7b3005e160d6d97585e4;57275156;EXACT_DUPLICATE;duplicate of ZIP-003;ZIP-003;do not delete automatically
+ZIP-005;LICHTREICH-MAX-AUDIT-PRODUCE-v02-LITE.zip;da9d112f17d3835dcfc91874327090ce2ae82a8ff38fc0df42bdb80ebb2fe7c3;377224;SUPERSEDED_REFERENCE;audit/registries;v03/v04;retain compact evidence
+ZIP-006;LICHTREICH-MAX-AUDIT-PRODUCE-v02-LITE(1).zip;da9d112f17d3835dcfc91874327090ce2ae82a8ff38fc0df42bdb80ebb2fe7c3;377224;EXACT_DUPLICATE;duplicate of ZIP-005;ZIP-005;do not delete automatically
+ZIP-007;LICHTREICH-WORK-MODE-MASTER-v03-FULL.zip;ca5fa8772e40e1069586ccf88e2c12fa693a134611e7bf86d5a8c78a598716c1;57840535;CURRENT_REFERENCE;cross-domain work-mode master;Control Plane v04 for execution;keep detailed design
+ZIP-008;LICHTREICH-WORK-MODE-MASTER-v03-LITE.zip;0d3b02b50509e0b70db82938e1a470dad53e24fc62bd9b6748778809d0845a08;565025;CURRENT_REFERENCE;compact cross-domain work-mode master;Control Plane v04;preferred compact source
+ZIP-009;MSJUEHANG_CREATIVE-SOCIETY_MODULE-PRD_SET_v01(1).zip;6de1e0c3f044fcdd58b0dac966f4e2f8c3847e74f231f29f4fa34fda49f64020;116848;CURRENT_DOMAIN_SPEC;Creative Society/Social/TAKTØR;Control Plane v04 + Canonical Memory v10;integrate selectively, no deployment permission
+ZIP-010;MSJUEHANG_v09_CREATIVE-INGEST_EXTRACTED-ASSETS_v01.zip;fa288aef1686c3baef77da470fa29897d68deb8627c8ab840247807023096232;56883031;CURRENT_MEDIA_EVIDENCE;TAKTØR candidate assets;Canonical Memory v10 + human review + MACAN;object-storage evidence, never commit binaries
