@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "generated_at": "2026-07-22",
   "packages": [
     {
@@ -81,6 +81,31 @@
       "bytes": 56883031,
       "classification": "CURRENT_MEDIA_EVIDENCE",
       "authority_or_replacement": "Canonical Memory v10 + human review + MACAN"
+    },
+    {
+      "source_id": "MEM-001",
+      "filename": "00_MSJUEHANG_PROJECT-MEMORY_CANONICAL_v10.md",
+      "sha256": "c29a8495cea43acfc86fda7bfecfd55303663aaaf75361149d3a6fb9526234cd",
+      "classification": "CURRENT_DOMAIN_SPEC",
+      "scope": "MSJueHang / Creative Society",
+      "authority_or_replacement": "Replaces Canonical v05 and Audio Deltas v06-v09 as active project memory"
+    },
+    {
+      "source_id": "CTX-001",
+      "filename": "01_MSJUEHANG_SMART-CONTEXT_CONFIG_v05.json",
+      "sha256": "9d99a9a758087f9b813d67a17387a1d149639c3c25f68aff0c4cd4dbf38c98ba",
+      "classification": "SUPERSEDED_CONFLICT",
+      "scope": "MSJueHang / Creative Society",
+      "conflict": "Internally declares Canonical v05, outdated audio state and multilingual voice family; conflicts with Canonical v10",
+      "authority_or_replacement": "MEM-001; retain unchanged as historical evidence"
+    },
+    {
+      "source_id": "AUDIT-001",
+      "filename": "repository-inventory-v02-private",
+      "classification": "CURRENT_REFERENCE_PRIVATE",
+      "scope": "GitHub account inventory",
+      "authority_or_replacement": "Public aggregate: registry/repository-inventory.public-summary.v01.json",
+      "access": "PRIVATE_DETAIL_ROWS"
     }
   ]
 }
