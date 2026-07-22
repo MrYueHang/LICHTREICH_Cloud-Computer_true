@@ -89,3 +89,18 @@ Claude, Codex, NotebookLM und interaktive Handbücher erhalten einen kompakten, 
 - Rücksprunglinks zu den führenden Quellen.
 
 Ein solcher Export ist `DERIVED_VIEW`, nie eine neue Parallelarchitektur.
+
+
+## Implementierungsledger Desktop-App-Katalog
+
+Stand 2026-07-22:
+
+| Eintrag | Autoritativer Pointer | Status |
+|---|---|---|
+| Next.js-Sicherheitsblocker daedalOS | `MrYueHang/daedalOS#1` | Preview `READY`, Draft, nicht Production |
+| Desktop-Sync-Kern | `MrYueHang/daedalOS:feat/lichtreich-app-sync-v01` | Implementiert, gestapelte Preview ausstehend |
+| Manifest-/Installationsvertrag | `docs/DESKTOP-APP-INSTALLATION-CONTRACT-v01.md` | CURRENT_CONTRACT_CANDIDATE |
+| Runtime-Katalog/API | noch kein akzeptierter Backend-PR | OPEN |
+| Projektanalyse-App | `registry/app-catalog.bootstrap.v01.json` | DOCUMENTED, nicht installierbar |
+
+Dieses Ledger ersetzt keine Runtime-Evidence. Nach Merge oder Deployment werden Branch-Pointer durch unveränderliche Commit-SHAs und Deployment-Evidence ergänzt; bis dahin darf kein abgeleitetes Handbuch einen Produktionsstatus behaupten.

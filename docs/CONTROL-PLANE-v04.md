@@ -415,6 +415,18 @@ Die Installation vergibt keine Berechtigung und überträgt kein Secret. Sie mac
 
 Die Projektanalyse-App ist als `system.project-analysis` registriert. Ihr Status bleibt `DOCUMENTED` und `installable=false`, bis eine reale, getestete UI-Route und ein Health-Endpunkt existieren. Danach kann sie ohne Änderung des Desktop-Grundsystems aktiviert werden.
 
+### Verifizierter Implementierungsdelta 2026-07-22
+
+| Baustein | Belegter Stand |
+|---|---|
+| daedalOS Next.js | Sicherheitsbranch `fix/next-15-4-10-security`, Preview `READY`, Draft-PR `MrYueHang/daedalOS#1` |
+| Desktop App Sync | Branch `feat/lichtreich-app-sync-v01`; Manifest-/Checksum-/Receipt-Prüfung und lokale IndexedDB-Materialisierung implementiert |
+| Control-Plane-API | Vertrag definiert; Session-, Catalog- und Installationsendpunkte noch nicht implementiert |
+| Runtime-Aktivierung | aus; `NEXT_PUBLIC_LICHTREICH_CONTROL_PLANE_URL` bleibt ungesetzt |
+| Projektanalyse | weiterhin `DOCUMENTED`, nicht installierbar, keine erfundene URL |
+
+Der App-Sync-Branch wird gestapelt gegen den Security-Branch geprüft. Er darf erst auf `main`, wenn der Security-PR integriert, die API serverseitig authentifiziert und eine Preview mit realen 401/403-/Checksum-/Receipt-Fällen belegt ist.
+
 ## 18. Repository-Inventur als kontrollierter Input
 
 Der erste vollständige Account-Snapshot umfasst 59 erreichbare Repositories. Die öffentliche Zusammenfassung liegt in `registry/repository-inventory.public-summary.v01.json`; Detailzeilen mit privaten Repo-Namen bleiben im privaten Audit-Scope.

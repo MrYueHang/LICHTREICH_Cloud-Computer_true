@@ -239,6 +239,10 @@
               "STAGING",
               "PRODUCTION"
             ]
+          },
+          "checksum": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
           }
         }
       }

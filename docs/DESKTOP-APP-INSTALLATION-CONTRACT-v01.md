@@ -52,6 +52,17 @@ Antwort:
 }
 ```
 
+### Manifest-Checksum
+
+Für `installable=true` ist `checksum` verpflichtend. Berechnet wird:
+
+1. Manifestobjekt vollständig verwenden und `checksum` auf `null` setzen.
+2. JSON rekursiv mit lexikografisch sortierten Objektschlüsseln kanonisieren; Array-Reihenfolge bleibt erhalten.
+3. UTF-8 kodieren und SHA-256 bilden.
+4. Klein geschrieben als `sha256:<64 hex>` übertragen.
+
+Server und Desktop prüfen denselben Wert. Eine fehlende oder abweichende Checksum erzeugt keine lokale Verknüpfung.
+
 ### Installation
 
 `POST /api/v1/apps/{app_id}/install`
@@ -71,6 +82,25 @@ Entfernt die nutzerspezifische Verknüpfung. Der Dienst, seine Daten und System-
 `GET /api/v1/apps/installations`
 
 Liefert die wirksamen System-Defaults und nutzerspezifischen Installationen samt Version und Health-Ampel.
+
+Antwort:
+
+```json
+{
+  "schema_version": "1.0",
+  "installations": [
+    {
+      "app_id": "system.project-analysis",
+      "manifest_version": "1.0.0",
+      "receipt_id": "receipt_...",
+      "status": "INSTALLED",
+      "surface": "desktop"
+    }
+  ]
+}
+```
+
+`status` ist `INSTALLED` oder `SYSTEM_DEFAULT`. Der Desktop materialisiert nur Receipts, deren App-ID und Version exakt zu einem gültigen, checksummengeprüften Manifest aus derselben autorisierten Katalogantwort passen.
 
 ## Desktop-Boot
 
@@ -113,6 +143,14 @@ Nicht erlaubt:
 - Project Memory oder Registry still überschreiben.
 
 Aktueller Status: `DOCUMENTED`, nicht installierbar. Aktivierung erst nach belegter UI-Route, Healthcheck, Auth-/Scope-Test und eigenem daedalOS-PR.
+
+## Implementierungsstand 2026-07-22
+
+- daedalOS-Sicherheitsfix auf Next.js 15.4.10: Draft-PR `MrYueHang/daedalOS#1`, Vercel-Preview `READY`.
+- Desktop-Sync-Kern: Branch `feat/lichtreich-app-sync-v01`; Schema-, Domain-, Receipt- und Checksum-Prüfung sowie IndexedDB-`.url`-Materialisierung implementiert.
+- Noch nicht aktiviert: `NEXT_PUBLIC_LICHTREICH_CONTROL_PLANE_URL` bleibt bis zu echten Session-, Katalog- und Installationsendpunkten ungesetzt.
+- Projektanalyse bleibt `DOCUMENTED`, `installable=false`, `launch_url=null`.
+- Kein Production-Deploy und keine Capability-Vergabe.
 
 ## Acceptance Tests
 
