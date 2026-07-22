@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lichtreich.info/schemas/app-manifest.v01.schema.json",
+  "title": "LICHTREICH Desktop App Manifest v01",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "name",
+    "description",
+    "icon_url",
+    "launch_url",
+    "launch_mode",
+    "scopes",
+    "required_capabilities",
+    "audiences",
+    "module_id",
+    "head_of_module_agent",
+    "health_url",
+    "version",
+    "repo_pointer",
+    "status",
+    "data_classes",
+    "install_policy",
+    "default_install",
+    "installable",
+    "checksum",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "icon_url": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "launch_url": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^https://"
+        }
+      ]
+    },
+    "launch_mode": {
+      "enum": [
+        "browser_window",
+        "embedded",
+        "native_process"
+      ]
+    },
+    "scopes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "system",
+          "organisation",
+          "project",
+          "community",
+          "user"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "required_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "audiences": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "public",
+          "authenticated",
+          "member",
+          "staff",
+          "admin",
+          "service"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "module_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "head_of_module_agent": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "health_url": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^https://"
+        }
+      ]
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repo_pointer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "ref"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^[^/]+/[^/]+$"
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "DISCOVERED",
+        "DOCUMENTED",
+        "LINKED",
+        "INTEGRATED",
+        "STAGING",
+        "PRODUCTION",
+        "CONFLICT",
+        "SUPERSEDED",
+        "QUARANTINE"
+      ]
+    },
+    "data_classes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "public",
+          "internal",
+          "confidential",
+          "sensitive",
+          "restricted"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "install_policy": {
+      "enum": [
+        "system_default",
+        "opt_in",
+        "admin_only",
+        "hidden"
+      ]
+    },
+    "default_install": {
+      "type": "boolean"
+    },
+    "installable": {
+      "type": "boolean"
+    },
+    "checksum": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      ]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "installable": {
+            "const": true
+          }
+        },
+        "required": [
+          "installable"
+        ]
+      },
+      "then": {
+        "properties": {
+          "launch_url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "status": {
+            "enum": [
+              "LINKED",
+              "INTEGRATED",
+              "STAGING",
+              "PRODUCTION"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "default_install": {
+            "const": true
+          }
+        },
+        "required": [
+          "default_install"
+        ]
+      },
+      "then": {
+        "properties": {
+          "install_policy": {
+            "const": "system_default"
+          }
+        }
+      }
+    }
+  ]
+}
