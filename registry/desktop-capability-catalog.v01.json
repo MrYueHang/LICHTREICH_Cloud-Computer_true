@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "lichtreich.desktop.capabilities",
+  "generated_from": [
+    "live browser audit 2026-07-23",
+    "docs/TOOL-REGISTRY.md",
+    "docs/PLATFORM-OSS-ADOPTION-DELTA-v01.md",
+    "Open-Source Katalog für ein modulares Controlling- und Reporting-Framework"
+  ],
+  "rules": {
+    "candidate_count_is_not_installed_count": true,
+    "head_uses_capability_not_brand": true,
+    "backend_services_are_not_desktop_icons": true,
+    "install_requires_manifest_identity_health_and_receipt": true,
+    "license_review_required_before_activation": true
+  },
+  "current_static_shortcuts": [
+    { "id": "board", "url": "https://board.lichtreich.info", "kind": "app", "head": "board", "evidence": "UI_LIVE_DATA_OPEN" },
+    { "id": "briefkasten", "url": "https://briefkasten.lichtreich.info", "kind": "app", "head": "briefkasten", "evidence": "AUTH_UI_LIVE_E2E_OPEN" },
+    { "id": "crm", "url": "https://crm.lichtreich.info", "kind": "app", "head": "crm", "evidence": "UNKNOWN_TIMEOUT" },
+    { "id": "formulare", "url": "https://formulare.lichtreich.info", "kind": "app", "head": "briefkasten", "evidence": "TOOL_LIVE_DEFAULT_ONLY" },
+    { "id": "herrkuenstler", "url": "https://herrkuenstler.lichtreich.info", "kind": "app", "head": "creative", "evidence": "UI_LIVE_BACKEND_OPEN" },
+    { "id": "ingest", "url": "https://ingest.lichtreich.info", "kind": "app", "head": "knowledge", "evidence": "UI_LIVE_WORKFLOW_OPEN" },
+    { "id": "landing", "url": "https://lichtreich.info", "kind": "app", "head": "board", "evidence": "PRODUCTION_UI" },
+    { "id": "me", "url": "https://me.lichtreich.info", "kind": "app", "head": "identity", "evidence": "PLACEHOLDER" },
+    { "id": "n8n", "url": "https://n8n.lichtreich.info", "kind": "operator_app", "head": "automation", "evidence": "UNKNOWN_TIMEOUT" },
+    { "id": "dms", "url": "https://dms.lichtreich.info", "kind": "app", "head": "briefkasten", "evidence": "TOOL_AUTH_LIVE_INTEGRATION_OPEN" },
+    { "id": "pdf", "url": "https://pdf.lichtreich.info", "kind": "app", "head": "briefkasten", "evidence": "TOOL_AUTH_LIVE_INTEGRATION_OPEN" },
+    { "id": "society", "url": "https://society.lichtreich.info", "kind": "app", "head": "society", "evidence": "UI_LIVE_DATA_OPEN" },
+    { "id": "whiteboard", "url": "https://whiteboard.lichtreich.info", "kind": "app", "head": "board", "evidence": "TOOL_SHELL_LIVE_SCENE_OPEN" },
+    { "id": "metabase", "url": "https://metabase.lichtreich.info", "kind": "app", "head": "reporting", "evidence": "TOOL_LIVE_DATA_RIGHTS_OPEN" }
+  ],
+  "next_desktop_wave": [
+    { "priority": 1, "id": "rag", "url": "https://rag.lichtreich.info", "head": "knowledge", "gate": "query_sources_rights" },
+    { "priority": 2, "id": "orchestra", "url": "https://orchestra.lichtreich.info", "head": "ai", "gate": "provider_receipts_budget" },
+    { "priority": 3, "id": "mandat", "url": "https://mandat.lichtreich.info", "head": "rights", "gate": "identity_persistence_legal_review" },
+    { "priority": 4, "id": "consult", "url": "https://consult.lichtreich.info", "head": "consult", "gate": "session_data_and_upload" },
+    { "priority": 5, "id": "dateien", "url": "https://dateien.lichtreich.info", "head": "files", "gate": "shared_identity_and_dossier_links" },
+    { "priority": 6, "id": "projekte", "url": "https://projekte.lichtreich.info", "head": "project", "gate": "health_and_shared_identity" },
+    { "priority": 7, "id": "subs", "url": "https://subs.lichtreich.info", "head": "registry", "gate": "consume_canonical_status_api" },
+    { "priority": 8, "id": "tickets", "url": "https://tickets.lichtreich.info", "head": "service", "gate": "persistence_and_routing" },
+    { "priority": 9, "id": "setup", "url": "https://setup.lichtreich.info", "head": "setup", "gate": "replace_bob_alias_with_setup_assistant" },
+    { "priority": 10, "id": "project-analysis", "url": null, "head": "project", "gate": "real_authenticated_read_only_ui" }
+  ],
+  "researched_capabilities": [
+    { "capability": "data_core", "candidates": ["Postgres", "Supabase"], "desktop_icon": false, "decision": "ADOPT_EXISTING_CORE" },
+    { "capability": "data_admin", "candidates": ["Directus", "Appsmith", "ToolJet"], "desktop_icon": true, "decision": "PILOT_ONE" },
+    { "capability": "table_prototype", "candidates": ["Baserow", "NocoDB"], "desktop_icon": true, "decision": "REFERENCE_OR_TEMPORARY" },
+    { "capability": "document_archive", "candidates": ["Paperless-ngx"], "desktop_icon": true, "decision": "DEPLOYED_CONNECT" },
+    { "capability": "collaboration_files", "candidates": ["Nextcloud"], "desktop_icon": true, "decision": "NEXT_WAVE_CANDIDATE" },
+    { "capability": "external_file_drop", "candidates": ["SFTPGo", "copyparty"], "desktop_icon": true, "decision": "COPY_PARTY_DEPLOYED_COMPARE_SFTPGO" },
+    { "capability": "object_storage", "candidates": ["MinIO"], "desktop_icon": false, "decision": "BACKEND_CANDIDATE" },
+    { "capability": "project_management", "candidates": ["OpenProject"], "desktop_icon": true, "decision": "DEPLOYED_CONNECT" },
+    { "capability": "business_erp", "candidates": ["ERPNext"], "desktop_icon": true, "decision": "ONLY_IF_ACCOUNTING_REQUIRED" },
+    { "capability": "work_suite", "candidates": ["Huly"], "desktop_icon": true, "decision": "REFERENCE_AVOID_DUPLICATION" },
+    { "capability": "reporting", "candidates": ["Metabase", "OpenSearch Dashboards"], "desktop_icon": true, "decision": "METABASE_DEPLOYED" },
+    { "capability": "full_text_search", "candidates": ["Meilisearch", "Typesense"], "desktop_icon": false, "decision": "PILOT_ONE" },
+    { "capability": "vector_search", "candidates": ["Qdrant"], "desktop_icon": false, "decision": "PILOT_BACKEND" },
+    { "capability": "document_conversion", "candidates": ["Docling"], "desktop_icon": false, "decision": "PILOT_WORKER" },
+    { "capability": "ai_workspace", "candidates": ["Open WebUI", "Dify"], "desktop_icon": true, "decision": "PILOT_ONE_AFTER_IDENTITY" },
+    { "capability": "knowledge_base", "candidates": ["BookStack", "AFFiNE", "Outline"], "desktop_icon": true, "decision": "PILOT_ONE" },
+    { "capability": "guided_documents", "candidates": ["docassemble"], "desktop_icon": true, "decision": "DEPLOYED_CONFIGURE" },
+    { "capability": "signature", "candidates": ["Documenso"], "desktop_icon": true, "decision": "NEXT_WAVE_CANDIDATE" },
+    { "capability": "healthcare", "candidates": ["OpenEMR"], "desktop_icon": true, "decision": "SEPARATE_HIGH_SENSITIVITY_DOMAIN" },
+    { "capability": "real_estate_operations", "candidates": ["PropMS", "Condo"], "desktop_icon": true, "decision": "REFERENCE_NOT_DD_CORE" },
+    { "capability": "geo", "candidates": ["PostGIS", "QGIS", "GeoServer"], "desktop_icon": true, "decision": "DOMAIN_PILOT" },
+    { "capability": "automation", "candidates": ["n8n"], "desktop_icon": true, "decision": "DEPLOYED_EVIDENCE_REQUIRED" },
+    { "capability": "auditable_long_workflows", "candidates": ["Flowable", "Camunda 7"], "desktop_icon": false, "decision": "REFERENCE_THEN_PILOT" },
+    { "capability": "identity", "candidates": ["Keycloak"], "desktop_icon": false, "decision": "ARCHITECTURE_DECISION_REQUIRED" },
+    { "capability": "repository_security", "candidates": ["OpenSSF Scorecard", "Gitleaks", "Syft", "Grype"], "desktop_icon": false, "decision": "ADOPT_AS_EVIDENCE_WORKERS" },
+    { "capability": "engineering_metrics", "candidates": ["Apache DevLake"], "desktop_icon": true, "decision": "READ_ONLY_PILOT" },
+    { "capability": "software_catalog_patterns", "candidates": ["Backstage", "OpenMetadata"], "desktop_icon": false, "decision": "REFERENCE_NO_SECOND_TRUTH" },
+    { "capability": "rag_platform_patterns", "candidates": ["RAGFlow"], "desktop_icon": true, "decision": "REFERENCE_OR_LATER_PILOT" }
+  ],
+  "capacity_note": {
+    "hacktoberfest_pool": "approximately 147k repository candidates, not installed apps",
+    "native_daedalos_user_apps": 27,
+    "lichtreich_static_shortcuts": 14,
+    "immediate_onboarding_wave": 10,
+    "policy": "filter by capability, license, maintenance, security, deployment and evidence before offering install"
+  }
+}

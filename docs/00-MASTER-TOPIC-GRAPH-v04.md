@@ -39,6 +39,7 @@ Vor jeder neuen Datei: Topic-ID suchen, kanonische Datei öffnen und Neues als `
 | `T24` | Due-Diligence Gold Case | Surface Composer | `PLANNED` |
 | `T25` | Public Landing / Testuser | Public Projection | `SPEC_READY` |
 | `T26` | ZIP-/Screenshot-Evidence 2026-07-23 | `docs/EVIDENCE-ZIP-AND-SCREEN-AUDIT-2026-07-23.md` | `CURRENT EVIDENCE` |
+| `T27` | Desktop-Appstore und Capability-Katalog | `registry/desktop-capability-catalog.v01.json`, `docs/LIVE-STATUS.md` | `CURRENT` |
 
 ## Beziehungen
 
@@ -47,6 +48,7 @@ T00 gilt für alle
 T05 → T06/T07/T16/T17/T18/T19/T20 → RAG/Search
 T10 → T11/T12/T22/T23/T24/T25
 T03/T04 → T26 → T00/T01/T10/T20
+T20/T26 → T27 → Desktop/App Catalog
 T21 erklärt kuratierte Versionen aller Knoten, ist aber nie Source of Truth
 ```
 
@@ -70,4 +72,4 @@ Topic Graph → P0-Sicherheit → Evidence/Registry → Knowledge Spine
 → weitere Module seriell aktivieren
 ```
 
-Ein Agent darf keine neue Master Architecture, Gesamt-PRD oder Source of Truth anlegen, wenn `T00–T26` das Thema bereits besitzen.
+Ein Agent darf keine neue Master Architecture, Gesamt-PRD oder Source of Truth anlegen, wenn `T00–T27` das Thema bereits besitzen.

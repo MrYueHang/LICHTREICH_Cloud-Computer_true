@@ -1,6 +1,6 @@
 # LICHTREICH Live- und Produktionsevidenz
 
-**Geprüft:** 2026-07-23, echter Browseraufruf ohne Anmeldung  
+**Geprüft:** 2026-07-23, echter Browseraufruf ohne Anmeldung<br>
 **Ersetzt:** den eindimensionalen Curl-Snapshot vom 2026-07-16
 
 Ein HTTP-Status oder eine sichtbare Seite bedeutet nur, dass eine Route antwortet. Ein Modul gilt erst als `PRODUCED`, wenn die gesamte Kette belegt ist:
