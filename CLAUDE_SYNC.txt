@@ -28,6 +28,49 @@ Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die näc
 
 --- END CLAUDE PROMPT ---
 
+--- BEGIN CODEX → CLAUDE HANDOFF · TASKPAKET 0 ---
+
+Branch: `fix/setup-honest-lamp-secret-boundary`
+Stand: implementiert und lokal geprüft, **nicht deployed**.
+
+P0-Fixes:
+1. Der Setup-Assistent simuliert niemals mehr Grün. Nicht-2xx, Offline, Redirect, kaputtes JSON oder unvollständiger Receipt bleiben Rot.
+2. Der Browser speichert Raw-Keys nicht mehr im Connector-State. Das Passwortfeld ist unkontrolliert, wird vor dem Request geleert und der Key wird nur einmalig an `/api/setup/connectors/verify` übergeben.
+3. Firestore erhält nur eine enge Projektion aus Provider, Status, Errorcode, opaker `credentialRef`, maskiertem Fingerprint und Verifikationszeit. Alte `data.key`-Dokumente werden beim Öffnen sanitisiert; alte Grün-Zustände ohne Server-Receipt werden Rot.
+4. `firestore.rules` erlaubt den eigenen Connector-Statuspfad nur mit fester Feldliste und verbietet Grün ohne gültig geformte Referenz, Fingerprint und Zeitstempel.
+5. Der lokale Admin-Toggle erteilt keine Rechte mehr. `/api/setup/capabilities` prüft Firebase-ID-Tokens serverseitig; `/api/setup/system-connectors` verlangt `system.connectors.read` und antwortet sonst 403 plus korreliertem Denied-Auditlog.
+6. Der neue Verify-Endpoint ist absichtlich Stop-the-line: Solange kein freigegebener Credential Store und echter Read-only-Provider-Test existieren, liefert er `CREDENTIAL_STORE_NOT_CONFIGURED` und niemals `VERIFIED`.
+7. Kein Firebase-/Neon-/n8n-Status wird ohne Healthcheck Grün dargestellt.
+
+Neue/maßgebliche Dateien:
+- `src/lib/setupConnectors.ts`
+- `src/lib/setupConnectors.test.ts`
+- `api/_lib/http.ts`
+- `api/_lib/auth.ts`
+- `api/setup/capabilities.ts`
+- `api/setup/system-connectors.ts`
+- `api/setup/connectors/verify.ts`
+- `api/setup/security.test.ts`
+- `src/pages/EinrichtungsAssistent.tsx`
+- `firestore.rules`
+
+Test-Evidence:
+- `npm test`: 9/9 grün
+- gezielter TypeScript-Check für neue API-/Setup-Dateien: grün
+- `npm run build`: grün
+- `npm run lint`: weiterhin rot durch bereits vorhandene Root-Studio-Duplikate und Bestandsfehler in Briefkasten/ProzessBoard; keine neue Setup-/API-Fehlermeldung
+
+Vor irgendeinem Live-Grün noch erforderlich:
+1. Server-only Firebase-Admin-Variablen laut `.env.example` setzen.
+2. Custom Claims/Capabilities durch den Identity-Owner vergeben; keine UI-Selbsterteilung.
+3. `firestore.rules` kontrolliert deployen und gegen den echten Projektpfad testen.
+4. Taskpaket 4: Credential Store auswählen, `cred_*`-Referenzen erzeugen, genau einen Read-only-Testconnector implementieren, Rotation/Revoke ergänzen.
+5. Erst nach erfolgreichem E2E-Test den Stub auf reale `VERIFIED`-Receipts erweitern.
+
+Bitte nach Backend-/Environment-Verdrahtung einen `_SYNC-REPORT.md`-Block mit Commit, Deployment-Umgebung, Ruleset-Version und realer Testevidence ergänzen. Keine Behauptung eines Live-Status ohne Receipt.
+
+--- END CODEX → CLAUDE HANDOFF · TASKPAKET 0 ---
+
 --- BEGIN CLAUDE PROMPT ---
 
 Hallo Claude,
@@ -56,6 +99,8 @@ Bitte bestätige mir diesen Pass in einem `_SYNC-REPORT.md` und liefere die näc
 
 Hallo Claude,
 hier ist der Rückball aus dem AI Studio Frontend (Pass #7 - App: einrichtungs-assistent).
+
+> **HISTORISCH / NICHT MEHR AUSFÜHREN:** Dieser Pass wird durch „CODEX → CLAUDE HANDOFF · TASKPAKET 0“ oben ersetzt. Insbesondere darf kein Raw-Key mehr direkt an n8n gehen.
 
 Das Frontend "Einrichtungs-Assistent" wurde umgesetzt, basierend auf der Product-Truth:
 

@@ -1,9 +1,61 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSafeConnectorStatus(status) {
+      return status is map
+        && status.keys().hasOnly([
+          'provider',
+          'configured',
+          'lamp',
+          'errorCode',
+          'credentialRef',
+          'maskedFingerprint',
+          'verifiedAt'
+        ])
+        && status.provider is string
+        && status.provider.size() <= 40
+        && status.configured is bool
+        && status.lamp in ['idle', 'testing', 'green', 'red']
+        && (!status.keys().hasAny(['errorCode']) || status.errorCode is string)
+        && (!status.keys().hasAny(['errorCode']) || status.errorCode.size() <= 80)
+        && (!status.keys().hasAny(['credentialRef']) || status.credentialRef is string)
+        && (!status.keys().hasAny(['credentialRef']) || status.credentialRef.matches('^cred_[A-Za-z0-9_-]{12,128}$'))
+        && (!status.keys().hasAny(['maskedFingerprint']) || status.maskedFingerprint is string)
+        && (!status.keys().hasAny(['maskedFingerprint']) || status.maskedFingerprint.size() <= 64)
+        && (!status.keys().hasAny(['verifiedAt']) || status.verifiedAt is string)
+        && (!status.keys().hasAny(['verifiedAt']) || status.verifiedAt.size() <= 40)
+        && (
+          status.lamp != 'green'
+          || (
+            status.configured == true
+            && status.keys().hasAll(['credentialRef', 'maskedFingerprint', 'verifiedAt'])
+          )
+        );
+    }
+
+    function isSafeConnectorDocument() {
+      return request.resource.data.keys().hasOnly(['ai', 'storage', 'mail', 'calendar'])
+        && request.resource.data.keys().hasAll(['ai', 'storage', 'mail', 'calendar'])
+        && isSafeConnectorStatus(request.resource.data.ai)
+        && isSafeConnectorStatus(request.resource.data.storage)
+        && isSafeConnectorStatus(request.resource.data.mail)
+        && isSafeConnectorStatus(request.resource.data.calendar);
+    }
+
     match /jobs/{job} {
-      allow read, update, delete: if resource != null && resource.data.owner_id == request.auth.uid;
-      allow create: if request.resource.data.owner_id == request.auth.uid;
+      allow read, update, delete: if signedIn() && resource != null && resource.data.owner_id == request.auth.uid;
+      allow create: if signedIn() && request.resource.data.owner_id == request.auth.uid;
+    }
+
+    match /users/{userId}/settings/connectors {
+      allow read, delete: if signedIn() && request.auth.uid == userId;
+      allow create, update: if signedIn()
+        && request.auth.uid == userId
+        && isSafeConnectorDocument();
     }
   }
 }
