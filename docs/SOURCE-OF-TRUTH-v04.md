@@ -35,3 +35,57 @@ Es bedeutet eine eindeutige führende Quelle pro Objektart und Scope:
 - Rechte/Consent/Release: MACAN/append-only Decisions
 - KI-Abruf: RAG-Derivat
 - persönliche Daten: User-Vault
+
+
+## Aktualisierung und Supersession
+
+Eine Quelle wird nicht still überschrieben. Jede neue Fassung erhält einen stabilen `source_id`, Hash, Scope, Status, Ersetzungsbeziehung und Prüfdatum.
+
+1. Neue Quelle als `DISCOVERED` registrieren.
+2. Scope und Autorität gegen dieses Modell prüfen.
+3. Konflikte ausdrücklich als `CONFLICT` oder `SUPERSEDED_CONFLICT` markieren.
+4. Erst nach belegter Entscheidung auf `CURRENT*` setzen.
+5. Ersetzte Artefakte unverändert archivieren und mit `superseded_by` verlinken.
+6. Abgeleitete Sichten neu erzeugen; niemals aus ihnen zurück in die Wahrheit schreiben.
+
+Beispiel 2026-07-22:
+
+- `PROJECT MEMORY CANONICAL v10` ist `CURRENT_DOMAIN_SPEC`.
+- `SMART-CONTEXT_CONFIG v05` ist wegen seines internen Verweises auf Canonical v05 sowie veralteter Audio-/Voice-Zustände `SUPERSEDED_CONFLICT`.
+- Es darf weiterhin als historische Evidence erhalten bleiben, aber kein Agent darf es ohne Konflikthinweis als aktiven Kontext laden.
+
+## Projektgedächtnis und technische Registry
+
+Beide werden verlinkt, nicht vermischt:
+
+| Quelle | Führt |
+|---|---|
+| Project Memory Canonical | Identität, fachliche Locks, kreative Regeln, aktueller Domain-Meilenstein |
+| Git/ADRs/Contracts | technische Soll-Verträge und akzeptierte Entscheidungen |
+| Runtime Registry + Evidence | aktuelles technisches IST: Repo, Branch, Deployment, Domain, Version, Health |
+| Projektanalyse/Inventur | Discovery, Klassifikation, Dubletten- und Reifehinweise |
+| NotebookLM/RAG/Handbuch | abgeleitete Erklärung und Recherche mit Quellenzeigern |
+
+Ein Projektanalyse-Tool darf Vorschläge und Befunde liefern, aber weder `CURRENT` setzen noch Repos löschen, mergen oder archivieren.
+
+## Veröffentlichungs- und Datenschutzregel
+
+Das vollständige Repository-Inventar bleibt in einem privaten Audit-Scope. Das öffentliche kanonische Repo enthält nur:
+
+- Schema und Methodik,
+- aggregierte Zählwerte,
+- öffentliche beziehungsweise bereits veröffentlichte Evidence,
+- keine privaten Repo-Namen, Pfade, Secrets oder personenbezogenen Daten.
+
+## Abgeleitete Dialoge und Handbücher
+
+Claude, Codex, NotebookLM und interaktive Handbücher erhalten einen kompakten, generierten Kontext aus kanonischen Quellen. Jeder Export nennt:
+
+- Erzeugungszeit,
+- Quell-IDs und Hashes,
+- Scope,
+- bekannte Konflikte,
+- Gültigkeitsgrenze,
+- Rücksprunglinks zu den führenden Quellen.
+
+Ein solcher Export ist `DERIVED_VIEW`, nie eine neue Parallelarchitektur.
