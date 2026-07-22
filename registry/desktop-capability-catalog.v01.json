@@ -78,5 +78,18 @@
     "lichtreich_static_shortcuts": 14,
     "immediate_onboarding_wave": 10,
     "policy": "filter by capability, license, maintenance, security, deployment and evidence before offering install"
-  }
+  },
+  "unresolved_sources": [
+    {
+      "id": "josh-jodzzombie-hit-me-community-tools",
+      "claimed_scope": "dozens to about one hundred useful desktop tools",
+      "evidence_found": [
+        "legacy project notes mention josh's Rechner and hit-me.media/community-page",
+        "the current daedalOS fork chain is DustinBrett/daedalOS -> jodzOMBIE/daedalOS -> MrYueHang/daedalOS"
+      ],
+      "evidence_not_found": "no concrete repository, manifest or reachable community-page source was found in the connected repositories or public search",
+      "status": "UNVERIFIED_DO_NOT_IMPORT_OR_COUNT",
+      "next_gate": "exact URL or repository plus license and manifest inventory"
+    }
+  ]
 }
