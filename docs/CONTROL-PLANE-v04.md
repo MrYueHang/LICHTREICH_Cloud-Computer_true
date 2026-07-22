@@ -369,3 +369,54 @@ Der Agent stoppt und dokumentiert, statt zu improvisieren, wenn:
 - Scope-/Rechteprüfung fehlt,
 - Backup oder Rollback für eine datenführende Änderung fehlt,
 - zwei Dokumente widersprüchliche Produktionswahrheiten behaupten.
+
+
+## 16. Verifizierter Branch-Snapshot vom 2026-07-22
+
+Der neue Arbeitsstand gehört weiterhin auf `feat/control-plane-v04`; es wird dafür kein zusätzlicher konkurrierender Control-Plane-Branch eröffnet.
+
+| Branch | Gegenüber `main` | Behandlung |
+|---|---:|---|
+| `feat/control-plane-v04` | aktive Draft-Integration | hier weiterarbeiten |
+| `dev` | 32 behind / 0 ahead | nach Abschluss bewusst fast-forwarden oder als historische Phase markieren |
+| `vps` | 32 behind / 0 ahead | kein separater Wahrheitszweig |
+| `final` | 32 behind / 0 ahead | Bezeichnung ist historisch, nicht aktueller Finalstand |
+| `lokal` | 32 behind / 0 ahead | historische Umgebungsmarke |
+| `studio` | 45 behind / 0 ahead | nicht als Integrationsbasis verwenden |
+| `claude-safe` | 15 behind / 0 ahead | alter Sicherheits-Snapshot |
+| `claude-backup` | 44 behind / 0 ahead | Backupzeiger, keine Produktwahrheit |
+| `fix/setup-honest-lamp-secret-boundary` | eigener enger P0-Fix | separat über Draft-PR #25 prüfen |
+
+`main` bleibt der derzeit neueste gemeinsame Basispunkt. Die alten Phasenbranches werden nicht gelöscht; zuerst werden Schutzregeln, Verwendungszweck und Nachfolger dokumentiert.
+
+## 17. Desktop-App-Katalog und Installer
+
+Der Live-Audit von `desktop.lichtreich.info` und `MrYueHang/daedalOS` zeigt: LICHTREICH-Apps werden derzeit als statische Dateien unter `public/Users/Public/Desktop/*.url` ausgeliefert. Das ist ein funktionsfähiger Bootstrap, aber noch keine dynamische Installation.
+
+Der Zielvertrag liegt in:
+
+- `docs/DESKTOP-APP-INSTALLATION-CONTRACT-v01.md`
+- `schemas/app-manifest.v01.schema.json`
+- `registry/app-catalog.bootstrap.v01.json`
+
+Grundsatz:
+
+```text
+Registry-API
+→ autorisierten Katalog filtern
+→ Manifest, Version, Health und Signatur prüfen
+→ Installationszeiger im User-Scope speichern
+→ daedalOS-Verknüpfung in IndexedDB materialisieren
+→ App über Browser/Fenster starten
+→ Aktionen nur über Capability-Gateway
+```
+
+Die Installation vergibt keine Berechtigung und überträgt kein Secret. Sie macht ausschließlich einen zulässigen Startpunkt sichtbar. Bestehende Public-Desktop-`.url`-Dateien bleiben als System-Defaults und Offline-/Bootstrap-Fallback erhalten.
+
+Die Projektanalyse-App ist als `system.project-analysis` registriert. Ihr Status bleibt `DOCUMENTED` und `installable=false`, bis eine reale, getestete UI-Route und ein Health-Endpunkt existieren. Danach kann sie ohne Änderung des Desktop-Grundsystems aktiviert werden.
+
+## 18. Repository-Inventur als kontrollierter Input
+
+Der erste vollständige Account-Snapshot umfasst 59 erreichbare Repositories. Die öffentliche Zusammenfassung liegt in `registry/repository-inventory.public-summary.v01.json`; Detailzeilen mit privaten Repo-Namen bleiben im privaten Audit-Scope.
+
+Die Inventur ist ein Discovery-System, keine Löschliste. `ARCHIVE_CANDIDATE` bedeutet Prüfung, Owner-/Nachfolgerklärung und gegebenenfalls Archivierung — niemals automatische Löschung.
