@@ -50,7 +50,7 @@ Neue/maßgebliche Dateien:
 - `api/setup/capabilities.ts`
 - `api/setup/system-connectors.ts`
 - `api/setup/connectors/verify.ts`
-- `api/setup/security.test.ts`
+- `src/lib/setupApiSecurity.test.ts`
 - `src/pages/EinrichtungsAssistent.tsx`
 - `firestore.rules`
 

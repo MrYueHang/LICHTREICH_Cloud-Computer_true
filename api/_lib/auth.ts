@@ -1,6 +1,6 @@
 import { applicationDefault, cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
-import type { ApiRequest } from './http';
+import type { ApiRequest } from './http.js';
 
 export interface VerifiedActor {
   uid: string;

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { ApiRequest, ApiResponse } from '../_lib/http';
-import { createSystemConnectorsHandler } from './system-connectors';
-import { createVerifyConnectorHandler } from './connectors/verify';
+import type { ApiRequest, ApiResponse } from '../../api/_lib/http.js';
+import { createSystemConnectorsHandler } from '../../api/setup/system-connectors.js';
+import { createVerifyConnectorHandler } from '../../api/setup/connectors/verify.js';
 
 function request(method: string, body?: unknown): ApiRequest {
   return {

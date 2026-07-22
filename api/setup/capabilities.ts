@@ -1,6 +1,6 @@
-import type { ApiRequest, ApiResponse } from '../_lib/http';
-import { sendJson } from '../_lib/http';
-import { AuthError, authenticate } from '../_lib/auth';
+import type { ApiRequest, ApiResponse } from '../_lib/http.js';
+import { sendJson } from '../_lib/http.js';
+import { AuthError, authenticate } from '../_lib/auth.js';
 
 export default async function handler(request: ApiRequest, response: ApiResponse): Promise<void> {
   if (request.method !== 'GET') {

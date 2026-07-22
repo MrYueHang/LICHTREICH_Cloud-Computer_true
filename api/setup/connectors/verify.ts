@@ -1,6 +1,6 @@
-import type { ApiRequest, ApiResponse } from '../../_lib/http';
-import { correlationId, readJsonBody, sendJson } from '../../_lib/http';
-import { AuthError, authenticate, type TokenVerifier } from '../../_lib/auth';
+import type { ApiRequest, ApiResponse } from '../../_lib/http.js';
+import { correlationId, readJsonBody, sendJson } from '../../_lib/http.js';
+import { AuthError, authenticate, type TokenVerifier } from '../../_lib/auth.js';
 
 interface HandlerDependencies {
   verifyToken?: TokenVerifier;
