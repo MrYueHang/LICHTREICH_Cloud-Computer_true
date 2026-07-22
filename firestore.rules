@@ -37,13 +37,23 @@ service cloud.firestore {
         );
     }
 
-    function isSafeConnectorDocument() {
+    // Browser clients may persist only non-authoritative setup progress.
+    // VERIFIED/green receipts must be written by a trusted backend through
+    // Firebase Admin SDK, which bypasses client security rules.
+    function isClientWritableConnectorStatus(status) {
+      return isSafeConnectorStatus(status)
+        && status.configured == false
+        && status.lamp in ['idle', 'testing', 'red']
+        && !status.keys().hasAny(['credentialRef', 'maskedFingerprint', 'verifiedAt']);
+    }
+
+    function isClientWritableConnectorDocument() {
       return request.resource.data.keys().hasOnly(['ai', 'storage', 'mail', 'calendar'])
         && request.resource.data.keys().hasAll(['ai', 'storage', 'mail', 'calendar'])
-        && isSafeConnectorStatus(request.resource.data.ai)
-        && isSafeConnectorStatus(request.resource.data.storage)
-        && isSafeConnectorStatus(request.resource.data.mail)
-        && isSafeConnectorStatus(request.resource.data.calendar);
+        && isClientWritableConnectorStatus(request.resource.data.ai)
+        && isClientWritableConnectorStatus(request.resource.data.storage)
+        && isClientWritableConnectorStatus(request.resource.data.mail)
+        && isClientWritableConnectorStatus(request.resource.data.calendar);
     }
 
     match /jobs/{job} {
@@ -55,7 +65,7 @@ service cloud.firestore {
       allow read, delete: if signedIn() && request.auth.uid == userId;
       allow create, update: if signedIn()
         && request.auth.uid == userId
-        && isSafeConnectorDocument();
+        && isClientWritableConnectorDocument();
     }
   }
 }
