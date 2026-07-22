@@ -106,6 +106,20 @@
       "scope": "GitHub account inventory",
       "authority_or_replacement": "Public aggregate: registry/repository-inventory.public-summary.v01.json",
       "access": "PRIVATE_DETAIL_ROWS"
+    },
+    {
+      "source_id": "CTX-AUDIT-001",
+      "filename": "registry/context-artifacts.audit.v01.json",
+      "classification": "CURRENT_REFERENCE",
+      "scope": "Project context classification and conflict register",
+      "authority_or_replacement": "docs/SOURCE-OF-TRUTH-v04.md"
+    },
+    {
+      "source_id": "RSR-003",
+      "filename": "docs/TAKTOR-OSS-RESEARCH-DELTA-v02.md",
+      "classification": "CURRENT_REFERENCE",
+      "scope": "TAKTØR upstream verification and adoption delta",
+      "authority_or_replacement": "Supplements RSR-001/RSR-002; implementation still requires pinned license/evidence gate"
     }
   ]
 }
