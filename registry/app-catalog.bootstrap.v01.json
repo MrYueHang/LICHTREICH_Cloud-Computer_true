@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "lichtreich.desktop.bootstrap",
+  "catalog_version": "2026-07-22.1",
+  "status": "DOCUMENTED",
+  "migration_source": "MrYueHang/daedalOS public/Users/Public/Desktop/*.url",
+  "apps": [
+    {
+      "schema_version": "1.0",
+      "id": "system.project-analysis",
+      "name": "Projektanalyse",
+      "description": "Interne, read-only Sicht auf Repo-, Domain-, Modul- und Source-of-Truth-Evidence.",
+      "icon_url": "https://desktop.lichtreich.info/favicon.ico",
+      "launch_url": null,
+      "launch_mode": "browser_window",
+      "scopes": [
+        "system",
+        "organisation"
+      ],
+      "required_capabilities": [
+        "registry.read",
+        "evidence.read",
+        "repository_inventory.read_aggregate"
+      ],
+      "audiences": [
+        "staff",
+        "admin"
+      ],
+      "module_id": "system.registry",
+      "head_of_module_agent": "head.system.registry",
+      "health_url": null,
+      "version": "0.1.0-documented",
+      "repo_pointer": {
+        "repository": "MrYueHang/LICHTREICH_Cloud-Computer_true",
+        "ref": "feat/control-plane-v04",
+        "path": "registry/repository-inventory.public-summary.v01.json"
+      },
+      "status": "DOCUMENTED",
+      "data_classes": [
+        "internal"
+      ],
+      "install_policy": "admin_only",
+      "default_install": false,
+      "installable": false,
+      "checksum": null,
+      "updated_at": "2026-07-22T20:00:00Z"
+    }
+  ],
+  "activation_gate": [
+    "real UI route",
+    "authenticated health endpoint",
+    "scope and capability tests",
+    "signed or repository-pinned manifest",
+    "separate daedalOS implementation PR",
+    "preview evidence"
+  ]
+}
