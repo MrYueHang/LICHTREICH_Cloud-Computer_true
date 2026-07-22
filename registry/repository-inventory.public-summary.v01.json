@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "snapshot_at": "2026-07-22",
+  "scope": "GitHub repositories accessible to the connected MrYueHang installation",
+  "authority": "DISCOVERY_EVIDENCE_NOT_DELETION_AUTHORITY",
+  "totals": {
+    "repositories": 59,
+    "public": 21,
+    "private": 38
+  },
+  "first_pass_classification": {
+    "EMPTY_OR_METADATA_SHELL": 21,
+    "PROTOTYPE_SOURCE": 15,
+    "MODULE_CANDIDATE": 6,
+    "EXPERIMENT": 4,
+    "UPSTREAM_TOOL": 4,
+    "PRODUCT_FAMILY": 3,
+    "AUDIT_CONTROL": 1,
+    "CANONICAL_CORE": 1,
+    "KNOWLEDGE_ASSET": 1,
+    "UNCLASSIFIED": 1,
+    "UPSTREAM_LIBRARY": 1,
+    "UPSTREAM_TEMPLATE": 1
+  },
+  "lifecycle_candidates": {
+    "ARCHIVE_CANDIDATE": 21,
+    "REVIEW_INTEGRATION": 18,
+    "HOLD_OR_ARCHIVE": 4,
+    "REVIEW_CONSOLIDATION": 4,
+    "HOLD_SEPARATE": 3,
+    "REFERENCE_UPSTREAM": 3,
+    "REFERENCE_ONLY": 2,
+    "ACTIVE_PRIVATE": 1,
+    "ACTIVE": 1,
+    "HOLD_PRIVATE": 1,
+    "REVIEW_REQUIRED": 1
+  },
+  "confidence": {
+    "preliminary": 50,
+    "high": 9
+  },
+  "method": [
+    "repository metadata",
+    "default branch",
+    "README presence/content",
+    "package.json presence/content",
+    "targeted blob-SHA duplicate evidence",
+    "branch comparison for the canonical core"
+  ],
+  "limitations": [
+    "First pass; no claim that all repository trees or histories were exhaustively reviewed.",
+    "ARCHIVE_CANDIDATE is a review state, not deletion permission.",
+    "Private repository names and detail rows are intentionally excluded.",
+    "Full-tree equality remains open for pairs where only individual blobs matched."
+  ],
+  "canonical_core_branch_snapshot": {
+    "repository": "MrYueHang/LICHTREICH_Cloud-Computer_true",
+    "base": "main",
+    "branches": {
+      "dev": {
+        "behind": 32,
+        "ahead": 0
+      },
+      "vps": {
+        "behind": 32,
+        "ahead": 0
+      },
+      "final": {
+        "behind": 32,
+        "ahead": 0
+      },
+      "lokal": {
+        "behind": 32,
+        "ahead": 0
+      },
+      "studio": {
+        "behind": 45,
+        "ahead": 0
+      },
+      "claude-safe": {
+        "behind": 15,
+        "ahead": 0
+      },
+      "claude-backup": {
+        "behind": 44,
+        "ahead": 0
+      }
+    }
+  },
+  "private_detail_policy": "Full row-level inventory remains in private audit scope; only aggregates and public evidence may be promoted here.",
+  "next_review": [
+    "Deep-read the 21 empty/metadata-shell candidates before any archive decision.",
+    "Compare complete trees for suspected duplicates.",
+    "Map each surviving repository to module, domain, owner, data class and successor.",
+    "Record repository decisions as reviewed evidence with rollback path."
+  ]
+}
