@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lichtreich.info/schemas/desktop-command-receipt.v01.schema.json",
+  "title": "LICHTREICH Desktop Command Receipt v01",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "issued_at",
+    "expires_at",
+    "actor_id",
+    "scope_type",
+    "scope_id",
+    "head_of_module",
+    "action",
+    "process_id",
+    "arguments",
+    "confirmation",
+    "checksum"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^dcr_[a-zA-Z0-9_-]{12,}$"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope_type": {
+      "enum": ["system", "organisation", "project", "community", "user"]
+    },
+    "scope_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "head_of_module": {
+      "type": "string",
+      "pattern": "^head\\.[a-z0-9._-]+$"
+    },
+    "action": {
+      "enum": ["open_process", "open_url", "open_file", "reveal_path"]
+    },
+    "process_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "arguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "read_only": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "confirmation": {
+      "enum": ["not_required", "required", "granted"]
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "action": { "const": "open_url" }
+        },
+        "required": ["action"]
+      },
+      "then": {
+        "properties": {
+          "process_id": { "const": "Browser" },
+          "arguments": {
+            "required": ["url"],
+            "properties": {
+              "url": { "pattern": "^https://" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": { "enum": ["open_file", "reveal_path"] }
+        },
+        "required": ["action"]
+      },
+      "then": {
+        "properties": {
+          "arguments": {
+            "required": ["url"],
+            "properties": {
+              "url": { "pattern": "^/" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

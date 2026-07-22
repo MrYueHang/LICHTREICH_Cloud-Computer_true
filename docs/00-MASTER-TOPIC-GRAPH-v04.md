@@ -32,12 +32,13 @@ Vor jeder neuen Datei: Topic-ID suchen, kanonische Datei öffnen und Neues als `
 | `T17` | Orchestra / Toolausführung | `T05` + `T07` | `SPEC_READY_DISTRIBUTED` |
 | `T18` | n8n / Workflow-Metaboard | Control Plane + Work Mode v03 | `OPEN_IMPLEMENTATION` |
 | `T19` | Letta Agent Runtime | `T05` + `T07` enthalten heutige Grenze | `OPEN GAP` |
-| `T20` | lokale Browser-/Device-KI | keine kanonische Fachdatei | `OPEN EVIDENCE` |
+| `T20` | lokale Browser-/Device-KI + Desktop-Aktionen | `docs/DESKTOP-HEAD-OF-MODULE-EXECUTION-v01.md` | `CONTRACT_READY / CLIENT_OPEN` |
 | `T21` | NotebookLM / Handbuch | keine kanonische Fachdatei | `OPEN GAP` |
 | `T22` | OpenProject / Tasks / Kalender | Control Plane + Surface Composer | `DECIDED_BASELINE` |
 | `T23` | Files / Mounts / Archiv | Control Plane + Datenzonen | `SPEC_READY_DISTRIBUTED` |
 | `T24` | Due-Diligence Gold Case | Surface Composer | `PLANNED` |
 | `T25` | Public Landing / Testuser | Public Projection | `SPEC_READY` |
+| `T26` | ZIP-/Screenshot-Evidence 2026-07-23 | `docs/EVIDENCE-ZIP-AND-SCREEN-AUDIT-2026-07-23.md` | `CURRENT EVIDENCE` |
 
 ## Beziehungen
 
@@ -45,6 +46,7 @@ Vor jeder neuen Datei: Topic-ID suchen, kanonische Datei öffnen und Neues als `
 T00 gilt für alle
 T05 → T06/T07/T16/T17/T18/T19/T20 → RAG/Search
 T10 → T11/T12/T22/T23/T24/T25
+T03/T04 → T26 → T00/T01/T10/T20
 T21 erklärt kuratierte Versionen aller Knoten, ist aber nie Source of Truth
 ```
 
@@ -55,7 +57,7 @@ Desktop-App-Installation, AppManifest, Ingest-Grundstrecke, Modellrouting, OAuth
 ## Echte Lücken
 
 1. Letta-Capability-Matrix und Agent Lifecycle.
-2. lokale Browser-KI als gemessene Evidence.
+2. Head-of-Module-Profile und Command-Receipt-Client auf die belegte lokale Browser-KI aufsetzen.
 3. NotebookLM-Handbuch mit kuratiertem Quellenpaket und Update-Receipt.
 4. `lr://`-Mountvertrag.
 5. konsolidierte Society-/RACI-Registry.
@@ -68,4 +70,4 @@ Topic Graph → P0-Sicherheit → Evidence/Registry → Knowledge Spine
 → weitere Module seriell aktivieren
 ```
 
-Ein Agent darf keine neue Master Architecture, Gesamt-PRD oder Source of Truth anlegen, wenn `T00–T25` das Thema bereits besitzen.
+Ein Agent darf keine neue Master Architecture, Gesamt-PRD oder Source of Truth anlegen, wenn `T00–T26` das Thema bereits besitzen.

@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "lichtreich.desktop.daedalos-native-capabilities",
+  "status": "SOURCE_VERIFIED_NOT_YET_AGENT_CONNECTED",
+  "observed_at": "2026-07-23T00:45:00+02:00",
+  "source": {
+    "repository": "MrYueHang/daedalOS",
+    "ref": "feat/lichtreich-app-sync-v01",
+    "commit": "5fcdef27efe38e8f3ee8de5f9edef7368520bd1e",
+    "process_directory": "contexts/process/directory.ts",
+    "ai_worker": "components/system/Taskbar/AI/ai.worker.ts"
+  },
+  "counts": {
+    "registered_processes": 32,
+    "user_facing_apps": 27,
+    "system_dialogs": 5
+  },
+  "launch_contract": {
+    "direct": "/?app={process_id}",
+    "with_argument": "/?app={process_id}&url={encoded_url}",
+    "internal_api": "useProcesses().open(process_id, { url })"
+  },
+  "local_ai": {
+    "present": true,
+    "chrome_prompt_api_path": true,
+    "webllm_fallback": "DeepSeek-R1-Distill-Llama-8B-q4f32_1-MLC",
+    "local_stable_diffusion": true,
+    "current_system_prompt": "You are a helpful AI assistant.",
+    "module_aware": false,
+    "tool_execution": false,
+    "provider_tokens_required_for_local_paths": false
+  },
+  "apps": [
+    {
+      "process_id": "FileExplorer",
+      "title": "File Explorer",
+      "category": "productivity",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry", "head.knowledge", "head.legal", "head.realestate", "head.taktor"]
+    },
+    {
+      "process_id": "Browser",
+      "title": "Browser",
+      "category": "productivity",
+      "execution": "browser_local_with_remote_content",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry", "head.knowledge", "head.legal", "head.realestate", "head.social"]
+    },
+    {
+      "process_id": "PDF",
+      "title": "PDF",
+      "category": "document",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.knowledge", "head.legal", "head.realestate"]
+    },
+    {
+      "process_id": "TinyMCE",
+      "title": "TinyMCE",
+      "category": "document",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.knowledge", "head.legal", "head.realestate", "head.social"]
+    },
+    {
+      "process_id": "Marked",
+      "title": "Marked",
+      "category": "document",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry", "head.knowledge"]
+    },
+    {
+      "process_id": "MonacoEditor",
+      "title": "Monaco Editor",
+      "category": "developer",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry"]
+    },
+    {
+      "process_id": "Terminal",
+      "title": "Terminal",
+      "category": "developer",
+      "execution": "browser_local_with_optional_network",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry", "head.taktor"]
+    },
+    {
+      "process_id": "DevTools",
+      "title": "DevTools",
+      "category": "developer",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry"]
+    },
+    {
+      "process_id": "Vim",
+      "title": "Vim",
+      "category": "developer",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.system.registry"]
+    },
+    {
+      "process_id": "Paint",
+      "title": "Paint",
+      "category": "creative",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.social", "head.creative"]
+    },
+    {
+      "process_id": "Photos",
+      "title": "Photos",
+      "category": "creative",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.social", "head.creative", "head.realestate"]
+    },
+    {
+      "process_id": "StableDiffusion",
+      "title": "Stable Diffusion",
+      "category": "ai_creative",
+      "execution": "browser_local_model",
+      "accepts_url": false,
+      "recommended_heads": ["head.social", "head.creative"]
+    },
+    {
+      "process_id": "VideoPlayer",
+      "title": "Video Player",
+      "category": "media",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.taktor", "head.social", "head.creative"]
+    },
+    {
+      "process_id": "Webamp",
+      "title": "Webamp",
+      "category": "media",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.taktor", "head.creative"]
+    },
+    {
+      "process_id": "Messenger",
+      "title": "Messenger",
+      "category": "communication",
+      "execution": "browser_local_with_remote_network",
+      "accepts_url": true,
+      "recommended_heads": ["head.social"]
+    },
+    {
+      "process_id": "IRC",
+      "title": "IRC",
+      "category": "communication",
+      "execution": "remote_web_client",
+      "accepts_url": true,
+      "recommended_heads": ["head.social"]
+    },
+    {
+      "process_id": "OpenType",
+      "title": "OpenType",
+      "category": "creative",
+      "execution": "browser_local",
+      "accepts_url": true,
+      "recommended_heads": ["head.creative"]
+    },
+    {
+      "process_id": "BoxedWine",
+      "title": "BoxedWine",
+      "category": "emulation",
+      "execution": "browser_local_wasm",
+      "accepts_url": true,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "Emulator",
+      "title": "Emulator",
+      "category": "emulation",
+      "execution": "browser_local_wasm",
+      "accepts_url": true,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "JSDOS",
+      "title": "js-dos v7",
+      "category": "emulation",
+      "execution": "browser_local_wasm",
+      "accepts_url": true,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "Ruffle",
+      "title": "Ruffle",
+      "category": "emulation",
+      "execution": "browser_local_wasm",
+      "accepts_url": true,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "Tic80",
+      "title": "TIC-80 tiny computer",
+      "category": "emulation",
+      "execution": "browser_local_wasm",
+      "accepts_url": true,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "V86",
+      "title": "Virtual x86",
+      "category": "emulation",
+      "execution": "browser_local_wasm",
+      "accepts_url": true,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "ClassiCube",
+      "title": "ClassiCube",
+      "category": "game",
+      "execution": "browser_local_wasm",
+      "accepts_url": false,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "DXBall",
+      "title": "DX-Ball",
+      "category": "game",
+      "execution": "browser_local",
+      "accepts_url": false,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "Quake3",
+      "title": "Quake III Arena",
+      "category": "game",
+      "execution": "browser_local_wasm",
+      "accepts_url": false,
+      "recommended_heads": []
+    },
+    {
+      "process_id": "SpaceCadet",
+      "title": "Space Cadet",
+      "category": "game",
+      "execution": "browser_local_wasm",
+      "accepts_url": false,
+      "recommended_heads": []
+    }
+  ],
+  "system_dialogs": ["OpenWith", "Properties", "Run", "ScreenSaver", "Transfer"],
+  "agent_execution_policy": {
+    "model_output_is_never_a_command": true,
+    "process_id_must_exist_in_this_registry": true,
+    "head_must_be_allowed_for_process": true,
+    "server_receipt_required_for_cross_module_action": true,
+    "human_confirmation_required_for_write_or_external_action": true,
+    "raw_secrets_forbidden": true
+  }
+}

@@ -83,6 +83,24 @@
       "authority_or_replacement": "Canonical Memory v10 + human review + MACAN"
     },
     {
+      "source_id": "ZIP-011",
+      "filename": "LICHTREICH_Cloud-Computer_true-main.zip",
+      "sha256": "8ad73d81971b6aff4219ae14e81140666cefd2145f41c2fc33e0ea52bc69b625",
+      "bytes": 70693,
+      "classification": "SUPERSEDED_REFERENCE",
+      "scope": "LICHTREICH landing, workflow schema and 2026-07-16 sync snapshot",
+      "authority_or_replacement": "Current repository main + feat/control-plane-v04; retain as historical evidence"
+    },
+    {
+      "source_id": "ZIP-012",
+      "filename": "MSJUEHANG_CREATIVE-SOCIETY_MASTER-ARTIFACT_v01(1).zip",
+      "sha256": "1dd71cd0fc387d95f0f307f52ea875fb6927f9d524715091f3819c792b75afc1",
+      "bytes": 66501,
+      "classification": "CURRENT_DOMAIN_REFERENCE",
+      "scope": "MSJueHang / Creative Society / TAKTØR / Social Hub",
+      "authority_or_replacement": "Subordinate working library under Canonical Memory v10 and Control Plane v04; not a deployment"
+    },
+    {
       "source_id": "MEM-001",
       "filename": "00_MSJUEHANG_PROJECT-MEMORY_CANONICAL_v10.md",
       "sha256": "c29a8495cea43acfc86fda7bfecfd55303663aaaf75361149d3a6fb9526234cd",
