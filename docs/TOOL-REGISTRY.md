@@ -34,4 +34,8 @@ Kürzel 2–4 Buchstaben, eindeutig. So sieht man auf einen Blick: was · wann �
 2. Existiert (canonical)? → dort ERWEITERN/verlinken, NICHT neu bauen.
 3. Nur wenn's WIRKLICH fehlt → neu, mit Namensregel, hier eintragen.
 
+## Noch nicht belegte Quelle: Josh / jodzOMBIE / hit-me
+
+Alte Projektnotizen nennen „josh's Rechner (hit-me.media/community-page)“ und eine größere Sammlung nützlicher Programme. Im verbundenen GitHub-Bestand und in der öffentlichen Suche wurde dafür am 2026-07-23 **kein konkretes Repo, App-Manifest oder erreichbarer Quellkatalog** gefunden. Deshalb werden diese Programme weder als installiert noch als geprüft gezählt. Die Fork-Herkunft `DustinBrett/daedalOS → jodzOMBIE/daedalOS → MrYueHang/daedalOS` ist belegt; daraus folgt aber kein zusätzlicher Appstore. Import erst nach Fund von URL/Repo, Lizenz und maschinenlesbarem Inventar.
+
 ## Bekannt: es gibt noch ~1 Dutzend weitere (GEZy/OS-Cluster, v0-*, community-ai-*) → siehe SCHAETZE-nicht-verlieren.md + system-inventur füttert diese Tabelle.
