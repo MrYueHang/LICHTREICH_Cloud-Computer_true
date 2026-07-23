@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
@@ -13,7 +13,7 @@ export default function Hero() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email) {
       setError('E-Mail ist erforderlich.');
@@ -79,7 +79,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <div className="inline-block bg-bauhaus-blue text-bauhaus-white font-mono font-bold px-3 py-1 mb-6 border-2 border-bauhaus-black text-sm uppercase">
-              System Live Alpha
+              Öffentliche Vorschau · Reife je Modul
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.9] mb-8">
               LICHTREICH<br />CLOUD-COMPUTER
@@ -123,11 +123,22 @@ export default function Hero() {
                 </div>
               )}
               
-              <div className="flex">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://desktop.lichtreich.info"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-bauhaus-black text-bauhaus-white px-8 py-4 text-lg font-bold uppercase hover:bg-bauhaus-blue transition-colors border-4 border-bauhaus-black cursor-pointer text-center"
+                >
+                  Desktop OS öffnen
+                </a>
                 <button onClick={() => document.getElementById('betriebskette')?.scrollIntoView({ behavior: 'smooth' })} className="bg-bauhaus-white text-bauhaus-black px-8 py-4 text-lg font-bold uppercase hover:bg-bauhaus-yellow transition-colors border-4 border-bauhaus-black cursor-pointer">
                   Architektur ansehen
                 </button>
               </div>
+              <p className="font-mono text-xs max-w-xl uppercase leading-relaxed">
+                Die Desktop-Shell ist erreichbar. Route, UI, API, Workflow und Rechte werden je Modul getrennt belegt.
+              </p>
             </div>
           </motion.div>
         </div>

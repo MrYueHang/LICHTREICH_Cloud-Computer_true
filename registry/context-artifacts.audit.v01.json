@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "audited_at": "2026-07-22",
+  "authority_model": "docs/SOURCE-OF-TRUTH-v04.md",
+  "rules": [
+    "Newer upload time does not override explicit authority.",
+    "Binary-different PDFs may still be exact content duplicates.",
+    "TeacherBrain artifacts are quarantined from LICHTREICH runtime architecture.",
+    "CURRENT_REFERENCE is not proof of deployment or media availability."
+  ],
+  "artifacts": [
+    {
+      "source_id": "CTX-001",
+      "filename": "01_MSJUEHANG_SMART-CONTEXT_CONFIG_v05.json",
+      "sha256": "9d99a9a758087f9b813d67a17387a1d149639c3c25f68aff0c4cd4dbf38c98ba",
+      "classification": "SUPERSEDED_CONFLICT",
+      "reason": "Declares ACTIVE_CANONICAL_CONTEXT but points to Canonical v05, old audio status and active multilingual voice family; replaced by MEM-001."
+    },
+    {
+      "source_id": "MEM-001",
+      "filename": "00_MSJUEHANG_PROJECT-MEMORY_CANONICAL_v10.md",
+      "sha256": "c29a8495cea43acfc86fda7bfecfd55303663aaaf75361149d3a6fb9526234cd",
+      "classification": "CURRENT_DOMAIN_SPEC",
+      "reason": "Explicitly declares itself the only current project memory and defines the authority order."
+    },
+    {
+      "source_id": "IDX-001",
+      "filename": "MSJUEHANG_SESSION-CLOSEOUT_INDEX_v01.md",
+      "sha256": "1f5835708d687d087abf8dc12b41067cc3c4f3e54c13582bef168c0cebebaa5b",
+      "classification": "CURRENT_REFERENCE",
+      "reason": "Useful handoff and split-file index; referenced ZIP/audio chunks were not part of this audit and remain unverified pointers."
+    },
+    {
+      "source_id": "CFG-001",
+      "filename": "REBUILD_CONFIG.json",
+      "sha256": "6f81fb38ef9caf130fd1a9b8e5e5ab2e2b9fe6f3bee4f015465a903704b4d8f2",
+      "classification": "CURRENT_DOMAIN_CONFIG",
+      "reason": "v09 rebuild/review configuration subordinate to Canonical v10 and final rights review."
+    },
+    {
+      "source_id": "REV-001",
+      "filename": "CUES_AND_REVIEW.md",
+      "sha256": "6321c7ad49f635f638eece997be0de6650dbc83f4fec4b634308fc5caecfc094",
+      "classification": "CURRENT_DOMAIN_REVIEW",
+      "reason": "Current v09 review guide; explicitly says no release lock and identifies synthetic production placeholders."
+    },
+    {
+      "source_id": "EVD-001",
+      "filename": "TECHNICAL_MANIFEST.json",
+      "sha256": "dfaf5ea9ec9543bede6741625c3ad9f35f6f22eda8e38577b131d38f93e1a17f",
+      "classification": "CURRENT_REPORTED_EVIDENCE",
+      "reason": "Reports full ffmpeg decode and media metadata; audio files were not available here, so the verification claim was not independently reproduced."
+    },
+    {
+      "source_id": "CFG-000",
+      "filename": "MSJUEHANG_CONTINUOUS-HYPNOTIC_NEAR-FINAL-v08.json",
+      "sha256": "927d0a37eb282ca50d485a7794e8425737760951854ff99efd6be500b676ef5b",
+      "classification": "SUPERSEDED",
+      "reason": "Near-final v08 is replaced by Final Candidate v09 artifacts."
+    },
+    {
+      "source_id": "QTN-001",
+      "filename": "99_HANDOFF_PROMPT_FOR_STUDIO_AI_CLAUDE.md",
+      "sha256": "813714115b3fc71e40711eb46832bda52f5db5aaa947884875986ae014c0db9a",
+      "classification": "QUARANTINE_OUT_OF_SCOPE",
+      "reason": "Notion/TeacherBrain build handoff; may be reused only as a pattern source, never as LICHTREICH data or deployment truth."
+    },
+    {
+      "source_id": "QTN-002",
+      "filename": "19_IMPORTER_REQUIREMENTS.md",
+      "sha256": "0366d13d12f144a88eb607c1b7244cc588624a9d121e1f9fa197e1e7cd6b0352",
+      "classification": "QUARANTINE_OUT_OF_SCOPE",
+      "reason": "TeacherBrain importer requirements; generic preview/audit/privacy patterns are reusable, entity mappings are not."
+    },
+    {
+      "source_id": "RSR-001",
+      "filename": "TAKTOR_OSS_AUDIO_BEST-OF_RESEARCH_v01.md",
+      "sha256": "127535bfe54349b9a5bf2360a319f37d3cf23c228a8a7910dd5093d890a174d8",
+      "classification": "CURRENT_REFERENCE_SUPPLEMENTED",
+      "reason": "Strong baseline; updated by docs/TAKTOR-OSS-RESEARCH-DELTA-v02.md with current upstream evidence and new candidates."
+    },
+    {
+      "source_id": "QTN-003",
+      "filename": "supabase_schema_v0_2.sql",
+      "sha256": "861ecb9d118a1d7c6bdfb26a5e18a6082d5189ca9c0f5571116a6eab74b57e65",
+      "classification": "QUARANTINE_OUT_OF_SCOPE",
+      "reason": "TeacherBrain-specific PostgreSQL schema. It must not be applied to LICHTREICH/Neon or used to create a parallel source of truth."
+    },
+    {
+      "source_id": "PDF-001",
+      "filename": "SESSIONBRAIN-ERGÄNZUNG_1a.pdf",
+      "sha256": "07d92fa294f385e2e1d922b4e0b542314cb9910594f291b1994ff6d48de0e7ef",
+      "classification": "REFERENCE_WITH_CONFLICTS",
+      "reason": "Useful three-level, Social Hub and Composer concept. Normalize central-database wording and defer multilingual voice roles per Canonical v10."
+    },
+    {
+      "source_id": "PDF-002",
+      "filename": "SESSIONBRAIN — TAKTØR Open-Source Audio Module.pdf",
+      "sha256": "02a44a6d86cf349d6474d9aa95019e7144fd08f27dfca66e04e7c712257f9bc1",
+      "classification": "SUPERSEDED_REFERENCE",
+      "reason": "Earlier seven-page architecture/research brief; superseded in detail by RSR-001 and the v02 delta."
+    },
+    {
+      "source_id": "PDF-003",
+      "filename": "SESSIONBRAIN-ERGÄNZUNG.pdf",
+      "sha256": "4bd3b285a63496eafe57d9da67b90cfed482665e871834215b4369bbb59eaeff",
+      "classification": "EXACT_CONTENT_DUPLICATE",
+      "duplicate_of": "PDF-001",
+      "evidence": "Layout-preserving text extraction is byte-identical although the PDF binaries differ by two bytes."
+    },
+    {
+      "source_id": "QTN-004",
+      "filename": "ALL_DATASTACKS_COMBINED.json",
+      "sha256": "e3c5f539e44f9d4f21fed56349841e800c17beea459fa2fd66f99290db876de0",
+      "classification": "QUARANTINE_OUT_OF_SCOPE",
+      "reason": "Notion/TeacherBrain MetaOS data stack. Generic manifest/workflow/RBAC patterns may be referenced; education entities and Supabase decision are not LICHTREICH authority."
+    },
+    {
+      "source_id": "RSR-002",
+      "filename": "TAKTOR_OSS_AUDIO_BEST-OF_RESEARCH_v01.json",
+      "sha256": "0c84b7b17373ff1bef6be6a381faed9a28da827ef0458d3912d7b82376fb2c2d",
+      "classification": "CURRENT_REFERENCE_MACHINE_READABLE",
+      "reason": "Machine-readable summary of RSR-001; supplemented by the v02 delta."
+    }
+  ],
+  "open_conflicts": [
+    {
+      "id": "OPEN-VOICE-V09-001",
+      "question": "Does 'Produktionsstimmen' in Canonical v10 mean final approved voices or the synthetic production placeholders named in the rebuild/review files?",
+      "current_safe_rule": "Treat all new v09 voice lines as not release-cleared until explicit LOCK plus consent/rights evidence."
+    },
+    {
+      "id": "OPEN-MEDIA-EVIDENCE-001",
+      "question": "Are all media chunks and full files from the closeout index still available and hash-verifiable?",
+      "current_safe_rule": "Do not claim possession or verified decode beyond the supplied reported manifest."
+    }
+  ]
+}

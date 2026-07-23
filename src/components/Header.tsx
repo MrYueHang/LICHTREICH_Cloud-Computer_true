@@ -33,6 +33,9 @@ export default function Header() {
           <Link to="/setup" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-white hover:bg-bauhaus-yellow transition-colors">
             <Shield className="w-4 h-4" /> Einrichten
           </Link>
+          <a href="https://desktop.lichtreich.info" target="_blank" rel="noopener noreferrer" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-blue text-bauhaus-white hover:bg-bauhaus-black transition-colors shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+            <Layout className="w-4 h-4" /> Desktop OS
+          </a>
           <Link to="/cockpit" className="px-3 py-1 flex items-center gap-2 border-2 border-bauhaus-black bg-bauhaus-black text-bauhaus-white hover:bg-gray-800 transition-colors shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
             <Layout className="w-4 h-4" /> Cockpit
           </Link>

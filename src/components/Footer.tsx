@@ -27,6 +27,7 @@ export default function Footer() {
         <div className="md:col-span-3 font-mono text-sm uppercase">
           <h4 className="font-bold mb-6 text-bauhaus-blue tracking-widest border-b-2 border-bauhaus-white/30 pb-2">Dienste</h4>
           <ul className="space-y-4">
+            <li><a href="https://desktop.lichtreich.info" className="hover:text-bauhaus-yellow transition-colors">desktop.lichtreich.info</a></li>
             <li>briefkasten.lichtreich.info</li>
             <li>rag.lichtreich.info</li>
             <li>orchestra.lichtreich.info</li>
@@ -46,7 +47,7 @@ export default function Footer() {
         <div className="flex flex-col space-y-2">
           <span className="opacity-50 mb-2">System</span>
           <a href="#betriebskette" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Architektur</a>
-          <a href="#" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Status</a>
+          <a href="#status" className="hover:text-bauhaus-yellow transition-colors hover:translate-x-1 inline-block">Status</a>
         </div>
       </div>
     </footer>

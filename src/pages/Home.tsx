@@ -19,13 +19,13 @@ export default function Home() {
       <Hero />
       <Workflow />
       <WorkflowCards />
-      <Modules />
-      <HeadOfBoard />
-      <Personas />
       <StatusMatrix />
-      <GTM />
+      <HeadOfBoard />
+      <Modules />
+      <Personas />
       <Connectors />
       <Pricing />
+      <GTM />
       <FAQ />
       <Footer />
     </main>
