@@ -13,6 +13,7 @@ const modules = [
   { name: "formulare", desc: "Geführte Interviews werden fertige Dokumente (docassemble)", status: "live", tag: "Selfhosted-Reihe" },
   { name: "crm", desc: "Kontakte, Firmen, Pipelines (Twenty)", status: "live", tag: "Selfhosted-Reihe" },
   { name: "metabase", desc: "Zahlen-Boards direkt auf der Neon-Datenbank", status: "live", tag: "Selfhosted-Reihe" },
+  { name: "taktor", desc: "Referenzanalyse, Sound-ID, Storyboard, Review und reproduzierbarer Audio-Render", status: "rollout", tag: "Creative Audio" },
 ];
 
 export default function Modules() {
