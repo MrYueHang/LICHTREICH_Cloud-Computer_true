@@ -7,6 +7,9 @@ Gradio API. The worker is intentionally provider-adapted and sequential:
 - no local oscillator/noise synthesis
 - no reference audio is copied
 - optional provider replacement via MUSICGEN_SPACE
+
+The public facebook/MusicGen batched endpoint accepts exactly two inputs
+(text batch and optional melody batch) and currently renders fixed 15-second clips.
 """
 
 from __future__ import annotations
@@ -24,7 +27,7 @@ from urllib.parse import quote, urljoin, urlparse
 import requests
 
 SPACE = os.getenv("MUSICGEN_SPACE", "https://facebook-musicgen.hf.space").rstrip("/")
-DURATION = max(10, min(int(os.getenv("DURATION_SECONDS", "30")), 60))
+DURATION = 15
 OUT_DIR = Path(os.getenv("OUTPUT_DIR", "artifacts/taktor-sound-id"))
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "900"))
 
@@ -129,7 +132,8 @@ def parse_sse(response: requests.Response) -> Any:
 
 def generate(prompt: str) -> tuple[bytes, str]:
     endpoint = f"{SPACE}/gradio_api/call/predict_batched"
-    payload = {"data": [[prompt], [None], DURATION]}
+    # Current public Space contract: texts batch + melodies batch. Duration is fixed to 15s.
+    payload = {"data": [[prompt], [None]]}
 
     for attempt in range(1, 4):
         try:
@@ -205,6 +209,7 @@ def main() -> int:
         "worker": "TAKTOR_SOUND_ID_v01",
         "provider": SPACE,
         "duration_seconds": DURATION,
+        "provider_duration_policy": "public batched endpoint fixed at 15 seconds",
         "rules": [
             "no reference audio copied",
             "no local oscillator or synthetic noise-bed generation",
