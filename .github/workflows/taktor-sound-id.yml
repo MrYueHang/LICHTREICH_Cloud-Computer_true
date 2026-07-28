@@ -57,18 +57,30 @@ jobs:
           PY
 
       - name: Generate three Sound-ID variants
-        run: python scripts/taktor_generate_sound_id.py
+        id: generate
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p artifacts/taktor-sound-id
+          set -o pipefail
+          python scripts/taktor_generate_sound_id.py 2>&1 | tee artifacts/taktor-sound-id/worker.log
 
       - name: Verify outputs
+        if: steps.generate.outcome == 'success'
         run: |
           find artifacts/taktor-sound-id -maxdepth 1 -type f -print -exec ls -lh {} \;
           test -f artifacts/taktor-sound-id/manifest.json
           test "$(find artifacts/taktor-sound-id -name '*320K.mp3' | wc -l)" -eq 3
 
-      - name: Upload review package
+      - name: Upload review or diagnostic package
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: TAKTOR-SOUND-ID-v01
           path: artifacts/taktor-sound-id/
           if-no-files-found: error
           retention-days: 14
+
+      - name: Fail after diagnostics when generation failed
+        if: steps.generate.outcome != 'success'
+        run: exit 1
