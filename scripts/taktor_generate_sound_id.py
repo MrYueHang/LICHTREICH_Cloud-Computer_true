@@ -8,8 +8,9 @@ Gradio API. The worker is intentionally provider-adapted and sequential:
 - no reference audio is copied
 - optional provider replacement via MUSICGEN_SPACE
 
-The public facebook/MusicGen batched endpoint accepts exactly two inputs
-(text batch and optional melody batch) and currently renders fixed 15-second clips.
+The public facebook/MusicGen batched endpoint has two UI inputs (text and
+optional melody) and currently renders fixed 15-second clips. Gradio performs
+the batching server-side, so API callers must send scalar UI values.
 """
 
 from __future__ import annotations
@@ -132,8 +133,8 @@ def parse_sse(response: requests.Response) -> Any:
 
 def generate(prompt: str) -> tuple[bytes, str]:
     endpoint = f"{SPACE}/gradio_api/call/predict_batched"
-    # Current public Space contract: texts batch + melodies batch. Duration is fixed to 15s.
-    payload = {"data": [[prompt], [None]]}
+    # Send scalar UI values. Gradio batches requests internally because the event is batch=True.
+    payload = {"data": [prompt, None]}
 
     for attempt in range(1, 4):
         try:
