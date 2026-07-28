@@ -32,7 +32,7 @@
 
 .taktor-status {
   display: grid;
-  grid-template-columns: 14px 1fr minmax(180px, 34%);
+  grid-template-columns: 14px 1fr minmax(220px, 34%);
   align-items: center;
   gap: 16px;
   border: 1px solid #333;
@@ -41,10 +41,23 @@
   background: #101010;
 }
 .taktor-status p { margin: 5px 0 0; color: #888; font-size: 12px; }
+.taktor-status .backend-error { color: #ff9b62; }
 .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #ff7600; box-shadow: 0 0 18px #ff7600; }
 .status-dot[data-ready="true"] { background: #53db82; box-shadow: 0 0 18px #53db82; }
+.status-tail { display: grid; gap: 9px; }
 .model-progress, .render-progress { height: 6px; background: #242424; overflow: hidden; }
 .model-progress span, .render-progress span { height: 100%; display: block; background: #ff7600; transition: width .25s; }
+.backend-reset {
+  justify-self: end;
+  background: transparent;
+  border: 1px solid #ff7600;
+  color: #ff7600;
+  padding: 8px 10px;
+  font: 700 10px ui-monospace, monospace;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.backend-reset:disabled { opacity: .45; cursor: wait; }
 
 .taktor-grid { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 24px; }
 .taktor-control { border: 1px solid #343434; padding: 20px; background: #0d0d0d; }
@@ -60,10 +73,17 @@
   color: #e8e8e3;
   line-height: 1.5;
 }
-.control-row { display: grid; gap: 16px; margin: 20px 0; }
+.control-row { display: grid; gap: 18px; margin: 20px 0; }
 .control-row label { display: grid; grid-template-columns: 1fr auto; gap: 8px; color: #999; font-size: 11px; letter-spacing: .1em; }
 .control-row input { grid-column: 1 / -1; width: 100%; accent-color: #ff7600; }
 .control-row b { color: #ff7600; }
+.control-help {
+  grid-column: 1 / -1;
+  color: #6f6f6f;
+  letter-spacing: 0;
+  line-height: 1.45;
+  font-size: 10px;
+}
 .generate-button {
   width: 100%;
   border: 0;
@@ -71,12 +91,17 @@
   background: #ff7600;
   color: #090909;
   font: 800 15px ui-monospace, monospace;
-  letter-spacing: .16em;
+  letter-spacing: .14em;
   cursor: pointer;
 }
 .generate-button:disabled { opacity: .45; cursor: wait; }
-.license-gate { border-left: 3px solid #d0b53a; margin-top: 20px; padding: 10px 12px; color: #aaa; font-size: 11px; line-height: 1.5; }
+.file-note,
+.license-gate { margin-top: 20px; padding: 10px 12px; color: #aaa; font-size: 11px; line-height: 1.5; }
+.file-note { border-left: 3px solid #53a6db; }
+.license-gate { border-left: 3px solid #d0b53a; }
+.file-note b { color: #53a6db; }
 .license-gate b { color: #d0b53a; }
+.file-note p,
 .license-gate p { margin: 5px 0 0; }
 
 .variant-list { display: grid; gap: 16px; }
@@ -86,19 +111,22 @@
 .variant-topline h2 { margin: 0; font-size: clamp(18px, 3vw, 32px); letter-spacing: -.03em; }
 .variant-topline em { font-style: normal; color: #777; font-size: 11px; }
 .variant-card > p { color: #aaa; line-height: 1.5; min-height: 46px; }
-.audio-placeholder { display: grid; place-items: center; min-height: 62px; border: 1px dashed #333; color: #555; margin-top: 15px; font-size: 11px; text-align: center; padding: 10px; }
+.audio-placeholder { display: grid; place-items: center; min-height: 62px; border: 1px dashed #333; color: #666; margin-top: 15px; font-size: 11px; text-align: center; padding: 10px; }
 .audio-row { display: flex; align-items: center; gap: 12px; margin-top: 15px; }
 .audio-row audio { width: 100%; }
 .audio-row a { white-space: nowrap; color: #ff7600; text-decoration: none; border: 1px solid #ff7600; padding: 10px; }
 .review-row { display: flex; gap: 8px; margin-top: 14px; }
-.review-row button { background: transparent; color: #888; border: 1px solid #333; padding: 7px 12px; font-family: inherit; }
-.review-row button:hover { color: #ff7600; border-color: #ff7600; }
+.review-row button { background: transparent; color: #888; border: 1px solid #333; padding: 7px 12px; font-family: inherit; cursor: pointer; }
+.review-row button:hover:not(:disabled) { color: #ff7600; border-color: #ff7600; }
+.review-row button.active { color: #080808; border-color: #ff7600; background: #ff7600; }
+.review-row button:disabled { opacity: .3; cursor: not-allowed; }
+.variant-card .review-note { min-height: 0; margin: 8px 0 0; color: #666; font-size: 10px; }
 
 @media (max-width: 860px) {
   .taktor-page { padding: 18px; }
   .taktor-grid { grid-template-columns: 1fr; }
   .taktor-status { grid-template-columns: 14px 1fr; }
-  .model-progress { grid-column: 1 / -1; }
+  .status-tail { grid-column: 1 / -1; }
   .taktor-header { gap: 16px; }
   .taktor-back { font-size: 11px; }
 }
