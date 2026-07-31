@@ -1,0 +1,5 @@
+openai>=1.93.0,<3
+requests>=2.32.0,<3
+numpy>=1.26.0,<3
+soundfile>=0.13.0,<1
+librosa>=0.11.0,<1
