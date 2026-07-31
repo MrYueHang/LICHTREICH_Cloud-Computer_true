@@ -1,12 +1,13 @@
 module:
   id: taktor
   name: TAKTØR
-  version: 0.1.0
-  status: rollout
+  version: 0.2.0
+  status: longform_pilot_ready_for_deploy
   description: >-
     Self-hostbares Audio-, Set-, Story- und Review-Modul für LICHTREICH.
-    Der erste produktive Worker erzeugt drei unabhängige Sound-ID-Varianten aus
-    einem Creative Brief und liefert Audioartefakte zur KEEP/MIX/REJECT-Prüfung.
+    Die aktuelle Pilotstrecke erzeugt vier vollständige 10-Minuten-Kandidaten,
+    prüft sie automatisch und legt nur zwei bestandene Fassungen zur einmaligen
+    Human-Review vor.
   domain: creative_audio
   organization_unit: HerrKünstler / Creative Society
   owner: MrJueHang
@@ -14,56 +15,86 @@ module:
   desktop_integration: https://desktop.lichtreich.info
 
 capabilities:
-  - creative_brief_to_sound_id
-  - reference_analysis
+  - creative_brief_to_locked_story_dna
+  - reference_analysis_without_copying
+  - longform_music_generation
   - harmonic_planning
   - storyboard
+  - deterministic_audio_qa
   - timestamp_review
   - reproducible_render
+  - project_storage_routing
 
 inputs:
   - creative_brief
-  - duration_seconds
+  - story_dna
+  - pilot_job
   - reference_dna
   - avoid_list
+  - project_storage_manifest
 
 outputs:
-  - sound_id_variant_a
-  - sound_id_variant_b
-  - sound_id_variant_c
-  - render_manifest
+  - pilot_candidate_01_wav
+  - pilot_candidate_01_review_mp3
+  - pilot_candidate_02_wav
+  - pilot_candidate_02_review_mp3
+  - director_blueprint
+  - analysis_metrics
+  - provenance_manifest
   - review_sheet
 
 workflows:
-  - id: TAKTOR-SOUND-ID-v01
-    trigger: github_actions_pull_request_or_manual_dispatch
-    execution: sequential_provider_jobs
-    output: github_actions_artifact
-    review_gate: KEEP_MIX_REJECT
+  - id: TAKTOR-OFFENER-KREIS-01-v01
+    trigger: queue_or_manual_single_job
+    execution: >-
+      constrained OpenAI director, four ACE-Step full renders, deterministic QA,
+      top-two selection and one human review gate
+    output: canonical_project_storage
+    review_gate: ONE_HUMAN_REVIEW
 
 providers:
-  primary:
-    id: musicgen_gradio_public
-    auth: none
-    role: sound_id_generation
-  fallback:
-    id: huggingface_inference
-    auth: optional_HF_TOKEN
-    enabled: false_by_default
+  director:
+    id: openai_responses_api
+    auth: OPENAI_API_KEY
+    role: constrained_caption_and_section_direction
+    music_audio_generation: false
+    optional: true
+  music_primary:
+    id: ace_step_1_5
+    image: ghcr.io/ace-step/ace-step-1.5:0.1.8
+    auth: ACESTEP_API_KEY
+    role: full_length_music_generation
+    reference_audio_enabled: false
+  browser_diagnostic:
+    id: xenova_musicgen_small
+    role: noncommercial_sound_id_sketch
+    production_enabled: false
 
 infrastructure:
   repository: MrYueHang/LICHTREICH_Cloud-Computer_true
-  branch: feature/taktor-sound-id-worker-v01
-  render_worker: scripts/taktor_generate_sound_id.py
-  workflow: .github/workflows/taktor-sound-id.yml
+  branch: feature/taktor-longform-pilot-v01
+  orchestrator: modules/taktor/orchestrator/run_pilot.py
+  compose: modules/taktor/deploy/docker-compose.longform.yml
   deployment_target: /opt/taktor
+  storage_root: creative-society/msjuehang/offener-kreis/pilot-01
   subdomain: taktor
   reverse_proxy_pattern: /opt/andock.sh taktor PORT
+
+integrations:
+  intake: https://briefkasten.lichtreich.info
+  visual_art: https://herrkuenstler.lichtreich.info
+  file_service: https://dateien.lichtreich.info
+  setup_assistant: project_storage_and_provider_configuration
+  optional_mirrors:
+    - google_drive
+    - dropbox
 
 security:
   data_classification: creative_project
   reference_audio_copied_into_generation: false
   external_training_consent: false
+  secrets_in_repository: false
+  api_service_public_without_auth: false
   audit_required: true
   human_approval: true
 
@@ -72,8 +103,12 @@ quality_rules:
   synthetic_noise_bed: false
   abrupt_scene_changes: false
   reference_audio_copying: false
+  sub_only_collapse: false
+  clipped_output: false
+  voice_in_first_music_pilot: false
   final_render_without_review: false
 
 lifecycle:
   created_at: 2026-07-28
-  next_gate: first_successful_sound_id_artifact
+  upgraded_at: 2026-07-31
+  next_gate: first_successful_600_second_pilot
