@@ -25,3 +25,65 @@ Dieser Backlog basiert auf der Evidenzmatrix, dem aktuellen Plattformstand und d
 ## ⚪ Strategische & QA-Aufgaben
 - [ ] **Workflow-Landkarte in Code gießen**: n8n-JSON-Vorlagen mit der Metastruktur für das dynamische Handbuch verknüpfen.
 - [ ] **Datenraum/Vault-Plan**: Konzept für sensible Daten ausarbeiten.
+
+---
+
+# 🔴 NÄCHSTER AUSFÜHRUNGSPASS — TAKTØR STORY-FIRST v03
+
+## Status
+
+Dies ist der einzige gültige TAKTØR-Backendauftrag. Die frühere Langformfassung in PR #28 ist eine verworfene technische Vorstufe und darf nicht deployt oder gemergt werden.
+
+## Vom Nutzer bereitgestelltes Paket
+
+`TAKTOR_STORY-FIRST_PILOT_v03_COMPLETE.zip`
+
+Das ZIP ist dem Claude-Terminal-Dialog als Anlage zu übergeben. Es enthält die quellengetreue Story Engine, Track Story Bible, Narrative-to-Music-Map, OpenAI-Director-/Worker-/Judge-Prompts, Pilotjob, Fail-closed Runner, QA-Regeln, Storagevertrag und Deploy-Handoff.
+
+## Harte Product-Truth
+
+- Kein öffentlicher Tracktitel ist festgelegt.
+- `ERFOLG LAUT SYSTEM`, `OFFENER KREIS` und `BARFUSS TROTZ STAHLKAPPE` sind keine Tracktitel.
+- Der erste Musikpilot bleibt instrumental.
+- Keine Referenzaudios werden an den Renderer gesendet oder in den Track kopiert.
+- Die Storybewegung lautet: getrennte Pulse → wirkliche tragende Koordination → koordinierte Vielheit → verführerische Geschlossenheit → richtige Antwort aus nicht erlaubter Verbindung → Körper-/Beziehungsveto → offene Rückkehr.
+- Es entstehen vier vollständige 8–12-Minuten-Kandidaten, keine Snippet-Kette.
+- Höchstens zwei bestandene Kandidaten werden dem Nutzer zur einmaligen Hörentscheidung gezeigt.
+
+## Claude-Auftrag
+
+1. Vor Änderungen aktuellen Repo-Stand pullen und `AGENTS.md` beachten.
+2. ZIP vollständig prüfen; keine Story oder Titel neu erfinden.
+3. Backend-/Orchestratorcode ausschließlich im dafür vorgesehenen Claude-/Backendbereich implementieren; bestehende Frontenddateien nicht überschreiben.
+4. TAKTØR als asynchrones LICHTREICH-Modul verdrahten:
+   - Vercel/Frontend: Auftrag, Status, Review
+   - LICHTREICH VPS/MCP oder n8n: Auth, Queue, Projektpfad, Status, Budget, Audit
+   - OpenAI Responses API: Director und Final Judge
+   - OpenAI Batch API: zwölf schmale Audit-Worker
+   - ACE-Step 1.5 oder kompatibler lizenzgeprüfter GPU-Worker: vollständiger Musikrender
+   - `dateien.lichtreich.info` bzw. S3-kompatibler Storage: WAV/MP3/Manifeste
+5. Secretwerte niemals committen. Vorhandenen Einrichtungs-Assistenten und Secret-Store nutzen.
+6. Kanonischen Pfad anlegen:
+   `creative-society/msjuehang/track-pilot-01/{run_id}/`
+7. Fail-closed QA aus dem ZIP übernehmen:
+   - Clipping auf Originalkanälen vor Downmix messen
+   - Stereo/Full-band statt Sub-only-Kollaps
+   - kein dauerhaftes Noise-Bed
+   - keine Vocals; fehlender Vocal-Detector blockiert Erfolg
+   - höchstens vier große Strukturbrüche
+   - zeitfensterbasierte BPM-Prüfung außerhalb deklarierter Übergänge
+   - atomare Run-Ordner; kein alter READY-Status nach Fehlerlauf
+8. Einen echten End-to-End-Probelauf starten.
+9. Nur bei real vorhandenen, vollständigen Dateien `READY_FOR_ONE_HUMAN_REVIEW` setzen.
+10. Ergebnis liefern als:
+    - `_SYNC-REPORT.md`
+    - Deploy-/Healthstatus
+    - Zielpfad
+    - verwendete Modelle/Versionen/Lizenzen
+    - gemessene API-/GPU-Kosten
+    - Links oder Pfade zu höchstens zwei vollständigen Review-MP3s und WAVs
+    - klare Blockerliste, falls kein Audio gerendert wurde
+
+## Erwartete Nutzerinteraktion
+
+Keine Zwischenfragen zu Promptvarianten, keine Snippet-Auswahl und kein manuelles Klicken. Nur notwendige Secret-/Infrastrukturentscheidung erfragen, falls sie nicht aus der Umgebung auflösbar ist. Danach selbstständig bis zum End-to-End-Resultat arbeiten.
