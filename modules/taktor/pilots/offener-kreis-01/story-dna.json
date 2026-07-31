@@ -1,0 +1,61 @@
+{
+  "schema": "lichtreich.taktor.story-dna.v1",
+  "project": "MSJueHang",
+  "pilot_id": "OFFENER-KREIS-01",
+  "working_title": "ERFOLG LAUT SYSTEM",
+  "subtitle": "Fuß sagt: nochmal prüfen.",
+  "status": "locked_for_first_longform_render",
+  "central_question": "Kann Verbindung organisiert werden, ohne sie zu kontrollieren?",
+  "core_formula": [
+    "warm im Fundament",
+    "hypnotisch in der Bewegung",
+    "widerständig in der Textur",
+    "licht in der Auflösung"
+  ],
+  "entity_roles": {
+    "MrJueHang": "Körper, Kick, Bass, Statik und Widerstand",
+    "MrsJueHang": "Wärme, harmonisches Licht, Zärtlichkeit und spielerische Abweichung",
+    "MSJueHang": "Makrodramaturgie, Übergaben, Zusammenhang und Veröffentlichung"
+  },
+  "motifs": [
+    {
+      "id": "open_circle",
+      "meaning": "Unvollständigkeit ist kein Defekt.",
+      "music_rule": "Fünfnotiges Motiv in D-Dorisch; die erwartete Schlussnote kehrt nie identisch zurück."
+    },
+    {
+      "id": "body_veto",
+      "meaning": "Der Körper prüft den Systemstatus.",
+      "music_rule": "Kick und Bass bleiben der Boden; ein fehlender oder verspäteter Schritt alle acht Takte."
+    },
+    {
+      "id": "connection_without_capture",
+      "meaning": "Verbindung ohne vollständige Lesbarkeit.",
+      "music_rule": "Elemente antworten einander, werden aber nicht dauerhaft übereinandergeschichtet."
+    },
+    {
+      "id": "humorous_machine",
+      "meaning": "Humor aus überkonsequenter Prozesslogik und realem Betrieb.",
+      "music_rule": "Ein eigenwilliger Doppelton kehrt sparsam wieder; niemals als Dauerloop."
+    }
+  ],
+  "voice_markers": [
+    {"time_hint": "01:25", "text": "Erfolg laut System.", "render_in_v01": false},
+    {"time_hint": "01:33", "text": "Fuß sagt: nochmal prüfen.", "render_in_v01": false},
+    {"time_hint": "06:55", "text": "Woher wusste es, dass es dort suchen darf?", "render_in_v01": false},
+    {"time_hint": "08:35", "text": "Zugriff erweitern?", "render_in_v01": false},
+    {"time_hint": "09:22", "text": "Nein war kein Fehlerzustand.", "render_in_v01": false},
+    {"time_hint": "09:48", "text": "Der Floor bleibt. Die Bedeutung wandert.", "render_in_v01": false}
+  ],
+  "hard_avoids": [
+    "Referenz-Audio kopieren oder remixen",
+    "synthetisches Dauerrauschen",
+    "White-noise-Riser",
+    "EDM-Drop",
+    "generische Trance-Leads",
+    "abrupte Szenenwechsel",
+    "ständige Voice-Erklärung",
+    "Mika-, Mary- oder Dorian-Samples",
+    "Buchinhalt ungefiltert als Prompt verwenden"
+  ]
+}
