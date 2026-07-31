@@ -8,6 +8,7 @@ import Me from './pages/Me';
 import DateiManager from './pages/DateiManager';
 import ProzessBoard from './pages/ProzessBoard';
 import EinrichtungsAssistent from './pages/EinrichtungsAssistent';
+import Taktor from './pages/Taktor';
 import { AuthProvider } from './contexts/AuthContext';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/datei-manager" element={<DateiManager />} />
           <Route path="/prozess-board" element={<ProzessBoard />} />
           <Route path="/setup" element={<EinrichtungsAssistent />} />
+          <Route path="/taktor" element={<Taktor />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

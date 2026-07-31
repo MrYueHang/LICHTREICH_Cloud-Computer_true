@@ -18,11 +18,12 @@
 | **DMS** | Paperless-ngx | Dokumenten-Management: Scan/OCR(deu)/Tags, selfhosted (GPL) | dms.lichtreich.info | VPS:/opt/dms (Docker) | ✅ live 18.07 |
 | **WBD** | Excalidraw | Whiteboard (MIT), offizielles Docker-Image | whiteboard.lichtreich.info | VPS: Container `excalidraw` | ✅ live 18.07 |
 | **PDF** | Stirling-PDF | PDF-Werkbank: teilen/drehen/komprimieren/signieren (MIT) | pdf.lichtreich.info | VPS: Container `stirling-pdf` :8094 | ✅ live 18.07 |
-| **FORM** | docassemble | Geführte Rechts-Interviews→Dokumente (MIT) | formulare.lichtreich.info | VPS: Container `docassemble` :8095 | ✅ live 18.07 |
-| **CRM** | Twenty | Modernes CRM (AGPL), Kontakte/Vermittler-Linse | crm.lichtreich.info | VPS:/opt/crm (Compose) :8097 | ✅ live 18.07 |
-| **MTB** | Metabase | Dashboards auf DBs (AGPL), Neon verbunden (68 Tab.) | metabase.lichtreich.info | VPS: Container `metabase` :8098 | ✅ live 18.07 |
+| **FORM** | docassemble | Geführte Interviews werden fertige Dokumente (MIT) | formulare.lichtreich.info | VPS: Container `docassemble` :8095 | ✅ live 18.07 |
+| **CRM** | Twenty | Modernes CRM (AGPL), Kontakte, Firmen, Pipelines | crm.lichtreich.info | VPS:/opt/crm (Compose) :8097 | ✅ live 18.07 |
+| **MTB** | Metabase | Dashboards auf der Neon-Datenbank | metabase.lichtreich.info | VPS: Container `metabase` :8098 | ✅ live 18.07 |
 | **OPRJ** | OpenProject | PM mit Gantt (GPL) | projekte.lichtreich.info | Hetzner 65.108.50.103: Container `openproject` :8099 | ✅ live 18.07 |
-| **DAT** | copyparty | Netzwerklaufplatte (Login stefan), /data auf Hetzner | dateien.lichtreich.info | Hetzner: Container `copyparty` :3923 + /root/copyparty-cfg | ✅ live 18.07 |
+| **DAT** | copyparty | Netzwerklaufplatte, `/data` auf Hetzner | dateien.lichtreich.info | Hetzner: Container `copyparty` :3923 | ✅ live 18.07 |
+| **TKT** | TAKTØR | Referenzanalyse, Sound-ID, Storyboard, Review und reproduzierbarer Audio-Render | taktor.lichtreich.info | `modules/taktor` + GitHub-Actions-Worker | 🟠 rollout 28.07 |
 
 ## Naming-Regel (für ALLES Neue)
 `KÜRZEL_mini-beschreib_YYYY-MM-DD` — z.B. `ING_schleue-wissens-ingest_2026-07-07`.

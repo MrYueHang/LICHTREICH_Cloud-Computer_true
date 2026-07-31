@@ -1,0 +1,86 @@
+name: TAKTOR Sound-ID Render
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration_seconds:
+        description: "Duration per variant (10-60 seconds)"
+        required: false
+        default: "30"
+  pull_request:
+    paths:
+      - ".github/workflows/taktor-sound-id.yml"
+      - "scripts/taktor_generate_sound_id.py"
+      - "modules/taktor/**"
+
+permissions:
+  contents: read
+
+jobs:
+  render-sound-id:
+    name: Render three MusicGen variants
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      DURATION_SECONDS: ${{ inputs.duration_seconds || '30' }}
+      OUTPUT_DIR: artifacts/taktor-sound-id
+      MUSICGEN_SPACE: https://facebook-musicgen.hf.space
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Verify MusicGen API
+        run: |
+          python - <<'PY'
+          import requests
+          url = "https://facebook-musicgen.hf.space/gradio_api/info"
+          response = requests.get(url, timeout=30)
+          response.raise_for_status()
+          data = response.json()
+          endpoints = data.get("named_endpoints", {})
+          if "/predict_batched" not in endpoints:
+              raise SystemExit(f"predict_batched endpoint missing: {list(endpoints)}")
+          print("MusicGen Gradio API reachable")
+          PY
+
+      - name: Generate three Sound-ID variants
+        id: generate
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p artifacts/taktor-sound-id
+          set -o pipefail
+          python scripts/taktor_generate_sound_id.py 2>&1 | tee artifacts/taktor-sound-id/worker.log
+
+      - name: Verify outputs
+        if: steps.generate.outcome == 'success'
+        run: |
+          find artifacts/taktor-sound-id -maxdepth 1 -type f -print -exec ls -lh {} \;
+          test -f artifacts/taktor-sound-id/manifest.json
+          test "$(find artifacts/taktor-sound-id -name '*320K.mp3' | wc -l)" -eq 3
+
+      - name: Upload review or diagnostic package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TAKTOR-SOUND-ID-v01
+          path: artifacts/taktor-sound-id/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Fail after diagnostics when generation failed
+        if: steps.generate.outcome != 'success'
+        run: exit 1

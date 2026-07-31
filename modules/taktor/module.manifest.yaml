@@ -1,0 +1,79 @@
+module:
+  id: taktor
+  name: TAKTØR
+  version: 0.1.0
+  status: rollout
+  description: >-
+    Self-hostbares Audio-, Set-, Story- und Review-Modul für LICHTREICH.
+    Der erste produktive Worker erzeugt drei unabhängige Sound-ID-Varianten aus
+    einem Creative Brief und liefert Audioartefakte zur KEEP/MIX/REJECT-Prüfung.
+  domain: creative_audio
+  organization_unit: HerrKünstler / Creative Society
+  owner: MrJueHang
+  canonical_url: https://taktor.lichtreich.info
+  desktop_integration: https://desktop.lichtreich.info
+
+capabilities:
+  - creative_brief_to_sound_id
+  - reference_analysis
+  - harmonic_planning
+  - storyboard
+  - timestamp_review
+  - reproducible_render
+
+inputs:
+  - creative_brief
+  - duration_seconds
+  - reference_dna
+  - avoid_list
+
+outputs:
+  - sound_id_variant_a
+  - sound_id_variant_b
+  - sound_id_variant_c
+  - render_manifest
+  - review_sheet
+
+workflows:
+  - id: TAKTOR-SOUND-ID-v01
+    trigger: github_actions_pull_request_or_manual_dispatch
+    execution: sequential_provider_jobs
+    output: github_actions_artifact
+    review_gate: KEEP_MIX_REJECT
+
+providers:
+  primary:
+    id: musicgen_gradio_public
+    auth: none
+    role: sound_id_generation
+  fallback:
+    id: huggingface_inference
+    auth: optional_HF_TOKEN
+    enabled: false_by_default
+
+infrastructure:
+  repository: MrYueHang/LICHTREICH_Cloud-Computer_true
+  branch: feature/taktor-sound-id-worker-v01
+  render_worker: scripts/taktor_generate_sound_id.py
+  workflow: .github/workflows/taktor-sound-id.yml
+  deployment_target: /opt/taktor
+  subdomain: taktor
+  reverse_proxy_pattern: /opt/andock.sh taktor PORT
+
+security:
+  data_classification: creative_project
+  reference_audio_copied_into_generation: false
+  external_training_consent: false
+  audit_required: true
+  human_approval: true
+
+quality_rules:
+  continuous_hypnotic: true
+  synthetic_noise_bed: false
+  abrupt_scene_changes: false
+  reference_audio_copying: false
+  final_render_without_review: false
+
+lifecycle:
+  created_at: 2026-07-28
+  next_gate: first_successful_sound_id_artifact
