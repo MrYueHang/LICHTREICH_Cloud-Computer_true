@@ -1,0 +1,36 @@
+name: TAKTOR Longform Validate
+
+on:
+  pull_request:
+    paths:
+      - "modules/taktor/**"
+      - ".github/workflows/taktor-longform-validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate JSON contracts
+        run: |
+          python -m json.tool modules/taktor/pilots/offener-kreis-01/story-dna.json >/dev/null
+          python -m json.tool modules/taktor/pilots/offener-kreis-01/pilot-job.json >/dev/null
+
+      - name: Compile orchestrator
+        run: python -m py_compile modules/taktor/orchestrator/run_pilot.py
+
+      - name: Validate Docker Compose
+        run: |
+          cp modules/taktor/deploy/.env.example modules/taktor/deploy/.env
+          sed -i 's/ACESTEP_API_KEY=replace-with-long-random-secret/ACESTEP_API_KEY=ci-placeholder/' modules/taktor/deploy/.env
+          docker compose --env-file modules/taktor/deploy/.env \
+            -f modules/taktor/deploy/docker-compose.longform.yml config >/dev/null
