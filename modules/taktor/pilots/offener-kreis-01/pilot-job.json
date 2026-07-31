@@ -12,7 +12,13 @@
     "thinking": true,
     "use_format": true,
     "audio_format": "wav",
-    "batch_size": 2
+    "batch_size": 2,
+    "license": "MIT",
+    "license_evidence": [
+      "https://github.com/ace-step/ACE-Step-1.5/blob/main/LICENSE",
+      "https://huggingface.co/ACE-Step/Ace-Step1.5"
+    ],
+    "commercial_use_claim": "Official model card identifies the model as MIT and commercial-ready; retain versioned evidence and perform project rights review before release."
   },
   "director": {
     "provider": "OpenAI Responses API",
