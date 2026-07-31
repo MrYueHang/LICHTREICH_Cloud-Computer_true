@@ -1,0 +1,62 @@
+{
+  "schema": "lichtreich.taktor.pilot-job.v1",
+  "job_id": "MSJ-OFFENER-KREIS-01-v01",
+  "mode": "no_click_overnight",
+  "duration_seconds": 600,
+  "render_count": 4,
+  "human_review_count": 2,
+  "music_provider": {
+    "primary": "ACE-Step-v1.5",
+    "endpoint_env": "ACESTEP_BASE_URL",
+    "model": "acestep-v15-turbo",
+    "thinking": true,
+    "use_format": true,
+    "audio_format": "wav",
+    "batch_size": 2
+  },
+  "director": {
+    "provider": "OpenAI Responses API",
+    "model_env": "OPENAI_DIRECTOR_MODEL",
+    "worker_model_env": "OPENAI_WORKER_MODEL",
+    "judge_model_env": "OPENAI_JUDGE_MODEL",
+    "rule": "The director may refine wording and section detail but may not change locked duration, BPM, key, motifs, rights gate or avoid list."
+  },
+  "music_parameters": {
+    "bpm": 126,
+    "key_scale": "D Dorian",
+    "time_signature": "4",
+    "instrumental": true,
+    "caption": "Long-form instrumental underground techno with one continuous bodily identity; warm deep elastic bass and physical kick, organic mechanical groove, patient evolution, subtle psychedelic harmonic light, affectionate strange micro-details, industrial texture without darkness or harshness, no vocals, no constant noise, no risers, no EDM drop. The same five-note open-circle motif changes meaning across the full piece. Only three major density transformations; every transition is prepared over many bars.",
+    "lyrics": "",
+    "inference_steps": 8,
+    "seeds": [16121982, 9072008, 17072026, 31072026]
+  },
+  "sections": [
+    {"start": 0, "end": 90, "name": "UNTERGRUND", "energy": 0.38, "story": "Körper und Boden entstehen vor der vollständigen Maschine."},
+    {"start": 90, "end": 210, "name": "FIRST USEFUL THING", "energy": 0.55, "story": "Das System funktioniert wirklich; der Groove wird tragfähig."},
+    {"start": 210, "end": 330, "name": "QOLLEKTIV", "energy": 0.68, "story": "Mr, Mrs und MS sind drei Funktionen desselben Klangkörpers, keine drei Tracks."},
+    {"start": 330, "end": 450, "name": "TECHNOfreude", "energy": 0.84, "story": "Vollster gemeinsamer Floorzustand ohne Big-Room-Peak."},
+    {"start": 450, "end": 540, "name": "UNERLAUBTE VERBINDUNG", "energy": 0.70, "story": "Ein fremder Zusammenhang erscheint; Bass bleibt, Gewissheit wird entzogen."},
+    {"start": 540, "end": 600, "name": "OFFENER KREIS", "energy": 0.58, "story": "Kein Outro: Eine Lücke wird akzeptiert und führt in Kapitel zwei."}
+  ],
+  "automatic_qa": {
+    "reject_if": [
+      "clipped_samples_percent > 0.001",
+      "sub_150_energy_ratio > 0.75 for most of track",
+      "persistent noise bed",
+      "tempo drift > 2 BPM outside planned transitions",
+      "more than 4 abrupt novelty peaks",
+      "silence or corrupt render",
+      "detected voice in instrumental render"
+    ],
+    "rank_by": [
+      "long-range recurrence with variation",
+      "low-end ownership without sub-only collapse",
+      "prepared transitions",
+      "spectral depth and stereo movement",
+      "motif persistence",
+      "absence of synthetic noise bed"
+    ]
+  },
+  "output_path": "creative-society/msjuehang/offener-kreis/pilot-01/{job_id}/"
+}
