@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, CircleDot, ExternalLink, Mail, Menu, MousePointer2, Sparkles, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import ImmersiveField from '../components/ImmersiveField';
 import { portfolioContent, type Project } from '../lib/portfolioContent';
 
@@ -43,7 +43,7 @@ export default function Home() {
     setActiveProject((current) => (current === project.id ? null : project.id));
   }
 
-  function handleContactSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setContactState('shown');
   }
