@@ -4,15 +4,9 @@ import { useEffect, useState, type FormEvent } from 'react';
 import ImmersiveField from '../components/ImmersiveField';
 import { portfolioContent, type Project } from '../lib/portfolioContent';
 
-const reveal = {
-  initial: { opacity: 0, y: 22 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
-};
+const reveal = { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } };
 
-function scrollToId(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+function scrollToId(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 
 export default function Home() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
@@ -24,29 +18,17 @@ export default function Home() {
   useEffect(() => {
     document.title = portfolioContent.meta.title;
     let description = document.querySelector('meta[name="description"]');
-    if (!description) {
-      description = document.createElement('meta');
-      description.setAttribute('name', 'description');
-      document.head.appendChild(description);
-    }
+    if (!description) { description = document.createElement('meta'); description.setAttribute('name', 'description'); document.head.appendChild(description); }
     description.setAttribute('content', portfolioContent.meta.description);
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const updateMotion = () => setReducedMotion(media.matches);
-    updateMotion();
-    media.addEventListener?.('change', updateMotion);
+    updateMotion(); media.addEventListener?.('change', updateMotion);
     return () => media.removeEventListener?.('change', updateMotion);
   }, []);
 
   const motionProps = reducedMotion ? { initial: false, animate: { opacity: 1, y: 0 } } : reveal;
-
-  function toggleProject(project: Project) {
-    setActiveProject((current) => (current === project.id ? null : project.id));
-  }
-
-  function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setContactState('shown');
-  }
+  function toggleProject(project: Project) { setActiveProject((current) => (current === project.id ? null : project.id)); }
+  function handleContactSubmit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setContactState('shown'); }
 
   return (
     <main className="portfolio-shell">
@@ -54,40 +36,19 @@ export default function Home() {
       <header className="site-header">
         <a className="brand-lockup" href="#top" aria-label="Startseite"><span className="brand-symbol">✳</span><span>STEFAN / BUSSE</span></a>
         <nav className={`site-nav ${mobileOpen ? 'is-open' : ''}`} aria-label="Hauptnavigation">
-          <a href="#work" onClick={() => setMobileOpen(false)}>Arbeiten</a><a href="#method" onClick={() => setMobileOpen(false)}>Methode</a><a href="#context" onClick={() => setMobileOpen(false)}>Kontext</a><a href="#contact" onClick={() => setMobileOpen(false)}>Kontakt</a>
+          <a href="#about" onClick={() => setMobileOpen(false)}>Profil</a><a href="#work" onClick={() => setMobileOpen(false)}>Arbeiten</a><a href="#method" onClick={() => setMobileOpen(false)}>Methode</a><a href="#context" onClick={() => setMobileOpen(false)}>Kontext</a><a href="#contact" onClick={() => setMobileOpen(false)}>Kontakt</a>
         </nav>
-        <div className="header-actions">
-          <button className="mode-switch" type="button" onClick={() => setLowPower((value) => !value)} aria-pressed={lowPower}><span className="mode-dot" /> {lowPower ? 'light field' : 'full field'}</button>
-          <button className="menu-toggle" type="button" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen} aria-label={mobileOpen ? 'Navigation schließen' : 'Navigation öffnen'}>{mobileOpen ? <X size={19} /> : <Menu size={19} />}</button>
-        </div>
+        <div className="header-actions"><button className="mode-switch" type="button" onClick={() => setLowPower((value) => !value)} aria-pressed={lowPower}><span className="mode-dot" /> {lowPower ? 'light field' : 'full field'}</button><button className="menu-toggle" type="button" onClick={() => setMobileOpen((value) => !value)} aria-expanded={mobileOpen} aria-label={mobileOpen ? 'Navigation schließen' : 'Navigation öffnen'}>{mobileOpen ? <X size={19} /> : <Menu size={19} />}</button></div>
       </header>
 
       <div id="top" className="hero-grid" />
-      <section id="main-content" className="hero-section" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <motion.p className="eyebrow" {...motionProps}><CircleDot size={13} /> immersive frontend / human-scale systems</motion.p>
-          <motion.h1 id="hero-title" className="hero-title" {...motionProps} transition={reducedMotion ? undefined : { ...reveal.transition, delay: 0.08 }}>Interfaces<br /><em>with a pulse.</em></motion.h1>
-          <motion.p className="hero-lede" {...motionProps} transition={reducedMotion ? undefined : { ...reveal.transition, delay: 0.16 }}>{portfolioContent.profile.intro}</motion.p>
-          <motion.div className="hero-actions" {...motionProps} transition={reducedMotion ? undefined : { ...reveal.transition, delay: 0.24 }}><button className="button button-primary" type="button" onClick={() => scrollToId('work')}>Arbeiten erkunden <ArrowDownRight size={17} /></button><a className="text-link" href="#contact">{portfolioContent.profile.availability} <ArrowUpRight size={16} /></a></motion.div>
-          <div className="hero-footnote"><span>01 / 04</span><span>Designing the space between human intent and machine complexity.</span></div>
-        </div>
-        <ImmersiveField reducedMotion={reducedMotion} lowPower={lowPower} />
-      </section>
+      <section id="main-content" className="hero-section" aria-labelledby="hero-title"><div className="hero-copy"><motion.p className="eyebrow" {...motionProps}><CircleDot size={13} /> immersive frontend / human-scale systems</motion.p><motion.h1 id="hero-title" className="hero-title" {...motionProps} transition={reducedMotion ? undefined : { ...reveal.transition, delay: 0.08 }}>Interfaces<br /><em>with a pulse.</em></motion.h1><motion.p className="hero-lede" {...motionProps} transition={reducedMotion ? undefined : { ...reveal.transition, delay: 0.16 }}>{portfolioContent.profile.intro}</motion.p><motion.div className="hero-actions" {...motionProps} transition={reducedMotion ? undefined : { ...reveal.transition, delay: 0.24 }}><button className="button button-primary" type="button" onClick={() => scrollToId('work')}>Arbeiten erkunden <ArrowDownRight size={17} /></button><a className="text-link" href="#contact">{portfolioContent.profile.availability} <ArrowUpRight size={16} /></a></motion.div><div className="hero-footnote"><span>01 / 04</span><span>Designing the space between human intent and machine complexity.</span></div></div><ImmersiveField reducedMotion={reducedMotion} lowPower={lowPower} /></section>
 
       <section className="signal-strip" aria-label="Portfolio-Fokus"><div className="signal-label">Selected signals</div><div className="signal-list"><span>WebGL</span><span>Product UX</span><span>Motion systems</span><span>Content architecture</span><span>Frontend craft</span></div></section>
 
-      <section id="work" className="section section-work" aria-labelledby="work-title">
-        <div className="section-heading"><p className="eyebrow">02 / work in progress</p><h2 id="work-title">Projects that<br /><em>hold weight.</em></h2><p>Keine Demo-Landschaft ohne Boden. Jedes Projekt zeigt Problem, Haltung und das Stück System, das danach tragfähiger ist.</p></div>
-        <div className="project-list">
-          {portfolioContent.projects.map((project) => {
-            const isOpen = activeProject === project.id;
-            return <article className={`project-row accent-${project.accent} ${isOpen ? 'is-open' : ''}`} key={project.id}>
-              <button className="project-summary" type="button" onClick={() => toggleProject(project)} aria-expanded={isOpen}><span className="project-number">{project.index}</span><span className="project-title-wrap"><span className="project-eyebrow">{project.eyebrow}</span><strong>{project.title}</strong><span>{project.summary}</span></span><span className="project-toggle"><ChevronDown size={20} /></span></button>
-              <AnimatePresence initial={false}>{isOpen && <motion.div className="project-detail" initial={reducedMotion ? false : { opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={reducedMotion ? undefined : { opacity: 0, y: -8 }} transition={{ duration: reducedMotion ? 0 : 0.3 }}><div className="project-detail-intro"><span className="detail-stamp">EXPANDED CASE</span><p>{project.solution}</p></div><div className="detail-grid"><div><span className="detail-label">Problem</span><p>{project.problem}</p></div><div><span className="detail-label">Rolle</span><p>{project.role}</p></div><div><span className="detail-label">Ergebnis</span><p>{project.result}</p></div><div><span className="detail-label">Stack</span><div className="tag-list">{project.stack.map((item) => <span className="tag" key={item}>{item}</span>)}</div></div></div><a className="detail-link" href={project.linkHref}>{project.linkLabel} <ExternalLink size={15} /></a></motion.div>}</AnimatePresence>
-            </article>;
-          })}
-        </div>
-      </section>
+      <section id="about" className="section about-section" aria-labelledby="about-title"><div className="about-marker"><p className="eyebrow">01 / profile signal</p><span className="profile-initial">SB</span><span className="profile-caption">{portfolioContent.profile.location}</span></div><div className="about-copy"><h2 id="about-title">Clarity is<br /><em>a creative act.</em></h2><p className="section-lede">{portfolioContent.profile.bio}</p><div className="about-meta"><span><strong>Role</strong>{portfolioContent.profile.role}</span><span><strong>Working style</strong>direct, curious, systems-minded</span><span><strong>Current signal</strong>open to meaningful builds</span></div></div></section>
+
+      <section id="work" className="section section-work" aria-labelledby="work-title"><div className="section-heading"><p className="eyebrow">02 / work in progress</p><h2 id="work-title">Projects that<br /><em>hold weight.</em></h2><p>Keine Demo-Landschaft ohne Boden. Jedes Projekt zeigt Problem, Haltung und das Stück System, das danach tragfähiger ist.</p></div><div className="project-list">{portfolioContent.projects.map((project) => { const isOpen = activeProject === project.id; return <article className={`project-row accent-${project.accent} ${isOpen ? 'is-open' : ''}`} key={project.id}><button className="project-summary" type="button" onClick={() => toggleProject(project)} aria-expanded={isOpen}><span className="project-number">{project.index}</span><span className="project-title-wrap"><span className="project-eyebrow">{project.eyebrow}</span><strong>{project.title}</strong><span>{project.summary}</span></span><span className="project-toggle"><ChevronDown size={20} /></span></button><AnimatePresence initial={false}>{isOpen && <motion.div className="project-detail" initial={reducedMotion ? false : { opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={reducedMotion ? undefined : { opacity: 0, y: -8 }} transition={{ duration: reducedMotion ? 0 : 0.3 }}><div className="project-detail-intro"><span className="detail-stamp">EXPANDED CASE</span><p>{project.solution}</p></div><div className="detail-grid"><div><span className="detail-label">Problem</span><p>{project.problem}</p></div><div><span className="detail-label">Rolle</span><p>{project.role}</p></div><div><span className="detail-label">Ergebnis</span><p>{project.result}</p></div><div><span className="detail-label">Stack</span><div className="tag-list">{project.stack.map((item) => <span className="tag" key={item}>{item}</span>)}</div></div></div><a className="detail-link" href={project.linkHref}>{project.linkLabel} <ExternalLink size={15} /></a></motion.div>}</AnimatePresence></article>; })}</div></section>
 
       <section id="method" className="section method-section" aria-labelledby="method-title"><div className="method-aside"><p className="eyebrow">03 / method as material</p><span className="scribble">make it legible<br />then make it alive</span><MousePointer2 size={24} /></div><div className="method-main"><h2 id="method-title">The system is<br /><em>part of the story.</em></h2><p className="section-lede">Bewegung ist kein Konfetti. Sie gibt Orientierung, markiert Zustände und macht ein komplexes Produkt erinnerbar.</p><div className="process-line">{portfolioContent.process.map((step, index) => <div className="process-step" key={step.number}><span className="process-number">{step.number}</span><span className="process-title">{step.title}</span><p>{step.text}</p>{index < portfolioContent.process.length - 1 && <span className="process-connector" aria-hidden="true">↘</span>}</div>)}</div></div></section>
 
