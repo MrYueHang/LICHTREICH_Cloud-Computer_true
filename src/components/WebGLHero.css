@@ -1,0 +1,12 @@
+.webgl-hero { position: relative; min-height: min(64rem, 72vw); overflow: hidden; border: 1px solid color-mix(in oklch, var(--paper) 22%, transparent); background: radial-gradient(circle at 50% 45%, oklch(32% 0.06 185 / 0.22), transparent 50%), oklch(18% 0.032 250); }
+.webgl-hero::before { position: absolute; inset: 1rem; content: ''; pointer-events: none; border: 1px solid color-mix(in oklch, var(--paper) 10%, transparent); background: repeating-linear-gradient(0deg, transparent 0 35px, oklch(90% 0.028 86 / 0.05) 36px), repeating-linear-gradient(90deg, transparent 0 35px, oklch(90% 0.028 86 / 0.05) 36px); }
+.webgl-caption, .webgl-footer { position: absolute; z-index: 2; left: 1rem; right: 1rem; display: flex; justify-content: space-between; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; pointer-events: none; }
+.webgl-caption { top: 1.7rem; } .webgl-footer { bottom: 1.7rem; }
+.webgl-stage { position: absolute; inset: 4rem 1rem 3.5rem; }
+.webgl-canvas { width: 100% !important; height: 100% !important; }
+.webgl-fallback { display: grid; place-items: center; align-content: center; gap: 0.7rem; height: 100%; min-height: 28rem; border: 1px solid color-mix(in oklch, var(--paper) 22%, transparent); color: var(--paper); text-align: center; background: radial-gradient(circle, oklch(33% 0.08 185 / 0.36), transparent 58%); }
+.webgl-fallback strong { color: var(--acid); font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem); letter-spacing: -0.07em; }
+.webgl-fallback span, .webgl-fallback small { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.7rem; text-transform: uppercase; }
+@media (max-width: 900px) { .webgl-hero { min-height: 32rem; } }
+@media (max-width: 640px) { .webgl-hero { min-height: 27rem; } .webgl-footer { flex-direction: column; gap: 0.3rem; } }
+@media (prefers-reduced-motion: reduce) { .webgl-hero { animation: none; } }
