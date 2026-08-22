@@ -1,0 +1,25 @@
+name: BookLab Local Test
+
+on:
+  pull_request:
+    paths:
+      - "modules/booklab-local/**"
+      - ".github/workflows/booklab-local-test.yml"
+  push:
+    branches:
+      - "feature/booklab-local-*"
+    paths:
+      - "modules/booklab-local/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: modules/booklab-local
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m unittest -v
